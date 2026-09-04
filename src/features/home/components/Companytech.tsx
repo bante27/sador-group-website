@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
 
-// Reusable TechIcon Component using Devicon CDN
 interface TechIconProps {
     name: string;
     size?: string;
@@ -8,7 +7,6 @@ interface TechIconProps {
 }
 
 export function TechIcon({ name, size = 'text-4xl', className = '' }: TechIconProps) {
-    // Format name to match Devicon class conventions
     const formatTechName = (tech: string) => {
         const lower = tech.toLowerCase();
         if (lower === '.net') return 'dot-net';
@@ -58,24 +56,30 @@ export function CompanyIntro() {
     ];
 
     return (
-        <section ref={sectionRef} className="relative overflow-hidden py-24 bg-slate-50">
+        <section ref={sectionRef} className="relative overflow-hidden py-20 lg:py-24 bg-slate-50">
             <div
-                className="absolute inset-0 pointer-events-none bg-black"
+                className="absolute inset-0 pointer-events-none bg-black hidden lg:block"
                 style={{
                     clipPath: 'polygon(0 0, 72% 0, 30% 100%, 0 100%)'
                 }}
             ></div>
 
+            <div className="absolute inset-0 pointer-events-none bg-black block lg:hidden"
+                style={{
+                    clipPath: 'polygon(0 0, 100% 0, 100% 25%, 0 35%)'
+                }}
+            ></div>
+
             <div className="max-w-7xl mx-auto px-6 relative z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                    <div className="lg:col-span-5 relative flex items-center justify-center h-[380px] sm:h-[450px]">
-                        <div className="absolute z-20 w-28 h-28 bg-gradient-to-br from-amber-400 to-amber-600 text-black rounded-full flex flex-col items-center justify-center shadow-2xl font-bold tracking-wider border-4 border-black">
-                            <span className="text-xl">Sador</span>
-                            <span className="text-[10px] text-white uppercase font-semibold">Tech Stack</span>
+                    <div className="lg:col-span-5 relative flex items-center justify-center h-[340px] sm:h-[450px]">
+                        <div className="absolute z-20 w-24 h-24 sm:w-28 sm:h-28 bg-gradient-to-br from-amber-400 to-amber-600 text-black rounded-full flex flex-col items-center justify-center shadow-2xl font-bold tracking-wider border-4 border-black">
+                            <span className="text-lg sm:text-xl">Sador</span>
+                            <span className="text-[9px] sm:text-[10px] text-white uppercase font-semibold">Tech Stack</span>
                         </div>
 
                         <div
-                            className={`absolute w-[300px] h-[300px] sm:w-[380px] sm:h-[380px] rounded-full ${isVisible ? 'animate-spin' : ''}`}
+                            className={`absolute w-[280px] h-[280px] sm:w-[380px] sm:h-[380px] rounded-full ${isVisible ? 'animate-spin' : ''}`}
                             style={{ animationDuration: '35s', animationPlayState: isPaused ? 'paused' : 'running' }}
                             onMouseEnter={() => setIsPaused(true)}
                             onMouseLeave={() => setIsPaused(false)}
@@ -83,14 +87,14 @@ export function CompanyIntro() {
                             {technologies.map((tech, index) => {
                                 const angle = (index / technologies.length) * 360;
                                 const rad = (angle * Math.PI) / 180;
-                                const radius = 180;
+                                const radius = window.innerWidth < 640 ? 120 : 180;
                                 const x = Math.cos(rad) * radius;
                                 const y = Math.sin(rad) * radius;
 
                                 return (
                                     <div
                                         key={index}
-                                        className="absolute top-1/2 left-1/2 w-16 h-16 sm:w-20 sm:h-20 -ml-8 -mt-8 flex flex-col items-center justify-center bg-transparent transition-all duration-300 hover:scale-110 cursor-pointer group"
+                                        className="absolute top-1/2 left-1/2 w-14 h-14 sm:w-20 sm:h-20 -ml-7 -mt-7 sm:-ml-10 sm:-mt-10 flex flex-col items-center justify-center bg-transparent transition-all duration-300 hover:scale-110 cursor-pointer group"
                                         style={{
                                             transform: `translate(${x}px, ${y}px)`,
                                         }}
@@ -99,10 +103,10 @@ export function CompanyIntro() {
                                             className={`flex flex-col items-center justify-center ${isVisible ? 'animate-spin' : ''}`}
                                             style={{ animationDuration: '35s', animationDirection: 'reverse', animationPlayState: isPaused ? 'paused' : 'running' }}
                                         >
-                                            <div className="w-14 h-14 flex items-center justify-center drop-shadow-md">
-                                                <TechIcon name={tech.name} size="text-5xl" />
+                                            <div className="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center drop-shadow-md">
+                                                <TechIcon name={tech.name} size="text-4xl sm:text-5xl" />
                                             </div>
-                                            <span className="text-[11px] font-medium text-white mt-1 px-1.5 py-0.5 text-center bg-black/90 rounded shadow">
+                                            <span className="text-[10px] sm:text-[11px] font-medium text-white mt-1 px-1.5 py-0.5 text-center bg-black/90 rounded shadow">
                                                 {tech.name}
                                             </span>
                                         </div>
@@ -113,12 +117,12 @@ export function CompanyIntro() {
                     </div>
 
                     <div
-                        className="lg:col-start-7 lg:col-span-6 flex flex-col items-start text-left pl-11 sm:pl-24"
+                        className="lg:col-start-7 lg:col-span-6 flex flex-col items-start text-left pl-0 sm:pl-12 lg:pl-24"
                         style={{
                             display: 'flex',
                             flexDirection: 'column-reverse',
                             gap: '1.5rem',
-                            transform: 'rotate(-9deg)',
+                            transform: window.innerWidth >= 1024 ? 'rotate(-9deg)' : 'none',
                             transformOrigin: 'left center'
                         }}
                     >
