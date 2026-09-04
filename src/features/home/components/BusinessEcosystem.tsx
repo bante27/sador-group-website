@@ -18,7 +18,7 @@ export function BusinessEcosystem() {
                     setIsVisible(true);
                 }
             },
-            { threshold: 0.4 }
+            { threshold: 0.4 } // ልክ ሴክሽኑ 40% ከፊት ለፊት ሲታይ (face-to-face) motion-ው ይጀምራል
         );
 
         if (sectionRef.current) {
@@ -73,6 +73,8 @@ export function BusinessEcosystem() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     {ecosystemNodes.map((node, index) => {
                         const isLeft = index < 2;
+
+                        
                         const transformStyle = isVisible
                             ? 'translate(0, 0)'
                             : 'translate(0, 40px)';
