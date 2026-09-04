@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    overflow-y: scroll; /* Prevents page layout shifting/jittering when navigating between pages */
+  }
+
+  :root {
+    --primary: #001489;
+    --secondary: #1CABE2;
+    --bg-dark: #000d5a;
+  }
+
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: #000d5a;
+    color: #f8fafc;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    color: #ffffff;
+  }
+
+  p {
+    line-height: 1.7;
+    color: #cbd5e1;
+  }
+}
