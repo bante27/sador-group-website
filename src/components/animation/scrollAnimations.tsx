@@ -2,8 +2,6 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
-
-// Reusable scroll animation helper
 export const revealOnScroll = (
   triggerElement: HTMLElement | null,
   target: string,
