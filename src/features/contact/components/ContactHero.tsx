@@ -1,6 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Handshake, Mail, Phone, Linkedin, Twitter, Instagram, Facebook, MapPin } from 'lucide-react';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const GeometricBackground: React.FC = () => {
   return (
@@ -29,6 +32,7 @@ export const ContactHero: React.FC = () => {
     if (prefersReducedMotion) return;
 
     const ctx = gsap.context(() => {
+      
       gsap.fromTo(
         '.title-char',
         { y: 40, opacity: 0 },
@@ -36,22 +40,50 @@ export const ContactHero: React.FC = () => {
           y: 0,
           opacity: 1,
           duration: 0.8,
-          stagger: 0.07, 
+          stagger: 0.08, 
           ease: 'power3.out',
-          delay: 0.2,
+          scrollTrigger: {
+            trigger: heroRef.current,
+            start: 'top 80%',
+            end: 'bottom 20%',
+            toggleActions: 'play reverse play reverse',
+          },
         }
       );
 
       gsap.fromTo(
         '.hero-animate',
         { y: 30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1.2, stagger: 0.2, ease: 'power3.out', delay: 0.8 }
+        { 
+          y: 0, 
+          opacity: 1, 
+          duration: 1.2, 
+          stagger: 0.2, 
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: heroRef.current,
+            start: 'top 75%',
+            end: 'bottom 20%',
+            toggleActions: 'play reverse play reverse',
+          },
+        }
       );
 
       gsap.fromTo(
         '.glass-card-wrapper',
         { scale: 0.95, opacity: 0 },
-        { scale: 1, opacity: 1, duration: 1.2, ease: 'power2.out', delay: 0.4 }
+        { 
+          scale: 1, 
+          opacity: 1, 
+          duration: 1.2, 
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: heroRef.current,
+            start: 'top 75%',
+            end: 'bottom 20%',
+            toggleActions: 'play reverse play reverse',
+          },
+        }
       );
     }, heroRef);
 
