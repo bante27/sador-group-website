@@ -1,9 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { revealOnScroll } from "../../../components/animation/scrollAnimations";
 import { Handshake, Mail, Phone, Linkedin, Twitter, Instagram, Facebook, MapPin } from 'lucide-react';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const GeometricBackground: React.FC = () => {
   return (
@@ -32,58 +30,28 @@ export const ContactHero: React.FC = () => {
     if (prefersReducedMotion) return;
 
     const ctx = gsap.context(() => {
-      
-      gsap.fromTo(
+      revealOnScroll(
+        heroRef.current,
         '.title-char',
         { y: 40, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          stagger: 0.08, 
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: heroRef.current,
-            start: 'top 80%',
-            end: 'bottom 20%',
-            toggleActions: 'play reverse play reverse',
-          },
-        }
+        { y: 0, opacity: 1, duration: 0.9, stagger: 0.08, ease: 'power3.out' },
+        'top 80%'
       );
 
-      gsap.fromTo(
+      revealOnScroll(
+        heroRef.current,
         '.hero-animate',
         { y: 30, opacity: 0 },
-        { 
-          y: 0, 
-          opacity: 1, 
-          duration: 1.2, 
-          stagger: 0.2, 
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: heroRef.current,
-            start: 'top 75%',
-            end: 'bottom 20%',
-            toggleActions: 'play reverse play reverse',
-          },
-        }
+        { y: 0, opacity: 1, duration: 1.2, stagger: 0.9, ease: 'power3.out' },
+        'top 75%'
       );
 
-      gsap.fromTo(
+      revealOnScroll(
+        heroRef.current,
         '.glass-card-wrapper',
         { scale: 0.95, opacity: 0 },
-        { 
-          scale: 1, 
-          opacity: 1, 
-          duration: 1.2, 
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: heroRef.current,
-            start: 'top 75%',
-            end: 'bottom 20%',
-            toggleActions: 'play reverse play reverse',
-          },
-        }
+        { scale: 1, opacity: 1, duration: 1.2, ease: 'power2.out' },
+        'top 75%'
       );
     }, heroRef);
 
