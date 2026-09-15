@@ -1,12 +1,18 @@
 import React from 'react';
-import ContactForm from '../features/contact/components/ContactForm';
+import { ContactHero } from '../features/contact/components/ContactHero';
+import { ContactMethods } from '../features/contact/components/ContactMethods';
+import { ContactForm } from '../features/contact/components/ContactForm';
+import { ContactInfo } from '../features/contact/components/ContactInfo';
+import { ContactCTA } from '../features/contact/components/ContactCTA';
 
 export function ContactPage() {
     return (
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-            <h1 className="text-4xl font-black mb-4 text-white text-center">Get in Touch</h1>
-            <p className="text-slate-300 text-center mb-12">Connect with Sador Group for enterprise solutions, partnerships, and internship inquiries.</p>
+        <div className="flex flex-col min-h-screen bg-slate-950 text-slate-100 selection:bg-white selection:text-slate-950">
+            <ContactHero />
+            <ContactMethods />
             <ContactForm />
+            <ContactInfo />
+            <ContactCTA />
         </div>
     );
 }
