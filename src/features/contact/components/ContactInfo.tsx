@@ -8,11 +8,13 @@ gsap.registerPlugin(ScrollTrigger);
 
 export const ContactInfo: React.FC = () => {
   const infoSectionRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
 
     const ctx = gsap.context(() => {
+      // Timeline for Left Details Column
       gsap.fromTo(
         '.info-element',
         { y: 30, opacity: 0 },
@@ -30,17 +32,38 @@ export const ContactInfo: React.FC = () => {
           },
         }
       );
+
+      // Dedicated Smooth Entry Animation for the Map coming from the Left
+      gsap.fromTo(
+        '.map-element',
+        { x: -60, opacity: 0 },
+        {
+          x: 0,
+          opacity: 1,
+          duration: 0.1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: infoSectionRef.current,
+            start: 'top 75%',
+            end: 'bottom 20%',
+            toggleActions: 'play reverse play reverse',
+          },
+        }
+      );
     }, infoSectionRef);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <section ref={infoSectionRef} className="py-16 sm:py-24 bg-[#FAF9F6] border-b border-zinc-200">
+    <section ref={infoSectionRef} className="py-16 sm:py-24 bg-[#FAF9F6]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          
+          {/* Left Details Column (5 Columns) */}
           <div className="lg:col-span-5">
             <span className="info-element text-xs font-mono tracking-widest text-zinc-500 uppercase mb-2 block">
+            
             </span>
             <h2 className="info-element text-3xl sm:text-4xl font-light text-zinc-900 tracking-tight mb-8">
               Corporate Directives
@@ -58,6 +81,7 @@ export const ContactInfo: React.FC = () => {
                   <span className="text-xs text-zinc-500 font-mono mt-1 block">{CORPORATE_INFO.officeLocation.note}</span>
                 </div>
               </div>
+
               <div className="info-element flex items-start space-x-4">
                 <div className="w-10 h-10 rounded-lg bg-zinc-100 border border-zinc-300 flex items-center justify-center text-zinc-900 shrink-0 mt-1">
                   <Mail className="w-4 h-4" />
@@ -81,6 +105,7 @@ export const ContactInfo: React.FC = () => {
                   </a>
                 </div>
               </div>
+
               <div className="info-element flex items-start space-x-4">
                 <div className="w-10 h-10 rounded-lg bg-zinc-100 border border-zinc-300 flex items-center justify-center text-zinc-900 shrink-0 mt-1">
                   <Clock className="w-4 h-4" />
@@ -92,7 +117,10 @@ export const ContactInfo: React.FC = () => {
               </div>
             </div>
           </div>
-          <div className="info-element lg:col-span-7 w-full h-[450px] sm:h-[500px] rounded-xl border border-zinc-300 bg-white overflow-hidden flex flex-col">
+
+          {/* Wide Map Column Sliding In From Left (7 Columns) */}
+          <div className="map-element lg:col-span-7 w-full h-[450px] sm:h-[500px] bg-white overflow-hidden flex flex-col">
+
             
             <div className="w-full flex-1 relative">
               <iframe
