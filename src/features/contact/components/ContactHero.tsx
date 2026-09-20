@@ -1,7 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import { revealOnScroll } from "../../../components/animation/scrollAnimations";
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Handshake, Mail, Phone, Linkedin, Twitter, Instagram, Facebook, MapPin } from 'lucide-react';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const GeometricBackground: React.FC = () => {
   return (
@@ -30,28 +32,32 @@ export const ContactHero: React.FC = () => {
     if (prefersReducedMotion) return;
 
     const ctx = gsap.context(() => {
-      revealOnScroll(
-        heroRef.current,
+      // Combined Timeline for both Initial Load & Scroll Back/Forward Replay
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: heroRef.current,
+          start: 'top 95%', // Triggers immediately as the component enters the viewport on load and scroll
+          toggleActions: 'play reverse play reverse',
+        },
+        defaults: { ease: 'power3.out' }
+      });
+
+      tl.fromTo(
         '.title-char',
         { y: 40, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.9, stagger: 0.08, ease: 'power3.out' },
-        'top 80%'
-      );
-
-      revealOnScroll(
-        heroRef.current,
+        { y: 0, opacity: 1, duration: 0.9, stagger: 0.08 }
+      )
+      .fromTo(
         '.hero-animate',
         { y: 30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1.2, stagger: 0.2, ease: 'power3.out' },
-        'top 75%'
-      );
-
-      revealOnScroll(
-        heroRef.current,
+        { y: 0, opacity: 1, duration: 1.2, stagger: 0.2 },
+        '-=0.6'
+      )
+      .fromTo(
         '.glass-card-wrapper',
-        { scale: 0.95, opacity: 0 },
-        { scale: 1, opacity: 1, duration: 1.2, ease: 'power2.out' },
-        'top 75%'
+        { x: 180, y: -120, rotation: 15, scale: 0.7, opacity: 0 },
+        { x: 0, y: 0, rotation: 0, scale: 1, opacity: 1, duration: 1.6, ease: 'power2.out' },
+        '-=0.8'
       );
     }, heroRef);
 
@@ -61,7 +67,7 @@ export const ContactHero: React.FC = () => {
   const titleText = "Let's Build What Comes Next.";
 
   return (
-    <div ref={heroRef} className="relative pt-8 pb-8 md:pt-16 md:pb-16 bg-[#FAF9F6]  overflow-hidden">
+    <div ref={heroRef} className="relative pt-8 pb-8 md:pt-16 md:pb-16 bg-[#FAF9F6] overflow-hidden">
       <GeometricBackground />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10 pt-4 md:pt-16">
