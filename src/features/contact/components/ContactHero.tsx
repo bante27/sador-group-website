@@ -55,7 +55,7 @@ export const ContactHero: React.FC = () => {
       .fromTo(
         '.glass-card-wrapper',
         { x: 180, y: -120, rotation: 15, scale: 0.7, opacity: 0 },
-        { x: 0, y: 0, rotation: 0, scale: 1, opacity: 1, duration: 1.6, ease: 'power2.out' },
+        { x: 0, y: 0, rotation: 0, scale: 1, opacity: 1, duration: 1.0, ease: 'power2.out' },
         '-=0.8'
       );
     }, heroRef);
