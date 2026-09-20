@@ -16,67 +16,71 @@ import ContactPage from '../pages/ContactPage';
 import NotFoundPage from '../pages/NotFoundPage';
 import ErrorPage from '../pages/ErrorPage';
 
-export const router = createBrowserRouter([
+export const router = createBrowserRouter(
+    [
+        {
+            path: '/',
+            element: <MainLayout />,
+            errorElement: <ErrorLayout />,
+            children: [
+                {
+                    index: true,
+                    element: <HomePage />,
+                },
+                {
+                    path: 'about',
+                    element: <AboutPage />,
+                },
+                {
+                    path: 'companies',
+                    element: <CompaniesMainPage />,
+                },
+                {
+                    path: 'products',
+                    element: <ProductsPage />,
+                },
+                {
+                    path: 'services',
+                    element: <ServicesPage />,
+                },
+                {
+                    path: 'solutions',
+                    element: <SolutionsPage />,
+                },
+                {
+                    path: 'projects',
+                    element: <ProjectsPage />,
+                },
+                {
+                    path: 'news',
+                    element: <NewsMainPage />,
+                },
+                {
+                    path: 'news/:id',
+                    element: <ArticlePage />,
+                },
+                {
+                    path: 'careers',
+                    element: <CareersPage />,
+                },
+                {
+                    path: 'contact',
+                    element: <ContactPage />,
+                },
+            ],
+        },
+        {
+            path: '*',
+            element: <NotFoundPage />,
+        },
+        {
+            path: 'error',
+            element: <ErrorPage />,
+        },
+    ],
     {
-        path: '/',
-        element: <MainLayout />,
-        errorElement: <ErrorLayout />,
-        children: [
-            {
-                index: true,
-                element: <HomePage />,
-            },
-            {
-                path: 'about',
-                element: <AboutPage />,
-            },
-            {
-                path: 'companies',
-                element: <CompaniesMainPage />,
-            },
-
-            {
-                path: 'products',
-                element: <ProductsPage />,
-            },
-            {
-                path: 'services',
-                element: <ServicesPage />,
-            },
-            {
-                path: 'solutions',
-                element: <SolutionsPage />,
-            },
-            {
-                path: 'projects',
-                element: <ProjectsPage />,
-            },
-            {
-                path: 'news',
-                element: <NewsMainPage />,
-            },
-            {
-                path: 'news/:id',
-                element: <ArticlePage />,
-            },
-            {
-                path: 'careers',
-                element: <CareersPage />,
-            },
-            {
-                path: 'contact',
-                element: <ContactPage />,
-            },
-        ],
-    },
-    {
-        path: '*',
-        element: <NotFoundPage />,
-    },
-    {
-        path: 'error',
-        element: <ErrorPage />,
-    },
-]);
-
-
+        future: {
+            v7_startTransition: true, 
+        },
+    }
+);

@@ -3,7 +3,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { INQUIRY_TYPES } from './contact.data.ts';
 import { Send, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
-
+import { axiosClient } from '../../../api/axiosClient'; 
 gsap.registerPlugin(ScrollTrigger);
 
 export interface ContactFormData {
@@ -41,8 +41,6 @@ export const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
   const [errors, setErrors] = useState<Partial<Record<keyof ContactFormData, string>>>({});
   const [submitting, setSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
-
-  // Two-Way ScrollTrigger Animation (Works when scrolling down AND scrolling back up)
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
@@ -54,17 +52,13 @@ export const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
         {
           y: 0,
           opacity: 1,
-          duration: 0.7,
-          stagger: 0.08,
+          duration: 0.9,
+          stagger: 0.2,
           ease: 'power3.out',
           scrollTrigger: {
             trigger: formSectionRef.current,
             start: 'top 75%',
             end: 'bottom 20%',
-            // 'play reverse play reverse' means:
-            // - Scroll down: plays entrance animation
-            // - Scroll up past top: reverses animation out
-            // - Scroll down again: plays entrance animation again
             toggleActions: 'play reverse play reverse',
           },
         }
@@ -91,13 +85,11 @@ export const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
     }
 
     setErrors(newErrors);
-
-    // Smart GSAP Shake Effect on error
     if (Object.keys(newErrors).length > 0 && formRef.current) {
       gsap.fromTo(
         formRef.current,
         { x: -10 },
-        { x: 10, duration: 0.1, repeat: 5, yoyo: true, ease: 'power2.inOut', onComplete: () => gsap.set(formRef.current, { x: 0 }) }
+        { x: 10, duration: 0.3, repeat: 5, yoyo: true, ease: 'power2.inOut', onComplete: () => gsap.set(formRef.current, { x: 0 }) }
       );
     }
 
@@ -126,10 +118,11 @@ export const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
         const success = await onSubmit(formData);
         setSubmitStatus(success ? 'success' : 'error');
       } else {
-        await new Promise((resolve) => setTimeout(resolve, 1500));
+        await axiosClient.post('/contact', formData);
         setSubmitStatus('success');
       }
-    } catch {
+    } catch (error) {
+      console.error('Submission error:', error);
       setSubmitStatus('error');
     } finally {
       setSubmitting(false);
@@ -208,6 +201,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
                 {errors.lastName && <span className="text-xs text-red-600 mt-1 block">{errors.lastName}</span>}
               </div>
             </div>
+            
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
               <div className="form-element">
                 <label className="block text-xs font-mono uppercase text-zinc-600 mb-2">Business Email *</label>
@@ -234,6 +228,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
                 />
               </div>
             </div>
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
               <div className="form-element">
                 <label className="block text-xs font-mono uppercase text-zinc-600 mb-2">Organization / Company *</label>
@@ -264,6 +259,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
                 </select>
               </div>
             </div>
+
             <div className="form-element">
               <label className="block text-xs font-mono uppercase text-zinc-600 mb-2">Subject *</label>
               <input
@@ -276,6 +272,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
               />
               {errors.subject && <span className="text-xs text-red-600 mt-1 block">{errors.subject}</span>}
             </div>
+
             <div className="form-element">
               <label className="block text-xs font-mono uppercase text-zinc-600 mb-2">Message *</label>
               <textarea
@@ -288,6 +285,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
               />
               {errors.message && <span className="text-xs text-red-600 mt-1 block">{errors.message}</span>}
             </div>
+
             <div className="form-element flex items-start space-x-3 pt-2">
               <input
                 type="checkbox"
@@ -309,6 +307,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
                 <span>An error occurred while submitting. Please verify your connection and try again.</span>
               </div>
             )}
+
             <div className="form-element pt-4">
               <button
                 type="submit"
@@ -334,3 +333,5 @@ export const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
     </section>
   );
 };
+
+export default ContactForm;
