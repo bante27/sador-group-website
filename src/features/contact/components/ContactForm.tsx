@@ -130,7 +130,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
   };
 
   return (
-    <section id="contact-form" ref={formSectionRef} className="py-16 sm:py-24 bg-[#FAF9F6] border-b border-zinc-200">
+    <section id="contact-form" ref={formSectionRef} className="py-16 sm:py-24 bg-[#FAF9F6]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-12">
         
         {/* Header */}

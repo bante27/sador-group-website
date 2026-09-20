@@ -16,6 +16,7 @@ const iconMap: Record<string, React.ElementType> = {
 export const ContactMethods: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
+  // Advanced GSAP Animation: Scales up from a compact box to a wider/full display with smooth scroll trigger
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
@@ -23,17 +24,19 @@ export const ContactMethods: React.FC = () => {
     const ctx = gsap.context(() => {
       gsap.fromTo(
         '.method-card',
-        { y: 40, opacity: 0 },
+        { scale: 0.92, y: 40, opacity: 0 },
         {
+          scale: 1,
           y: 0,
           opacity: 1,
-          duration: 0.8,
-          stagger: 0.15,
+          duration: 0.85,
+          stagger: 0.12,
           ease: 'power3.out',
           scrollTrigger: {
             trigger: containerRef.current,
-            start: 'top 80%',
-            toggleActions: 'play none none none',
+            start: 'top 75%',
+            end: 'bottom 20%',
+            toggleActions: 'play reverse play reverse',
           },
         }
       );
@@ -45,18 +48,16 @@ export const ContactMethods: React.FC = () => {
   const handleCardClick = (link: string) => {
     const el = document.querySelector(link);
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   };
 
   return (
-    <section ref={containerRef} className="py-24 border-b border-white/10 bg-slate-950/40">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+    <section ref={containerRef} className="py-16 sm:py-24 bg-[#FAF9F6] ">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         <div className="mb-14">
-          <span className="text-xs font-mono tracking-widest text-slate-400 uppercase mb-2 block">
-            // CHANNELS
-          </span>
-          <h2 className="text-3xl font-light text-white tracking-tight">How can we assist you today?</h2>
+          
+          <h2 className="text-3xl sm:text-4xl font-light text-zinc-950 tracking-tight">How can we assist you today?</h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -66,16 +67,16 @@ export const ContactMethods: React.FC = () => {
               <div
                 key={method.id}
                 onClick={() => handleCardClick(method.link)}
-                className="method-card group relative p-8 rounded-xl border border-white/10 bg-slate-900/40 hover:bg-slate-900/80 hover:border-white/30 transition-all duration-300 cursor-pointer flex flex-col justify-between"
+                className="method-card group relative p-8 rounded-xl border border-zinc-300 bg-white hover:border-zinc-400 shadow-xs hover:shadow-xl transition-all duration-500 cursor-pointer flex flex-col justify-between"
               >
                 <div>
-                  <div className="w-12 h-12 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white mb-6 group-hover:scale-105 group-hover:border-white/30 transition-all duration-300">
+                  <div className="w-12 h-12 rounded-lg bg-zinc-100 border border-zinc-300 flex items-center justify-center text-zinc-950 mb-6 group-hover:scale-105 group-hover:border-zinc-400 transition-all duration-300 shadow-xs">
                     <IconComponent className="w-5 h-5" />
                   </div>
-                  <h3 className="text-xl font-medium text-white mb-3">{method.title}</h3>
-                  <p className="text-sm text-slate-300 font-light leading-relaxed mb-6">{method.description}</p>
+                  <h3 className="text-xl font-medium text-zinc-950 mb-3">{method.title}</h3>
+                  <p className="text-sm text-zinc-600 font-light leading-relaxed mb-6">{method.description}</p>
                 </div>
-                <div className="flex items-center text-xs font-mono text-slate-300 group-hover:text-white transition-colors">
+                <div className="flex items-center text-xs font-mono text-zinc-700 group-hover:text-zinc-950 transition-colors">
                   <span>{method.actionText}</span>
                   <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                 </div>
@@ -87,3 +88,5 @@ export const ContactMethods: React.FC = () => {
     </section>
   );
 };
+
+export default ContactMethods;

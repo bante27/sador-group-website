@@ -5,7 +5,7 @@ import { Handshake, Mail, Phone, Linkedin, Twitter, Instagram, Facebook, MapPin 
 
 const GeometricBackground: React.FC = () => {
   return (
-    <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden bg-slate-50" aria-hidden="true">
+    <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden bg-[#FAF9F6]" aria-hidden="true">
       <svg
         className="w-full h-full"
         viewBox="0 0 1440 800"
@@ -61,14 +61,14 @@ export const ContactHero: React.FC = () => {
   const titleText = "Let's Build What Comes Next.";
 
   return (
-    <div ref={heroRef} className="relative pt-8 pb-8 md:pt-16 md:pb-16 border-b border-slate-200 overflow-hidden">
+    <div ref={heroRef} className="relative pt-8 pb-8 md:pt-16 md:pb-16 bg-[#FAF9F6]  overflow-hidden">
       <GeometricBackground />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10 pt-4 md:pt-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
-          <div className="lg:col-span-7 text-slate-900 pr-0 lg:pr-4">
-            <h1 className="text-3xl sm:text-5xl lg:text-7xl font-light tracking-tight mb-4 sm:mb-6 leading-[1.15] sm:leading-[1.1] text-slate-900" aria-label={titleText}>
+          <div className="lg:col-span-7 text-zinc-900 pr-0 lg:pr-4">
+            <h1 className="text-3xl sm:text-5xl lg:text-7xl font-light tracking-tight mb-4 sm:mb-6 leading-[1.15] sm:leading-[1.1] text-zinc-900" aria-label={titleText}>
               {titleText.split('').map((char, index) => {
                 const isItalic = index >= 20; 
                 return (
@@ -83,12 +83,12 @@ export const ContactHero: React.FC = () => {
               })}
             </h1>
 
-            <div className="hero-animate flex items-center gap-3 text-xs sm:text-sm text-slate-700 font-mono mb-3 sm:mb-4 opacity-100">
+            <div className="hero-animate flex items-center gap-3 text-xs sm:text-sm text-zinc-700 font-mono mb-3 sm:mb-4 opacity-100">
               <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse shrink-0" />
               <span>Global Response Team Active (&lt; 24h)</span>
             </div>
 
-            <p className="hero-animate text-sm sm:text-base text-slate-800 font-light leading-relaxed max-w-xl opacity-100">
+            <p className="hero-animate text-sm sm:text-base text-zinc-600 font-light leading-relaxed max-w-xl opacity-100">
               Connect with Sador Group for enterprise technology solutions, strategic partnerships, product information, or dedicated sales assistance across our ecosystem.
             </p>
           </div>

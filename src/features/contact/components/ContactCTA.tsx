@@ -43,7 +43,7 @@ export const ContactCTA: React.FC = () => {
   };
 
   return (
- <section ref={ctaRef} className="py-20 sm:py-28 relative overflow-hidden bg-[#FAF9F6] border-none outline-none">
+ <section ref={ctaRef} className="py-20 sm:py-28 relative overflow-hidden bg-[#FAF9F6] ">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-12 text-center relative z-10">
         <div>
           <span className="cta-element text-xs font-mono tracking-widest text-zinc-500 uppercase mb-4 block">
