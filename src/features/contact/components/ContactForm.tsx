@@ -89,7 +89,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
       gsap.fromTo(
         formRef.current,
         { x: -10 },
-        { x: 10, duration: 0.3, repeat: 5, yoyo: true, ease: 'power2.inOut', onComplete: () => gsap.set(formRef.current, { x: 0 }) }
+        { x: 10, duration: 0.1, repeat: 5, yoyo: true, ease: 'power2.inOut', onComplete: () => gsap.set(formRef.current, { x: 0 }) }
       );
     }
 
