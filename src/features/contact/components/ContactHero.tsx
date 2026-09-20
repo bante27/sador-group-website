@@ -32,11 +32,10 @@ export const ContactHero: React.FC = () => {
     if (prefersReducedMotion) return;
 
     const ctx = gsap.context(() => {
-      // Combined Timeline for both Initial Load & Scroll Back/Forward Replay
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: heroRef.current,
-          start: 'top 95%', // Triggers immediately as the component enters the viewport on load and scroll
+          start: 'top 95%', 
           toggleActions: 'play reverse play reverse',
         },
         defaults: { ease: 'power3.out' }
@@ -45,7 +44,7 @@ export const ContactHero: React.FC = () => {
       tl.fromTo(
         '.title-char',
         { y: 40, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.9, stagger: 0.08 }
+        { y: 0, opacity: 1, duration: 0.5, stagger: 0.03 }
       )
       .fromTo(
         '.hero-animate',
