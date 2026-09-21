@@ -42,7 +42,7 @@ export const ContactMethods: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         <div className="mb-14">
 
-          <h2 className="text-3xl sm:text-4xl font-light text-zinc-950 tracking-tight">How can we assist you today?</h2>
+          <h2 className="text-3xl sm:text-5xl font-light text-zinc-950 tracking-tight">How can we assist you today?</h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
