@@ -1,9 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Handshake, Mail, Phone, Linkedin, Twitter, Instagram, Facebook, MapPin } from 'lucide-react';
-
-gsap.registerPlugin(ScrollTrigger);
+import { revealOnScroll } from '../../../components/animation/scrollAnimations';
 
 const GeometricBackground: React.FC = () => {
   return (
@@ -35,7 +33,7 @@ export const ContactHero: React.FC = () => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: heroRef.current,
-          start: 'top 95%', 
+          start: 'top 95%',
           toggleActions: 'play reverse play reverse',
         },
         defaults: { ease: 'power3.out' }
@@ -46,18 +44,18 @@ export const ContactHero: React.FC = () => {
         { y: 40, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.5, stagger: 0.03 }
       )
-      .fromTo(
-        '.hero-animate',
-        { y: 30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1.2, stagger: 0.2 },
-        '-=0.6'
-      )
-      .fromTo(
-        '.glass-card-wrapper',
-        { x: 180, y: -120, rotation: 15, scale: 0.7, opacity: 0 },
-        { x: 0, y: 0, rotation: 0, scale: 1, opacity: 1, duration: 1.0, ease: 'power2.out' },
-        '-=0.8'
-      );
+        .fromTo(
+          '.hero-animate',
+          { y: 30, opacity: 0 },
+          { y: 0, opacity: 1, duration: 1.2, stagger: 0.2 },
+          '-=0.6'
+        )
+        .fromTo(
+          '.glass-card-wrapper',
+          { x: 180, y: -120, rotation: 15, scale: 0.7, opacity: 0 },
+          { x: 0, y: 0, rotation: 0, scale: 1, opacity: 1, duration: 1.0, ease: 'power2.out' },
+          '-=0.8'
+        );
     }, heroRef);
 
     return () => ctx.revert();
@@ -71,11 +69,11 @@ export const ContactHero: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10 pt-4 md:pt-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          
+
           <div className="lg:col-span-7 text-zinc-900 pr-0 lg:pr-4">
             <h1 className="text-3xl sm:text-5xl lg:text-7xl font-light tracking-tight mb-4 sm:mb-6 leading-[1.15] sm:leading-[1.1] text-zinc-900" aria-label={titleText}>
               {titleText.split('').map((char, index) => {
-                const isItalic = index >= 20; 
+                const isItalic = index >= 20;
                 return (
                   <span
                     key={index}
@@ -100,7 +98,7 @@ export const ContactHero: React.FC = () => {
 
           <div className="lg:col-span-5 flex justify-center lg:justify-end relative min-h-[auto] lg:min-h-[520px] items-center text-white w-full">
             <div className="glass-card-wrapper relative z-10 w-full max-w-md p-4 sm:p-6 flex flex-col gap-3.5 sm:gap-4 transition-all duration-300">
-              
+
               <div className="w-full">
                 <div className="relative w-full py-5 px-4 sm:py-6 sm:px-6 bg-gradient-to-r from-orange-500/20 via-amber-500/10 to-orange-500/20 border border-orange-500/20 flex items-center justify-center gap-4 sm:gap-5 text-orange-400 transition-all duration-300">
                   <Handshake className="w-12 h-12 sm:w-16 sm:h-16 stroke-[1.5] shrink-0" />
