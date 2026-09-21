@@ -132,13 +132,6 @@ export const AboutHero: React.FC = () => {
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10 w-full">
                 <div className="text-center max-w-4xl mx-auto mb-16">
-                    <div
-                        ref={eyebrowRef}
-                        className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-900 border border-zinc-800 text-[12px] sm:text-[14px] font-semibold font-mono text-zinc-300 uppercase mb-6 shadow-sm tracking-[0.18em] opacity-0 will-change-transform"
-                    >
-                        <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                        ABOUT SADOR GROUP
-                    </div>
                     <h1
                         ref={titleRef}
                         className="font-semibold tracking-[-0.04em] text-white mb-6 leading-[1.0] text-[clamp(2.75rem,5.5vw,7rem)] max-w-5xl mx-auto opacity-0 will-change-transform"
