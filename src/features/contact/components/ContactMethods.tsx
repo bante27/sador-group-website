@@ -1,10 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { CONTACT_METHODS } from './contact.data';
 import { HelpCircle, Briefcase, TrendingUp, Users, ArrowRight } from 'lucide-react';
-
-gsap.registerPlugin(ScrollTrigger);
+import { revealOnScroll } from '../../../components/animation/scrollAnimations';
 
 const iconMap: Record<string, React.ElementType> = {
   HelpCircle,
@@ -16,29 +14,16 @@ const iconMap: Record<string, React.ElementType> = {
 export const ContactMethods: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Advanced GSAP Animation: Scales up from a compact box to a wider/full display with smooth scroll trigger
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
 
     const ctx = gsap.context(() => {
-      gsap.fromTo(
+      revealOnScroll(
+        containerRef.current,
         '.method-card',
         { scale: 0.92, y: 40, opacity: 0 },
-        {
-          scale: 1,
-          y: 0,
-          opacity: 1,
-          duration: 0.85,
-          stagger: 0.12,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: 'top 75%',
-            end: 'bottom 20%',
-            toggleActions: 'play reverse play reverse',
-          },
-        }
+        { scale: 1, y: 0, opacity: 1, duration: 0.85, stagger: 0.12, ease: 'power3.out' }
       );
     }, containerRef);
 
@@ -56,7 +41,7 @@ export const ContactMethods: React.FC = () => {
     <section ref={containerRef} className="py-16 sm:py-24 bg-[#FAF9F6] ">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         <div className="mb-14">
-          
+
           <h2 className="text-3xl sm:text-4xl font-light text-zinc-950 tracking-tight">How can we assist you today?</h2>
         </div>
 
