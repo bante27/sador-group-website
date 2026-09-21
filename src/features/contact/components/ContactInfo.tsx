@@ -40,7 +40,7 @@ export const ContactInfo: React.FC = () => {
             <span className="info-element text-xs font-mono tracking-widest text-zinc-500 uppercase mb-2 block">
 
             </span>
-            <h2 className="info-element text-3xl sm:text-4xl font-light text-zinc-900 tracking-tight mb-8">
+            <h2 className="info-element text-3xl sm:text-5xl font-light text-zinc-900 tracking-tight mb-8">
               Corporate Directives
             </h2>
 
