@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { revealOnScroll } from '../../../components/animation/scrollAnimations';
 
@@ -27,25 +27,61 @@ const timelineEvents = [
 
 export const CompanyTimeline: React.FC = () => {
     const containerRef = useRef<HTMLDivElement>(null);
+    const lineRef = useRef<HTMLDivElement>(null);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         if (prefersReducedMotion) return;
 
         const ctx = gsap.context(() => {
-            revealOnScroll(
-                containerRef.current,
-                '.timeline-item',
-                { y: 30, opacity: 0 },
-                { y: 0, opacity: 1, duration: 0.8, stagger: 0.15, ease: 'power3.out' }
-            );
+            // Animate vertical center line growing from top to bottom on scroll
+            if (lineRef.current) {
+                gsap.fromTo(
+                    lineRef.current,
+                    { scaleY: 0, transformOrigin: 'top center' },
+                    {
+                        scaleY: 1,
+                        duration: 2.9,
+                        ease: 'power3.out',
+                        scrollTrigger: {
+                            trigger: containerRef.current,
+                            start: 'top 70%',
+                            toggleActions: 'play reverse play reverse',
+                        },
+                    }
+                );
+            }
+
+            // Alternating entrance animation for timeline items (Even from Left, Odd from Right)
+            const items = containerRef.current?.querySelectorAll('.timeline-item');
+            items?.forEach((item, index) => {
+                const isEven = index % 2 === 0;
+                gsap.fromTo(
+                    item,
+                    {
+                        xPercent: isEven ? -25 : 25,
+                        opacity: 0,
+                    },
+                    {
+                        xPercent: 0,
+                        opacity: 1,
+                        duration: 0.9,
+                        ease: 'power3.out',
+                        scrollTrigger: {
+                            trigger: item,
+                            start: 'top 85%',
+                            toggleActions: 'play reverse play reverse',
+                        },
+                    }
+                );
+            });
         }, containerRef);
 
         return () => ctx.revert();
     }, []);
 
     return (
-        <section ref={containerRef} className="py-16 sm:py-24 bg-[#FAF9F6]">
+        <section ref={containerRef} className="py-16 sm:py-24 bg-[#FAF9F6] overflow-hidden">
             <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-12">
 
                 <div className="text-center max-w-2xl mx-auto mb-16">
@@ -56,9 +92,15 @@ export const CompanyTimeline: React.FC = () => {
                     </p>
                 </div>
 
-                <div className="relative border-l border-zinc-300 ml-4 md:ml-32 space-y-12">
+                <div className="relative ml-4 md:ml-32 space-y-12">
+                    {/* Animated inside vertical line */}
+                    <div
+                        ref={lineRef}
+                        className="absolute left-0 top-0 bottom-0 w-[2px] bg-zinc-300 will-change-transform"
+                    />
+
                     {timelineEvents.map((item, idx) => (
-                        <div key={idx} className="timeline-item relative pl-8 sm:pl-10">
+                        <div key={idx} className="timeline-item relative pl-8 sm:pl-10 will-change-transform">
                             {/* Timeline marker node */}
                             <div className="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-zinc-900 ring-4 ring-[#FAF9F6]" />
 
@@ -68,7 +110,7 @@ export const CompanyTimeline: React.FC = () => {
                                 </span>
                             </div>
 
-                            <div className="bg-white p-6 sm:p-8 rounded-2xl border border-zinc-200/80 shadow-xs">
+                            <div className="bg-white p-6 sm:p-8 rounded-2xl border border-zinc-200/80 shadow-xs hover:border-emerald-500/30 transition-colors">
                                 <h3 className="text-xl font-medium text-zinc-900 mb-2 tracking-tight">{item.title}</h3>
                                 <p className="text-zinc-600 font-light text-sm sm:text-base leading-relaxed">{item.description}</p>
                             </div>
