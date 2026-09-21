@@ -74,7 +74,7 @@ export function BusinessEcosystem() {
                     {ecosystemNodes.map((node, index) => {
                         const isLeft = index < 2;
 
-                        
+
                         const transformStyle = isVisible
                             ? 'translate(0, 0)'
                             : 'translate(0, 40px)';
