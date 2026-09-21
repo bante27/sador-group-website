@@ -1,10 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { CORPORATE_INFO } from './contact.data';
 import { Mail, Phone, Clock, MapPin } from 'lucide-react';
-
-gsap.registerPlugin(ScrollTrigger);
+import { revealOnScroll } from '../../../components/animation/scrollAnimations';
 
 export const ContactInfo: React.FC = () => {
   const infoSectionRef = useRef<HTMLDivElement>(null);
@@ -14,41 +12,18 @@ export const ContactInfo: React.FC = () => {
     if (prefersReducedMotion) return;
 
     const ctx = gsap.context(() => {
-      // Timeline for Left Details Column
-      gsap.fromTo(
+      revealOnScroll(
+        infoSectionRef.current,
         '.info-element',
         { y: 30, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.7,
-          stagger: 0.08,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: infoSectionRef.current,
-            start: 'top 75%',
-            end: 'bottom 20%',
-            toggleActions: 'play reverse play reverse',
-          },
-        }
+        { y: 0, opacity: 1, duration: 0.7, stagger: 0.08, ease: 'power3.out' }
       );
 
-      // Dedicated Smooth Entry Animation for the Map coming from the Left
-      gsap.fromTo(
+      revealOnScroll(
+        infoSectionRef.current,
         '.map-element',
         { x: -60, opacity: 0 },
-        {
-          x: 0,
-          opacity: 1,
-          duration: 0.1,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: infoSectionRef.current,
-            start: 'top 75%',
-            end: 'bottom 20%',
-            toggleActions: 'play reverse play reverse',
-          },
-        }
+        { x: 0, opacity: 1, duration: 0.8, ease: 'power3.out' }
       );
     }, infoSectionRef);
 
@@ -59,11 +34,11 @@ export const ContactInfo: React.FC = () => {
     <section ref={infoSectionRef} className="py-16 sm:py-24 bg-[#FAF9F6]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          
+
           {/* Left Details Column (5 Columns) */}
           <div className="lg:col-span-5">
             <span className="info-element text-xs font-mono tracking-widest text-zinc-500 uppercase mb-2 block">
-            
+
             </span>
             <h2 className="info-element text-3xl sm:text-4xl font-light text-zinc-900 tracking-tight mb-8">
               Corporate Directives
@@ -121,7 +96,7 @@ export const ContactInfo: React.FC = () => {
           {/* Wide Map Column Sliding In From Left (7 Columns) */}
           <div className="map-element lg:col-span-7 w-full h-[450px] sm:h-[500px] bg-white overflow-hidden flex flex-col">
 
-            
+
             <div className="w-full flex-1 relative">
               <iframe
                 title="INSA Company Map"
