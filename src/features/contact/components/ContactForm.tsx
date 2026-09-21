@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { INQUIRY_TYPES } from './contact.data.ts';
 import { Send, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
-import { axiosClient } from '../../../api/axiosClient'; 
-gsap.registerPlugin(ScrollTrigger);
+import { axiosClient } from '../../../api/axiosClient';
+import { revealOnScroll } from '../../../components/animation/scrollAnimations';
 
 export interface ContactFormData {
   firstName: string;
@@ -99,7 +98,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
     const val = type === 'checkbox' ? (e.target as HTMLInputElement).checked : value;
-    
+
     setFormData((prev) => ({ ...prev, [name]: val }));
     if (errors[name as keyof ContactFormData]) {
       setErrors((prev) => ({ ...prev, [name]: undefined }));
@@ -132,7 +131,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
   return (
     <section id="contact-form" ref={formSectionRef} className="py-16 sm:py-24 bg-[#FAF9F6]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-12">
-        
+
         {/* Header */}
         <div className="text-center mb-12 sm:mb-16">
           <h2 className="form-element text-3xl sm:text-4xl font-light text-zinc-900 tracking-tight mb-4">
@@ -201,7 +200,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
                 {errors.lastName && <span className="text-xs text-red-600 mt-1 block">{errors.lastName}</span>}
               </div>
             </div>
-            
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
               <div className="form-element">
                 <label className="block text-xs font-mono uppercase text-zinc-600 mb-2">Business Email *</label>
