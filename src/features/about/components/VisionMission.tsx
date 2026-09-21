@@ -29,8 +29,6 @@ const FlipCard: React.FC<FlipCardProps> = ({
 
         const parent = inner.parentElement;
         if (!parent) return;
-
-        // Ultra-fast responsive hover timing
         const handlePointerEnter = () => {
             gsap.to(inner, {
                 rotateY: 180,
@@ -86,13 +84,9 @@ const FlipCard: React.FC<FlipCardProps> = ({
                             <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
                             {footerText}
                         </div>
-                        <span className="text-[11px] text-emerald-600 font-medium normal-case inline-flex items-center gap-1.5 bg-emerald-50 px-2.5 py-1 rounded-full">
-                            Hover to explore <ArrowRight className="w-3 h-3" />
-                        </span>
+
                     </div>
                 </div>
-
-                {/* Back Side with expanded information */}
                 <div
                     className="absolute inset-0 bg-zinc-900 text-white p-8 sm:p-10 rounded-2xl border border-zinc-800 shadow-xl flex flex-col justify-between"
                     style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)', zIndex: 1 }}
@@ -130,7 +124,6 @@ export const VisionMission: React.FC = () => {
         if (prefersReducedMotion) return;
 
         const ctx = gsap.context(() => {
-            // Cards enter from opposite sides (left & right) with revealOnScroll supporting full reverse on scroll back
             revealOnScroll(
                 containerRef.current,
                 '.vision-mission-card',
