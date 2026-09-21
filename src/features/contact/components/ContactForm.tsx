@@ -123,10 +123,10 @@ export const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
 
         {/* Header */}
         <div className="text-center mb-12 sm:mb-16">
-          <h2 className="form-element text-3xl sm:text-4xl font-light text-zinc-900 tracking-tight mb-4">
+          <h2 className="form-element text-3xl sm:text-5xl font-light text-zinc-900 tracking-tight mb-4">
             Send an Inquiry
           </h2>
-          <p className="form-element text-zinc-600 font-light text-sm sm:text-base max-w-xl mx-auto">
+          <p className="form-element text-zinc-600 font-light text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
             Fill out the form below and our team will route your request to the appropriate department within Sador Group.
           </p>
         </div>
@@ -164,7 +164,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
           <form ref={formRef} onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
               <div className="form-element">
-                <label className="block text-xs font-mono uppercase text-zinc-600 mb-2">First Name *</label>
+                <label className="block text-xs font-mono uppercase tracking-wider text-zinc-600 mb-2">First Name *</label>
                 <input
                   type="text"
                   name="firstName"
