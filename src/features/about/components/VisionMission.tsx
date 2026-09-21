@@ -76,7 +76,7 @@ const FlipCard: React.FC<FlipCardProps> = ({
                             {icon}
                         </div>
                         <h3 className="text-2xl font-light text-[#18181B] mb-4 tracking-tight">{title}</h3>
-                        <p className="text-[#71717A] font-light text-base leading-relaxed">
+                        <p className="text-[#09090B] font-semibold text-base leading-relaxed">
                             {description}
                         </p>
                     </div>
