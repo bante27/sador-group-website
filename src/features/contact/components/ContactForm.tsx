@@ -45,22 +45,11 @@ export const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
     if (prefersReducedMotion) return;
 
     const ctx = gsap.context(() => {
-      gsap.fromTo(
+      revealOnScroll(
+        formSectionRef.current,
         '.form-element',
         { y: 30, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.9,
-          stagger: 0.2,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: formSectionRef.current,
-            start: 'top 75%',
-            end: 'bottom 20%',
-            toggleActions: 'play reverse play reverse',
-          },
-        }
+        { y: 0, opacity: 1, duration: 0.9, stagger: 0.2, ease: 'power3.out' }
       );
     }, formSectionRef);
 
