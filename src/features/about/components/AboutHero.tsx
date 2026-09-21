@@ -2,6 +2,7 @@ import React, { useLayoutEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { Target, Compass, ArrowRight } from 'lucide-react';
 import { useTypewriter } from '../hooks/useTypewriter';
+import { revealOnScroll } from '../../../components/animation/scrollAnimations';
 
 const typewriterPhrases = [
     'Digital Experiences',
@@ -44,8 +45,6 @@ export const AboutHero: React.FC = () => {
             const tl = gsap.timeline({
                 defaults: { ease: 'power3.inOut' }
             });
-
-            // Initial state setup
             gsap.set(leftPanelRef.current, { xPercent: 0 });
             gsap.set(rightPanelRef.current, { xPercent: 0 });
             gsap.set(eyebrowRef.current, { opacity: 0, y: 20 });
@@ -102,6 +101,13 @@ export const AboutHero: React.FC = () => {
                     duration: 0.8,
                     ease: 'power3.out'
                 }, '-=0.3');
+            revealOnScroll(
+                cardsRef.current,
+                '.about-hero-card',
+                { y: 50, opacity: 0 },
+                { y: 0, opacity: 1, duration: 1.0, stagger: 0.2, ease: 'power3.out' },
+                'top 85%'
+            );
 
         }, containerRef);
 
@@ -180,7 +186,7 @@ export const AboutHero: React.FC = () => {
                     ref={cardsRef}
                     className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto opacity-0 will-change-transform"
                 >
-                    <div className="bg-white border border-zinc-200 p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 flex flex-col justify-between">
+                    <div className="about-hero-card bg-white border border-zinc-200 p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 flex flex-col justify-between">
                         <div>
                             <div className="w-12 h-12 rounded-xl bg-zinc-100 border border-zinc-200 flex items-center justify-center text-emerald-600 mb-6 shadow-xs">
                                 <Target className="w-6 h-6" />
@@ -196,7 +202,7 @@ export const AboutHero: React.FC = () => {
                         </div>
                     </div>
 
-                    <div className="bg-white border border-zinc-200 p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 flex flex-col justify-between">
+                    <div className="about-hero-card bg-white border border-zinc-200 p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 flex flex-col justify-between">
                         <div>
                             <div className="w-12 h-12 rounded-xl bg-zinc-100 border border-zinc-200 flex items-center justify-center text-emerald-600 mb-6 shadow-xs">
                                 <Compass className="w-6 h-6" />
@@ -214,7 +220,7 @@ export const AboutHero: React.FC = () => {
                 </div>
 
             </div>
-        </div >
+        </div>
     );
 };
 
