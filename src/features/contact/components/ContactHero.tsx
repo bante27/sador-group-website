@@ -64,26 +64,15 @@ export const ContactHero: React.FC = () => {
   const titleText = "Let's Build What Comes Next.";
 
   return (
-    <div ref={heroRef} className="relative pt-8 pb-8 md:pt-16 md:pb-16 bg-[#FAF9F6] overflow-hidden">
+    <div ref={heroRef} className="relative pt-12 pb-12 md:pt-24 md:pb-24 bg-[#FAF9F6] overflow-hidden">
       <GeometricBackground />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10 pt-4 md:pt-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
 
-          <div className="lg:col-span-7 text-zinc-900 pr-0 lg:pr-4">
-            <h1 className="text-3xl sm:text-5xl lg:text-7xl font-light tracking-tight mb-4 sm:mb-6 leading-[1.15] sm:leading-[1.1] text-zinc-900" aria-label={titleText}>
-              {titleText.split('').map((char, index) => {
-                const isItalic = index >= 20;
-                return (
-                  <span
-                    key={index}
-                    className={`title-char inline-block opacity-100 ${isItalic ? 'font-normal italic' : ''}`}
-                    style={{ whiteSpace: char === ' ' ? 'pre' : 'normal' }}
-                  >
-                    {char}
-                  </span>
-                );
-              })}
+          <div className="lg:col-span-7 text-zinc-900 pr-0 lg:pr-6">
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-light tracking-tight mb-6 sm:mb-8 leading-[1.1] text-zinc-900">
+              Let&apos;s Build What <span className="font-normal italic">Comes Next.</span>
             </h1>
 
             <div className="hero-animate flex items-center gap-3 text-xs sm:text-sm text-zinc-700 font-mono mb-3 sm:mb-4 opacity-100">
