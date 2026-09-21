@@ -14,7 +14,6 @@ export const AboutHero: React.FC = () => {
     useLayoutEffect(() => {
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         if (prefersReducedMotion) {
-            // Immediate reveal for reduced motion accessibility
             gsap.set([leftPanelRef.current, rightPanelRef.current], { display: 'none' });
             gsap.set([titleRef.current, descriptionRef.current, ctaRef.current, cardsRef.current], { opacity: 1, y: 0 });
             return;
@@ -25,7 +24,7 @@ export const AboutHero: React.FC = () => {
                 defaults: { ease: 'power3.inOut' }
             });
 
-            // Initial setup
+            // Initial setup - panels are solid white initially covering the hero
             gsap.set(leftPanelRef.current, { xPercent: 0 });
             gsap.set(rightPanelRef.current, { xPercent: 0 });
             gsap.set([titleRef.current, descriptionRef.current, ctaRef.current, cardsRef.current], {
@@ -34,7 +33,7 @@ export const AboutHero: React.FC = () => {
             });
 
             // Split screen hold and smooth panel slide away
-            tl.to({}, { duration: 0.2 }) // hold moment
+            tl.to({}, { duration: 0.25 }) // hold moment
                 .to(leftPanelRef.current, {
                     xPercent: -100,
                     duration: 1.0,
@@ -80,15 +79,15 @@ export const AboutHero: React.FC = () => {
     return (
         <div ref={containerRef} className="relative pt-24 pb-20 md:pt-32 md:pb-28 bg-zinc-950 text-white overflow-hidden min-h-[85vh] flex items-center">
 
-            {/* Cinematic Split-Screen Overlay Panels */}
+            {/* Cinematic Split-Screen Overlay Panels in Solid White */}
             <div className="absolute inset-0 z-30 pointer-events-none flex overflow-hidden">
                 <div
                     ref={leftPanelRef}
-                    className="w-1/2 h-full bg-zinc-900 border-r border-zinc-800/80 will-change-transform"
+                    className="w-1/2 h-full bg-white border-r border-zinc-200 will-change-transform shadow-2xl"
                 />
                 <div
                     ref={rightPanelRef}
-                    className="w-1/2 h-full bg-zinc-900 border-l border-zinc-800/80 will-change-transform"
+                    className="w-1/2 h-full bg-white border-l border-zinc-200 will-change-transform shadow-2xl"
                 />
             </div>
 
