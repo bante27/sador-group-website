@@ -1,96 +1,141 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useLayoutEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
-import { revealOnScroll } from '../../../components/animation/scrollAnimations';
-import { Cpu, Cloud, Smartphone, Database, Lock, GitBranch } from 'lucide-react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-const capabilities = [
-  {
-    title: 'Enterprise Software Architecture',
-    description: 'Designing scalable microservices, high-performance distributed systems, and robust backend infrastructures.',
-    icon: Database,
-  },
-  {
-    title: 'Artificial Intelligence & Automation',
-    description: 'Integrating advanced machine learning pipelines, predictive analytics, and automated decision engines.',
-    icon: Cpu,
-  },
-  {
-    title: 'Cloud Solutions & DevOps',
-    description: 'Migrating and managing secure multi-cloud environments with automated CI/CD deployment workflows.',
-    icon: Cloud,
-  },
-  {
-    title: 'Mobile & Web Application Engineering',
-    description: 'Building responsive, lightning-fast cross-platform applications with immersive UI/UX frameworks.',
-    icon: Smartphone,
-  },
-  {
-    title: 'Cybersecurity & Compliance',
-    description: 'Implementing military-grade encryption, zero-trust architectures, and strict regulatory compliance.',
-    icon: Lock,
-  },
-  {
-    title: 'Digital Transformation & Strategy',
-    description: 'Guiding legacy enterprises through comprehensive technological modernization and workflow digitization.',
-    icon: GitBranch,
-  },
-];
+gsap.registerPlugin(ScrollTrigger);
 
 export const TechnologyCapabilities: React.FC = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
+  const imageWrapperRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLImageElement>(null);
 
-  useEffect(() => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  useLayoutEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
 
     const ctx = gsap.context(() => {
-      revealOnScroll(
-        containerRef.current,
-        '.capability-card',
-        { y: 30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: 'power3.out' }
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top 70%',
+          toggleActions: 'play none none reverse',
+        },
+      });
+
+      // Text reveal from left
+      tl.fromTo(
+        textRef.current,
+        { x: -30, opacity: 0 },
+        { x: 0, opacity: 1, duration: 1.0, ease: 'power3.out' }
       );
-    }, containerRef);
+
+      // Image wrapper expansion using clip-path circle (starting compact circle from right, expanding outward)
+      const isMobile = window.innerWidth < 768;
+      const initialClip = isMobile ? 'circle(0% at 50% 50%)' : 'circle(15% at 90% 50%)';
+      const finalClip = isMobile ? 'circle(150% at 50% 50%)' : 'circle(100% at 50% 50%)';
+
+      tl.fromTo(
+        imageWrapperRef.current,
+        {
+          clipPath: initialClip,
+        },
+        {
+          clipPath: finalClip,
+          duration: 1.9,
+          ease: 'power3.out',
+        },
+        '-=0.8'
+      );
+
+      // Cinematic scale-down effect on the inner image
+      tl.fromTo(
+        imageRef.current,
+        { scale: 1.15 },
+        { scale: 1, duration: 1.9, ease: 'power3.out' },
+        '-=1.4'
+      );
+    }, sectionRef);
 
     return () => ctx.revert();
   }, []);
 
+  const handleToggleExplore = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsExpanded((prev) => !prev);
+  };
+
   return (
-    <section ref={containerRef} className="py-16 sm:py-24 bg-[#FAF9F6]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+    <section
+      ref={sectionRef}
+      className="relative py-24 sm:py-32 bg-[#09090B] text-white overflow-hidden"
+    >
+      <div className="w-full pl-4 sm:pl-8 lg:pl-16 pr-0">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
 
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-xs font-mono uppercase tracking-widest text-zinc-500 mb-3 block">Technical Prowess</span>
-          <h2 className="text-3xl sm:text-5xl font-light text-zinc-900 tracking-tight mb-4">Technology Capabilities</h2>
-          <p className="text-zinc-600 font-light text-base leading-relaxed">
-            Our multi-disciplinary engineering teams possess deep domain expertise across modern technology stacks.
-          </p>
-        </div>
+          {/* Left Side: Bold White Text & Expandable Details */}
+          <div
+            ref={textRef}
+            className="lg:col-span-5 opacity-0 will-change-transform space-y-6 pr-4 sm:pr-8 lg:pr-0"
+          >
+            <span className="font-mono text-xs uppercase tracking-[0.25em] text-amber-400 block font-semibold">
+              Technical Excellence
+            </span>
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight text-white leading-[1.1]">
+              Technology <span className="font-normal italic text-amber-400">Capabilities</span>
+            </h2>
+            <div className="space-y-4 text-base sm:text-lg text-white font-bold leading-relaxed">
+              <p>
+                Our multi-disciplinary engineering teams possess deep domain expertise across elite technology stacks, modern distributed architectures, and secure multi-cloud infrastructures.
+              </p>
+              <p>
+                We engineer scalable microservices, advanced AI pipelines, and military-grade cybersecurity protocols designed to withstand the highest levels of global enterprise demand.
+              </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {capabilities.map((cap, idx) => {
-            const Icon = cap.icon;
-            return (
-              <div
-                key={idx}
-                className="capability-card bg-white p-8 rounded-2xl border border-zinc-200/80 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between"
+              {/* Expandable Extra Details */}
+              {isExpanded && (
+                <div className="space-y-4 pt-2 text-zinc-300 font-normal border-t border-zinc-800 animate-fadeIn">
+                  <p>
+                    Furthermore, our continuous deployment pipelines integrate automated regression testing and compliance verification across distributed clusters.
+                  </p>
+                  <p>
+                    By leveraging cutting-edge container orchestration and zero-trust security boundaries, we ensure ultra-low latency and absolute data sovereignty for global financial, medical, and governmental partners.
+                  </p>
+                </div>
+              )}
+            </div>
+
+            <div className="pt-2">
+              <button
+                onClick={handleToggleExplore}
+                className="inline-flex items-center gap-2 text-sm font-semibold tracking-wide text-amber-400 hover:text-white transition-colors group cursor-pointer"
               >
-                <div>
-                  <div className="w-12 h-12 rounded-xl bg-zinc-100 border border-zinc-300 flex items-center justify-center text-zinc-900 mb-6">
-                    <Icon className="w-6 h-6" />
-                  </div>
-                  <h3 className="text-xl font-medium text-zinc-900 mb-3 tracking-tight">{cap.title}</h3>
-                  <p className="text-zinc-600 font-light text-sm leading-relaxed">{cap.description}</p>
-                </div>
-                <div className="mt-8 pt-4 border-t border-zinc-100 flex items-center justify-between text-xs font-mono text-zinc-400">
-                  <span>CAPABILITY 0{idx + 1}</span>
-                  <span className="w-2 h-2 rounded-full bg-emerald-600/60" />
-                </div>
-              </div>
-            );
-          })}
-        </div>
+                <span>{isExpanded ? 'Show less' : 'Explore all stacks'}</span>
+                <span className={`transform transition-transform ${isExpanded ? '-rotate-90' : 'group-hover:translate-x-1'}`}>
+                  {isExpanded ? '↑' : '→'}
+                </span>
+              </button>
+            </div>
+          </div>
 
+          {/* Right Side: Edge-to-Edge Image with Circle Reveal */}
+          <div className="lg:col-span-7 relative">
+            <div
+              ref={imageWrapperRef}
+              className="relative w-full h-[380px] sm:h-[480px] lg:h-[600px] overflow-hidden will-change-[clip-path]"
+            >
+              <img
+                ref={imageRef}
+                src="/image.png"
+                alt="Technology Capabilities"
+                className="w-full h-full object-cover object-center will-change-transform"
+              />
+            </div>
+          </div>
+
+        </div>
       </div>
     </section>
   );
