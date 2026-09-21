@@ -85,9 +85,9 @@ export const CompanyTimeline: React.FC = () => {
             <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-12">
 
                 <div className="text-center max-w-2xl mx-auto mb-16">
-                    <span className="text-xs font-mono uppercase tracking-widest text-zinc-500 mb-3 block">Evolutionary Milestones</span>
+
                     <h2 className="text-3xl sm:text-5xl font-light text-zinc-900 tracking-tight mb-4">Company Timeline</h2>
-                    <p className="text-zinc-600 font-light text-base leading-relaxed">
+                    <p className="text-zinc-700 font-light text-base leading-relaxed">
                         A chronological look at our growth, expansion, and continuous drive toward technological excellence.
                     </p>
                 </div>
