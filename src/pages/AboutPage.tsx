@@ -1,10 +1,18 @@
 import React from 'react';
+import AboutHero from '../features/about/components/AboutHero';
+import VisionMission from '../features/about/components/VisionMission';
+import CoreValues from '../features/about/components/CoreValues';
+import TechnologyCapabilities from '../features/about/components/TechnologyCapabilities';
+import CompanyTimeline from '../features/about/components/CompanyTimeline';
 
 export function AboutPage() {
   return (
-    <div className="py-12 px-6 max-w-7xl mx-auto">
-      <h1 className="text-4xl font-extrabold tracking-tight mb-4">About Sador Group</h1>
-      <p className="text-lg text-gray-600">Learn more about our corporate vision, mission, and ecosystem.</p>
+    <div className="min-h-screen bg-[#FAF9F6]">
+      <AboutHero />
+      <VisionMission />
+      <CoreValues />
+      <TechnologyCapabilities />
+      <CompanyTimeline />
     </div>
   );
 }
