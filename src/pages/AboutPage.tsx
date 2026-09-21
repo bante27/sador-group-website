@@ -4,6 +4,7 @@ import VisionMission from '../features/about/components/VisionMission';
 import CoreValues from '../features/about/components/CoreValues';
 import TechnologyCapabilities from '../features/about/components/TechnologyCapabilities';
 import CompanyTimeline from '../features/about/components/CompanyTimeline';
+import GrowthInnovation from '../features/about/components/GrowthInnovation';
 
 export function AboutPage() {
   return (
@@ -13,6 +14,7 @@ export function AboutPage() {
       <CoreValues />
       <TechnologyCapabilities />
       <CompanyTimeline />
+      <GrowthInnovation />
     </div>
   );
 }
