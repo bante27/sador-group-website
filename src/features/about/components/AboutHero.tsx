@@ -30,7 +30,7 @@ export const AboutHero: React.FC = () => {
                         <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse" />
                         Corporate Profile & Ecosystem
                     </div>
-                    <h1 className="about-hero-element text-4xl sm:text-6xl lg:text-7xl font-light tracking-tight text-zinc-900 mb-6 leading-[1.1]">
+                    <h1 className="about-hero-element text-3xl sm:text-5xl lg:text-6xl font-light tracking-tight text-zinc-900 mb-6 leading-[1.2]">
                         Engineering the <span className="font-normal italic">Future</span> of Enterprise.
                     </h1>
                     <p className="about-hero-element text-base sm:text-lg text-zinc-600 font-light leading-relaxed max-w-2xl mx-auto">
