@@ -29,7 +29,7 @@ export const TechnologyCapabilities: React.FC = () => {
       tl.fromTo(
         textRef.current,
         { x: -30, opacity: 0 },
-        { x: 0, opacity: 1, duration: 4.0, ease: 'power3.out' }
+        { x: 0, opacity: 1, duration: 1.0, ease: 'power3.out' }
       );
 
       // Image clipping reveal starting from right edge
