@@ -1,16 +1,16 @@
 import React from 'react';
 import CompanyHero from '@/features/companies/components/CompanyHero';
-import Companyproduct from '@/features/companies/components/CompanyCard';
+import CompanyGrid from '@/features/companies/components/CompanyGrid';
 import CompanyDetails from '@/features/companies/components/CompanyDetails';
 
-export function CompaniesMainPage() {
+export function CompaniesPage() {
     return (
         <div className="min-h-screen bg-[#FAF9F6]">
             <CompanyHero />
-            <Companyproduct />
+            <CompanyGrid />
             <CompanyDetails />
         </div>
     );
 }
 
-export default CompaniesMainPage;
+export default CompaniesPage;
