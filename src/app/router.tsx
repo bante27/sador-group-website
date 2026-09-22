@@ -79,6 +79,6 @@ export const router = createBrowserRouter(
         },
     ],
     {
-        // future flags removed for react-router-dom version compatibility
+
     }
 );
