@@ -82,9 +82,6 @@ export const TechnologyCapabilities: React.FC = () => {
             ref={textRef}
             className="lg:col-span-5 opacity-0 will-change-transform pl-6 sm:pl-10 lg:pl-16 pr-6 sm:pr-10 py-10 bg-[#121215]/40 backdrop-blur-md rounded-r-3xl border-l-4 border-amber-400 space-y-6 shadow-2xl z-10"
           >
-            <span className="font-mono text-xs uppercase tracking-[0.25em] text-amber-400 block font-semibold">
-              Technical Excellence
-            </span>
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight text-white leading-[1.1]">
               Technology <span className="font-normal italic text-amber-400">Capabilities</span>
             </h2>
