@@ -86,8 +86,8 @@ export const CompanyTimeline: React.FC = () => {
 
                 <div className="text-center max-w-2xl mx-auto mb-16">
 
-                    <h2 className="text-3xl sm:text-5xl font-light text-zinc-900 tracking-tight mb-4">Company Timeline</h2>
-                    <p className="text-zinc-700 font-light text-base leading-relaxed">
+                    <h2 className="text-3xl sm:text-5xl font-bold text-zinc-900 tracking-tight mb-4">Company Timeline</h2>
+                    <p className="text-zinc-900 font-bold text-base leading-relaxed">
                         A chronological look at our growth, expansion, and continuous drive toward technological excellence.
                     </p>
                 </div>
@@ -96,7 +96,7 @@ export const CompanyTimeline: React.FC = () => {
                     {/* Animated inside vertical line */}
                     <div
                         ref={lineRef}
-                        className="absolute left-0 top-0 bottom-0 w-[2px] bg-zinc-300 will-change-transform"
+                        className="absolute left-0 top-0 bottom-0 w-[2px] bg-zinc-400 will-change-transform"
                     />
 
                     {timelineEvents.map((item, idx) => (
@@ -105,14 +105,14 @@ export const CompanyTimeline: React.FC = () => {
                             <div className="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-zinc-900 ring-4 ring-[#FAF9F6]" />
 
                             <div className="md:absolute md:-left-32 md:top-1 md:w-24 md:text-right">
-                                <span className="text-xs font-mono uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-500/20">
+                                <span className="text-xs font-mono uppercase font-bold tracking-wider text-emerald-800 bg-emerald-100 px-2.5 py-1 rounded-md border border-emerald-600/30">
                                     {item.year}
                                 </span>
                             </div>
 
                             <div className="bg-white p-6 sm:p-8 rounded-2xl border border-zinc-200/80 shadow-xs hover:border-emerald-500/30 transition-colors">
-                                <h3 className="text-xl font-medium text-zinc-900 mb-2 tracking-tight">{item.title}</h3>
-                                <p className="text-zinc-600 font-light text-sm sm:text-base leading-relaxed">{item.description}</p>
+                                <h3 className="text-xl font-bold text-zinc-900 mb-2 tracking-tight">{item.title}</h3>
+                                <p className="text-zinc-900 font-bold text-sm sm:text-base leading-relaxed">{item.description}</p>
                             </div>
                         </div>
                     ))}
