@@ -73,7 +73,7 @@ export const GrowthInnovation: React.FC = () => {
                         colTl.fromTo(
                             blackCurtain,
                             { scaleX: 1, transformOrigin: 'left center' },
-                            { scaleX: 0, duration: 1.2, ease: 'power9.inOut', delay: index * 0.3 }
+                            { scaleX: 0, duration: 1.2, ease: 'power3.inOut', delay: index * 0.3 }
                         );
                     }
 
