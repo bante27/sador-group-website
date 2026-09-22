@@ -1,6 +1,6 @@
 import React from 'react';
-import CompanyDetails from '../components/CompanyDetails';
-import CompanyProducts from '../components/CompanyProducts';
+import CompanyDetails from './CompanyDetails';
+import CompanyProducts from './CompanyProducts';
 
 export function CompanyDetailsPage() {
     return (
