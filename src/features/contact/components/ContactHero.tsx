@@ -77,7 +77,7 @@ export const ContactHero: React.FC = () => {
 
             <div className="hero-animate flex items-center gap-3 text-xs sm:text-sm text-zinc-800 font-bold mb-3 sm:mb-4 opacity-100">
               <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse shrink-0" />
-              <span>Global Response Team Active (< 24h)</span>
+              <span>Global Response Team Active (&lt; 24h)</span>
             </div>
 
             <p className="hero-animate text-sm sm:text-base text-zinc-700 font-bold leading-relaxed max-w-xl opacity-100">
@@ -152,3 +152,5 @@ export const ContactHero: React.FC = () => {
     </div>
   );
 };
+
+export default ContactHero;
