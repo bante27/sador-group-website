@@ -61,7 +61,7 @@ export function ProductsHero() {
         <section ref={containerRef} className="h-screen w-full bg-[#18181B] flex items-center justify-center overflow-hidden relative">
             <div
                 ref={tunnelLayerRef}
-                className="bg-[#FAF9F6] text-[#18181B] flex flex-col justify-center px-8 md:px-16 lg:px-24 shadow-2xl relative overflow-hidden"
+                className="bg-[#FAF9F6] text-[#18181B] flex flex-col justify-center px-8 md:px-14 lg:px-18 shadow-2xl relative overflow-hidden"
             >
                 <div ref={contentRef} className="max-w-4xl mx-auto w-full z-10 will-change-transform">
 
@@ -70,7 +70,7 @@ export function ProductsHero() {
                         Technology built for real-world business.
                     </h1>
 
-                    <p className="text-lg md:text-xl text-[#71717A] font-bold max-w-2xl leading-relaxed mb-8">
+                    <p className="text-lg md:text-xl text-[#71717A] font-serif max-w-2xl leading-relaxed mb-8">
                         23+ products across software, AI, fintech and enterprise solutions designed for uncompromising scalability.
                     </p>
 

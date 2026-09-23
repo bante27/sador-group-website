@@ -1,6 +1,5 @@
 import React, { useState, useMemo } from 'react';
 import ProductsHero from '../features/products/components/ProductsHero';
-import ProductHero from '../features/products/components/ProductHero';
 import ProductFilters from '../features/products/components/ProductFilters';
 import ProductSearch from '../features/products/components/ProductSearch';
 import ProductGrid from '../features/products/components/ProductGrid';
