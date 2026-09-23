@@ -72,3 +72,33 @@ export const createTunnelZoomEffect = (
         );
     }
 };
+
+export const applyWaveTextSplit = (containerElement: HTMLElement | null, selector: string = '.wave-text-reveal') => {
+    if (!containerElement) return;
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    const waveElements = containerElement.querySelectorAll(selector);
+    waveElements.forEach((el) => {
+        const text = el.textContent || '';
+        el.innerHTML = text
+            .split('')
+            .map((char) => `<span class="inline-block wave-char" style="opacity: 0.15; filter: blur(8px); transform: translateY(20px);">${char === ' ' ? '&nbsp;' : char}</span>`)
+            .join('');
+
+        gsap.to(el.querySelectorAll('.wave-char'), {
+            opacity: 1,
+            filter: 'blur(0px)',
+            y: 0,
+            stagger: 0.015,
+            ease: 'power2.out',
+            scrollTrigger: {
+                trigger: el,
+                start: 'top 85%',
+                end: 'top 45%',
+                scrub: true,
+            },
+        });
+    });
+};
