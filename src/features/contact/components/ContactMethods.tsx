@@ -42,7 +42,7 @@ export const ContactMethods: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         <div className="mb-14">
 
-          <h2 className="text-3xl sm:text-5xl font-light text-zinc-950 tracking-tight">How can we assist you today?</h2>
+          <h2 className="text-3xl sm:text-5xl font-bold text-zinc-950 tracking-tight">How can we assist you today?</h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -58,10 +58,10 @@ export const ContactMethods: React.FC = () => {
                   <div className="w-12 h-12 rounded-lg bg-zinc-100 border border-zinc-300 flex items-center justify-center text-zinc-950 mb-6 group-hover:scale-105 group-hover:border-zinc-400 transition-all duration-300 shadow-xs">
                     <IconComponent className="w-5 h-5" />
                   </div>
-                  <h3 className="text-xl font-medium text-zinc-950 mb-3">{method.title}</h3>
-                  <p className="text-sm text-zinc-600 font-light leading-relaxed mb-6">{method.description}</p>
+                  <h3 className="text-xl font-bold text-zinc-950 mb-3">{method.title}</h3>
+                  <p className="text-sm text-zinc-700 font-bold leading-relaxed mb-6">{method.description}</p>
                 </div>
-                <div className="flex items-center text-xs font-mono text-zinc-700 group-hover:text-zinc-950 transition-colors">
+                <div className="flex items-center text-xs font-bold text-zinc-900 group-hover:text-zinc-950 transition-colors">
                   <span>{method.actionText}</span>
                   <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                 </div>
