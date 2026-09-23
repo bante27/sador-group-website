@@ -123,10 +123,10 @@ export const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
 
         {/* Header */}
         <div className="text-center mb-12 sm:mb-16">
-          <h2 className="form-element text-3xl sm:text-5xl font-light text-zinc-900 tracking-tight mb-4">
+          <h2 className="form-element text-3xl sm:text-5xl font-bold text-zinc-900 tracking-tight mb-4">
             Send an Inquiry
           </h2>
-          <p className="form-element text-zinc-600 font-light text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
+          <p className="form-element text-zinc-600 font-bold text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
             Fill out the form below and our team will route your request to the appropriate department within Sador Group.
           </p>
         </div>
@@ -136,8 +136,8 @@ export const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
             <div className="w-16 h-16 rounded-full bg-emerald-100 border border-emerald-500/30 flex items-center justify-center mx-auto mb-6 text-emerald-600">
               <CheckCircle2 className="w-8 h-8" />
             </div>
-            <h3 className="text-xl sm:text-2xl font-medium text-zinc-900 mb-3">Transmission Successful</h3>
-            <p className="text-zinc-600 text-sm sm:text-base font-light max-w-md mx-auto mb-8">
+            <h3 className="text-xl sm:text-2xl font-bold text-zinc-900 mb-3">Transmission Successful</h3>
+            <p className="text-zinc-600 text-sm sm:text-base font-bold max-w-md mx-auto mb-8">
               Thank you for contacting Sador Group. Your inquiry has been logged securely and an assigned representative will respond shortly.
             </p>
             <button
@@ -155,7 +155,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
                   privacyConsent: false,
                 });
               }}
-              className="px-6 py-3 rounded-lg bg-zinc-900 text-white text-sm font-medium hover:bg-zinc-800 transition-colors cursor-pointer shadow-sm"
+              className="px-6 py-3 rounded-lg bg-zinc-900 text-white text-sm font-bold hover:bg-zinc-800 transition-colors cursor-pointer shadow-sm"
             >
               Send Another Inquiry
             </button>
@@ -164,83 +164,83 @@ export const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
           <form ref={formRef} onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
               <div className="form-element">
-                <label className="block text-xs font-mono uppercase tracking-wider text-zinc-600 mb-2">First Name *</label>
+                <label className="block text-xs font-bold uppercase tracking-wider text-zinc-700 mb-2">First Name *</label>
                 <input
                   type="text"
                   name="firstName"
                   value={formData.firstName}
                   onChange={handleChange}
                   placeholder="Jane"
-                  className={`w-full bg-white border ${errors.firstName ? 'border-red-500' : 'border-zinc-300'} rounded-lg px-4 py-3 text-zinc-900 text-sm focus:outline-none focus:border-zinc-900 transition-colors shadow-xs`}
+                  className={`w-full bg-white border ${errors.firstName ? 'border-red-500' : 'border-zinc-300'} rounded-lg px-4 py-3 text-zinc-900 font-bold text-sm focus:outline-none focus:border-zinc-900 transition-colors shadow-xs`}
                 />
-                {errors.firstName && <span className="text-xs text-red-600 mt-1 block">{errors.firstName}</span>}
+                {errors.firstName && <span className="text-xs text-red-600 font-bold mt-1 block">{errors.firstName}</span>}
               </div>
 
               <div className="form-element">
-                <label className="block text-xs font-mono uppercase text-zinc-600 mb-2">Last Name *</label>
+                <label className="block text-xs font-bold uppercase text-zinc-700 mb-2">Last Name *</label>
                 <input
                   type="text"
                   name="lastName"
                   value={formData.lastName}
                   onChange={handleChange}
                   placeholder="Doe"
-                  className={`w-full bg-white border ${errors.lastName ? 'border-red-500' : 'border-zinc-300'} rounded-lg px-4 py-3 text-zinc-900 text-sm focus:outline-none focus:border-zinc-900 transition-colors shadow-xs`}
+                  className={`w-full bg-white border ${errors.lastName ? 'border-red-500' : 'border-zinc-300'} rounded-lg px-4 py-3 text-zinc-900 font-bold text-sm focus:outline-none focus:border-zinc-900 transition-colors shadow-xs`}
                 />
-                {errors.lastName && <span className="text-xs text-red-600 mt-1 block">{errors.lastName}</span>}
+                {errors.lastName && <span className="text-xs text-red-600 font-bold mt-1 block">{errors.lastName}</span>}
               </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
               <div className="form-element">
-                <label className="block text-xs font-mono uppercase text-zinc-600 mb-2">Business Email *</label>
+                <label className="block text-xs font-bold uppercase text-zinc-700 mb-2">Business Email *</label>
                 <input
                   type="email"
                   name="businessEmail"
                   value={formData.businessEmail}
                   onChange={handleChange}
                   placeholder="jane.doe@organization.com"
-                  className={`w-full bg-white border ${errors.businessEmail ? 'border-red-500' : 'border-zinc-300'} rounded-lg px-4 py-3 text-zinc-900 text-sm focus:outline-none focus:border-zinc-900 transition-colors shadow-xs`}
+                  className={`w-full bg-white border ${errors.businessEmail ? 'border-red-500' : 'border-zinc-300'} rounded-lg px-4 py-3 text-zinc-900 font-bold text-sm focus:outline-none focus:border-zinc-900 transition-colors shadow-xs`}
                 />
-                {errors.businessEmail && <span className="text-xs text-red-600 mt-1 block">{errors.businessEmail}</span>}
+                {errors.businessEmail && <span className="text-xs text-red-600 font-bold mt-1 block">{errors.businessEmail}</span>}
               </div>
 
               <div className="form-element">
-                <label className="block text-xs font-mono uppercase text-zinc-600 mb-2">Phone Number</label>
+                <label className="block text-xs font-bold uppercase text-zinc-700 mb-2">Phone Number</label>
                 <input
                   type="tel"
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
                   placeholder="+1 (555) 000-0000"
-                  className="w-full bg-white border border-zinc-300 rounded-lg px-4 py-3 text-zinc-900 text-sm focus:outline-none focus:border-zinc-900 transition-colors shadow-xs"
+                  className="w-full bg-white border border-zinc-300 rounded-lg px-4 py-3 text-zinc-900 font-bold text-sm focus:outline-none focus:border-zinc-900 transition-colors shadow-xs"
                 />
               </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
               <div className="form-element">
-                <label className="block text-xs font-mono uppercase text-zinc-600 mb-2">Organization / Company *</label>
+                <label className="block text-xs font-bold uppercase text-zinc-700 mb-2">Organization / Company *</label>
                 <input
                   type="text"
                   name="organization"
                   value={formData.organization}
                   onChange={handleChange}
                   placeholder="Acme Corporation"
-                  className={`w-full bg-white border ${errors.organization ? 'border-red-500' : 'border-zinc-300'} rounded-lg px-4 py-3 text-zinc-900 text-sm focus:outline-none focus:border-zinc-900 transition-colors shadow-xs`}
+                  className={`w-full bg-white border ${errors.organization ? 'border-red-500' : 'border-zinc-300'} rounded-lg px-4 py-3 text-zinc-900 font-bold text-sm focus:outline-none focus:border-zinc-900 transition-colors shadow-xs`}
                 />
-                {errors.organization && <span className="text-xs text-red-600 mt-1 block">{errors.organization}</span>}
+                {errors.organization && <span className="text-xs text-red-600 font-bold mt-1 block">{errors.organization}</span>}
               </div>
 
               <div className="form-element">
-                <label className="block text-xs font-mono uppercase text-zinc-600 mb-2">Inquiry Type *</label>
+                <label className="block text-xs font-bold uppercase text-zinc-700 mb-2">Inquiry Type *</label>
                 <select
                   name="inquiryType"
                   value={formData.inquiryType}
                   onChange={handleChange}
-                  className="w-full bg-white border border-zinc-300 rounded-lg px-4 py-3 text-zinc-900 text-sm focus:outline-none focus:border-zinc-900 transition-colors shadow-xs"
+                  className="w-full bg-white border border-zinc-300 rounded-lg px-4 py-3 text-zinc-900 font-bold text-sm focus:outline-none focus:border-zinc-900 transition-colors shadow-xs"
                 >
                   {INQUIRY_TYPES.map((type) => (
-                    <option key={type} value={type} className="bg-white text-zinc-900">
+                    <option key={type} value={type} className="bg-white text-zinc-900 font-bold">
                       {type}
                     </option>
                   ))}
@@ -249,29 +249,29 @@ export const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
             </div>
 
             <div className="form-element">
-              <label className="block text-xs font-mono uppercase text-zinc-600 mb-2">Subject *</label>
+              <label className="block text-xs font-bold uppercase text-zinc-700 mb-2">Subject *</label>
               <input
                 type="text"
                 name="subject"
                 value={formData.subject}
                 onChange={handleChange}
                 placeholder="Brief summary of your request"
-                className={`w-full bg-white border ${errors.subject ? 'border-red-500' : 'border-zinc-300'} rounded-lg px-4 py-3 text-zinc-900 text-sm focus:outline-none focus:border-zinc-900 transition-colors shadow-xs`}
+                className={`w-full bg-white border ${errors.subject ? 'border-red-500' : 'border-zinc-300'} rounded-lg px-4 py-3 text-zinc-900 font-bold text-sm focus:outline-none focus:border-zinc-900 transition-colors shadow-xs`}
               />
-              {errors.subject && <span className="text-xs text-red-600 mt-1 block">{errors.subject}</span>}
+              {errors.subject && <span className="text-xs text-red-600 font-bold mt-1 block">{errors.subject}</span>}
             </div>
 
             <div className="form-element">
-              <label className="block text-xs font-mono uppercase text-zinc-600 mb-2">Message *</label>
+              <label className="block text-xs font-bold uppercase text-zinc-700 mb-2">Message *</label>
               <textarea
                 name="message"
                 rows={5}
                 value={formData.message}
                 onChange={handleChange}
                 placeholder="Provide detailed information regarding your inquiry..."
-                className={`w-full bg-white border ${errors.message ? 'border-red-500' : 'border-zinc-300'} rounded-lg px-4 py-3 text-zinc-900 text-sm focus:outline-none focus:border-zinc-900 transition-colors resize-none shadow-xs`}
+                className={`w-full bg-white border ${errors.message ? 'border-red-500' : 'border-zinc-300'} rounded-lg px-4 py-3 text-zinc-900 font-bold text-sm focus:outline-none focus:border-zinc-900 transition-colors resize-none shadow-xs`}
               />
-              {errors.message && <span className="text-xs text-red-600 mt-1 block">{errors.message}</span>}
+              {errors.message && <span className="text-xs text-red-600 font-bold mt-1 block">{errors.message}</span>}
             </div>
 
             <div className="form-element flex items-start space-x-3 pt-2">
@@ -283,14 +283,14 @@ export const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
                 onChange={handleChange}
                 className="mt-1 w-4 h-4 rounded border-zinc-300 bg-white text-zinc-900 focus:ring-0 cursor-pointer accent-zinc-900"
               />
-              <label htmlFor="privacyConsent" className="text-xs text-zinc-600 font-light leading-relaxed cursor-pointer">
+              <label htmlFor="privacyConsent" className="text-xs text-zinc-700 font-bold leading-relaxed cursor-pointer">
                 I consent to Sador Group processing my data in accordance with the corporate privacy policy for the purpose of handling this request. *
               </label>
             </div>
-            {errors.privacyConsent && <span className="text-xs text-red-600 block">{errors.privacyConsent}</span>}
+            {errors.privacyConsent && <span className="text-xs text-red-600 font-bold block">{errors.privacyConsent}</span>}
 
             {submitStatus === 'error' && (
-              <div className="p-4 rounded-lg bg-red-50 border border-red-500/30 flex items-center gap-3 text-red-600 text-sm">
+              <div className="p-4 rounded-lg bg-red-50 border border-red-500/30 flex items-center gap-3 text-red-600 font-bold text-sm">
                 <AlertCircle className="w-5 h-5 shrink-0" />
                 <span>An error occurred while submitting. Please verify your connection and try again.</span>
               </div>
@@ -300,7 +300,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
               <button
                 type="submit"
                 disabled={submitting}
-                className="w-full sm:w-auto px-8 py-4 rounded-lg bg-zinc-900 text-white text-sm font-medium hover:bg-zinc-800 transition-colors flex items-center justify-center space-x-3 disabled:opacity-50 cursor-pointer shadow-sm"
+                className="w-full sm:w-auto px-8 py-4 rounded-lg bg-zinc-900 text-white text-sm font-bold hover:bg-zinc-800 transition-colors flex items-center justify-center space-x-3 disabled:opacity-50 cursor-pointer shadow-sm"
               >
                 {submitting ? (
                   <>
