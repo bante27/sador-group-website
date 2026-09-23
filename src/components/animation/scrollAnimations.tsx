@@ -98,6 +98,7 @@ export const applyWaveTextSplit = (containerElement: HTMLElement | null, selecto
                 start: 'top 85%',
                 end: 'top 45%',
                 scrub: true,
+                toggleActions: 'play reverse play reverse',
             },
         });
     });

@@ -152,8 +152,6 @@ export function CompaniesHero({ companies = defaultCompanies, onSelectCompany }:
 
             <div className="hero-parallax-container max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-12 items-center relative z-10">
                 <div className="lg:col-span-7 flex flex-col items-start">
-
-                    {/* Main Heading — Smaller, Bold, Clean */}
                     <h1
                         className="font-bold tracking-tight text-[#18181B] mb-8"
                         style={{
@@ -170,12 +168,10 @@ export function CompaniesHero({ companies = defaultCompanies, onSelectCompany }:
                         </div>
                     </h1>
 
-                    {/* Description */}
                     <p className="hero-desc text-[#71717A] text-xs sm:text-sm leading-relaxed max-w-[520px] mb-10 font-bold">
                         Sador Group brings together specialized technology businesses that operate independently while contributing to a connected ecosystem of innovation, digital transformation, and long-term growth.
                     </p>
 
-                    {/* Editorial CTA */}
                     <div className="hero-cta">
                         <a
                             href="#companies-grid"
@@ -190,16 +186,10 @@ export function CompaniesHero({ companies = defaultCompanies, onSelectCompany }:
                     </div>
                 </div>
 
-                {/* Right Column: Clean Box-Free, Line-Free, Icon-Free Ecosystem Map */}
                 <div className="lg:col-span-5 flex flex-col items-start lg:items-end">
                     <div ref={ecosystemRef} className="w-full max-w-md lg:max-w-sm flex flex-col">
+                        <div className="eco-group-identity flex items-baseline justify-between border-b border-[#D4D4D8] pb-6 mb-8" />
 
-                        {/* Ecosystem Header / Group Identity & Counter */}
-                        <div className="eco-group-identity flex items-baseline justify-between border-b border-[#D4D4D8] pb-6 mb-8">
-
-                        </div>
-
-                        {/* Typographic List with Default Open Descriptions */}
                         <div className="space-y-6">
                             {companies.map((company) => {
                                 return (
@@ -211,7 +201,7 @@ export function CompaniesHero({ companies = defaultCompanies, onSelectCompany }:
                                         <div className="flex flex-col space-y-1.5">
                                             <div className="flex items-baseline justify-between">
                                                 <div className="flex items-center gap-2.5">
-                                                    <span className="font-bold text-[12px] font-bold text-[#059669]">
+                                                    <span className="font-bold text-[12px] text-[#059669]">
                                                         {company.id}
                                                     </span>
                                                     <h3 className="text-base font-bold text-[#18181B] group-hover:text-[#059669] transition-colors duration-300 tracking-tight">
@@ -224,7 +214,6 @@ export function CompaniesHero({ companies = defaultCompanies, onSelectCompany }:
                                                 {company.category}
                                             </div>
 
-                                            {/* Default open description in small font */}
                                             <div className="pl-5 pt-0.5">
                                                 <p className="text-[12px] text-[#71717A] leading-relaxed">
                                                     {company.description}
@@ -235,10 +224,8 @@ export function CompaniesHero({ companies = defaultCompanies, onSelectCompany }:
                                 );
                             })}
                         </div>
-
                     </div>
                 </div>
-
             </div>
         </section>
     );
