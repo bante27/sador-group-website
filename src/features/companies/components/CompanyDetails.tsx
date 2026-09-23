@@ -96,11 +96,7 @@ export function CompanyDetails({ companyId, onCapabilitySelect }: CompanyDetails
                     ref={contentRef}
                     className="max-w-7xl mx-auto w-full px-6 sm:px-8 lg:px-12 relative z-10 py-12"
                 >
-                    <div className="company-details-eyebrow mb-6">
-                        <span className="text-xs uppercase tracking-[0.2em] text-zinc-300 font-bold">
-                            Sador Group / Business Unit
-                        </span>
-                    </div>
+
 
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
                         <div className="lg:col-span-7 flex flex-col items-start">
@@ -159,14 +155,7 @@ export function CompanyDetails({ companyId, onCapabilitySelect }: CompanyDetails
                                     </span>
                                     <span className="text-sm font-bold text-white">{company.category}</span>
                                 </div>
-                                <div className="company-details-meta flex justify-between items-baseline">
-                                    <span className="text-xs uppercase tracking-wider text-zinc-400 font-bold">
-                                        Position
-                                    </span>
-                                    <span className="text-sm font-bold text-emerald-400">
-                                        Sador Group Business Unit
-                                    </span>
-                                </div>
+
                             </div>
 
                             <div className="border-t border-white/20 pt-6">
