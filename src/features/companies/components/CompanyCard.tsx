@@ -1,61 +1,130 @@
-import React from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Company } from '../data/companies';
-import { ArrowUpRight, Building2, Layers } from 'lucide-react';
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface CompanyCardProps {
-    company: Company;
-    onSelect?: (company: Company) => void;
+    companies: Company[];
+    selectedCompanyId?: string;
+    onSelectCompany?: (company: Company) => void;
 }
 
-export function CompanyCard({ company, onSelect }: CompanyCardProps) {
+export function CompanyCard({ companies, selectedCompanyId, onSelectCompany }: CompanyCardProps) {
+    const sectionRef = useRef<HTMLElement>(null);
+
+    useLayoutEffect(() => {
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReducedMotion) return;
+
+        const ctx = gsap.context(() => {
+            gsap.fromTo(
+                '.editorial-company-row',
+                { opacity: 0, y: 30 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.7,
+                    ease: 'power3.out',
+                    stagger: 0.1,
+                    scrollTrigger: {
+                        trigger: sectionRef.current,
+                        start: 'top 78%',
+                        once: true,
+                    },
+                }
+            );
+        }, sectionRef);
+
+        return () => ctx.revert();
+    }, []);
+
     return (
-        <div
-            onClick={() => onSelect && onSelect(company)}
-            className="group relative bg-white p-8 sm:p-10 rounded-2xl border border-zinc-200/80 shadow-xs hover:border-[#059669]/40 hover:shadow-md transition-all duration-300 cursor-pointer flex flex-col justify-between"
+        <section
+            ref={sectionRef}
+            className="bg-[#FAF9F6] text-[#18181B] py-24 px-4 sm:px-6 lg:px-12 border-b border-[#D4D4D8]/40 overflow-hidden"
+            aria-label="Editorial Company Directory"
         >
-            <div>
-                {/* Category & Icon */}
-                <div className="flex items-center justify-between mb-6">
-                    <span className="text-xs font-mono uppercase tracking-wider text-[#059669] bg-emerald-50 px-3 py-1 rounded-full font-bold border border-emerald-500/20">
-                        {company.category}
-                    </span>
-                    <Building2 className="w-5 h-5 text-zinc-400 group-hover:text-[#059669] transition-colors" />
-                </div>
+            <div className="max-w-7xl mx-auto w-full">
+                <div className="space-y-0">
+                    {companies.map((company, idx) => {
+                        const isSelected = selectedCompanyId ? company.id === selectedCompanyId : idx === 0;
+                        const rowNumber = `0${idx + 1}`;
 
-                {/* Company Name */}
-                <h3 className="text-2xl font-bold tracking-tight text-[#09090B] mb-3 group-hover:text-[#059669] transition-colors">
-                    {company.name}
-                </h3>
+                        return (
+                            <div
+                                key={company.id}
+                                onClick={() => onSelectCompany?.(company)}
+                                onKeyDown={(e) => {
+                                    if (e.key === 'Enter' || e.key === ' ') {
+                                        e.preventDefault();
+                                        onSelectCompany?.(company);
+                                    }
+                                }}
+                                role="button"
+                                tabIndex={0}
+                                aria-selected={isSelected}
+                                className="editorial-company-row group relative py-10 cursor-pointer border-t border-[#D4D4D8] last:border-b transition-colors outline-none focus:ring-1 focus:ring-[#059669]"
+                            >
+                                {/* Subtle active vertical indicator */}
+                                {isSelected && (
+                                    <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-[#059669] transform origin-top transition-transform duration-300" />
+                                )}
 
-                {/* Description */}
-                <p className="text-sm sm:text-base text-zinc-900 font-bold leading-relaxed mb-6">
-                    {company.description}
-                </p>
+                                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center px-4 sm:px-8">
+                                    {/* Number & Name Column */}
+                                    <div className="lg:col-span-5 flex items-baseline gap-6">
+                                        <span className="font-mono text-xs font-medium text-[#71717A] group-hover:text-[#059669] transition-colors duration-300">
+                                            {rowNumber}
+                                        </span>
+                                        <div>
+                                            <h3
+                                                className="font-semibold text-[#18181B] group-hover:translate-x-2 transition-transform duration-300 tracking-tight"
+                                                style={{
+                                                    fontSize: 'clamp(1.5rem, 2.4vw, 2.4rem)',
+                                                    letterSpacing: '-0.03em',
+                                                }}
+                                            >
+                                                {company.name}
+                                            </h3>
+                                            <span className="font-mono text-xs uppercase tracking-[0.12em] text-[#71717A] mt-1 block">
+                                                {company.category}
+                                            </span>
+                                        </div>
+                                    </div>
 
-                {/* Main Products */}
-                <div className="mb-8">
-                    <div className="flex items-center gap-1.5 text-xs font-bold text-zinc-900 uppercase tracking-wider mb-2">
-                        <Layers className="w-3.5 h-3.5 text-[#059669]" />
-                        <span>Key Offerings</span>
-                    </div>
-                    <div className="flex flex-wrap gap-2">
-                        {company.products.map((prod, idx) => (
-                            <span key={idx} className="text-xs bg-zinc-100 text-zinc-900 font-bold px-2.5 py-1 rounded-md">
-                                {prod}
-                            </span>
-                        ))}
-                    </div>
+                                    {/* Description Column */}
+                                    <div className="lg:col-span-5">
+                                        <p
+                                            className="text-sm sm:text-base text-[#71717A] group-hover:text-[#18181B] transition-colors duration-300 font-normal leading-relaxed"
+                                            style={{ maxWidth: '480px' }}
+                                        >
+                                            {company.description}
+                                        </p>
+                                    </div>
+
+                                    {/* Explore Action Column */}
+                                    <div className="lg:col-span-2 flex justify-start lg:justify-end items-center">
+                                        <span className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#18181B] group-hover:text-[#059669] transition-colors duration-300">
+                                            <span>Explore</span>
+                                            <span
+                                                className="inline-block transition-transform duration-300 group-hover:translate-x-1.5 group-hover:-translate-y-1 group-hover:-rotate-12 text-[#059669]"
+                                            >
+                                                ↗
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                {/* Animated thin emerald hover divider */}
+                                <div className="absolute bottom-0 left-0 w-full h-[1px] bg-transparent group-hover:bg-[#059669] scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
+                            </div>
+                        );
+                    })}
                 </div>
             </div>
-
-            {/* Action Footer */}
-            <div className="pt-6 border-t border-zinc-100 flex items-center justify-between">
-                <span className="text-xs font-bold uppercase tracking-wider text-[#059669] group-hover:underline">
-                    View Business Unit
-                </span>
-                <ArrowUpRight className="w-4 h-4 text-zinc-400 group-hover:text-[#059669] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
-            </div>
-        </div>
+        </section>
     );
 }
 
