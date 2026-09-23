@@ -43,16 +43,16 @@ export const ContactCTA: React.FC = () => {
   };
 
   return (
- <section ref={ctaRef} className="py-20 sm:py-28 relative overflow-hidden bg-[#FAF9F6] ">
+    <section ref={ctaRef} className="py-20 sm:py-28 relative overflow-hidden bg-[#FAF9F6] ">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-12 text-center relative z-10">
         <div>
           <span className="cta-element text-xs font-mono tracking-widest text-zinc-500 uppercase mb-4 block">
-           
+
           </span>
-          <h2 className="cta-element text-3xl sm:text-5xl font-light text-zinc-900 tracking-tight mb-6 leading-tight">
-            Your next opportunity could <span className="font-normal italic">start here.</span>
+          <h2 className="cta-element text-3xl sm:text-5xl font-bold text-zinc-900 tracking-tight mb-6 leading-tight">
+            Your next opportunity could <span className="font-bold italic">start here.</span>
           </h2>
-          <p className="cta-element text-zinc-600 font-light text-base sm:text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
+          <p className="cta-element text-zinc-600 font-bold text-base sm:text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
             Whether you are evaluating our portfolio of 23+ technology solutions, exploring joint corporate partnerships, or looking to scale your career, our leadership team is ready to connect.
           </p>
           <div className="cta-element">
@@ -71,3 +71,4 @@ export const ContactCTA: React.FC = () => {
 };
 
 export default ContactCTA;
+
