@@ -6,12 +6,36 @@ import { Company } from '../data/companies';
 gsap.registerPlugin(ScrollTrigger);
 
 interface CompanyCardProps {
-    companies: Company[];
+    companies?: Company[];
     selectedCompanyId?: string;
     onSelectCompany?: (company: Company) => void;
 }
 
-export function CompanyCard({ companies, selectedCompanyId, onSelectCompany }: CompanyCardProps) {
+const defaultCompanies: Company[] = [
+    {
+        id: 'sador-tech',
+        name: 'Sador Technologies',
+        category: 'Enterprise Software & AI',
+        description: 'Next-generation artificial intelligence frameworks and cloud infrastructure.',
+        products: ['Sador AI Engine', 'CloudCore OS', 'Enterprise Security Suite']
+    },
+    {
+        id: 'sador-energy',
+        name: 'Sador Energy & Utilities',
+        category: 'Sustainable Infrastructure',
+        description: 'Smart grid solutions and renewable energy monitoring systems.',
+        products: ['GridFlow Smart Monitor', 'EcoPower Grid', 'Industrial Energy Analytics']
+    },
+    {
+        id: 'sador-finance',
+        name: 'Sador Capital & Fintech',
+        category: 'Financial Technologies',
+        description: 'Decentralized financial ledgers and automated settlement rails.',
+        products: ['Apex Ledger', 'SecurePay Gateway', 'RiskQuant AI']
+    }
+];
+
+export function CompanyCard({ companies = defaultCompanies, selectedCompanyId, onSelectCompany }: CompanyCardProps) {
     const sectionRef = useRef<HTMLElement>(null);
 
     useLayoutEffect(() => {
