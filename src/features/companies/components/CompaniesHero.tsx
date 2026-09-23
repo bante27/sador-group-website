@@ -38,30 +38,40 @@ interface CompaniesHeroProps {
 export function CompaniesHero({ companies = defaultCompanies, onSelectCompany }: CompaniesHeroProps) {
     const sectionRef = useRef<HTMLDivElement>(null);
     const ecosystemRef = useRef<HTMLDivElement>(null);
+    const overlayRef = useRef<HTMLDivElement>(null);
 
     useLayoutEffect(() => {
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         if (prefersReducedMotion) return;
 
         const ctx = gsap.context(() => {
-            // Premium, restrained corporate entrance timeline
             const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
+
+            if (overlayRef.current) {
+                tl.to(overlayRef.current, {
+                    scaleY: 0,
+                    transformOrigin: 'top',
+                    duration: 1.2,
+                    ease: 'power4.inOut',
+                });
+            }
 
             tl.fromTo(
                 '.hero-eyebrow',
                 { opacity: 0, y: 15 },
-                { opacity: 1, y: 0, duration: 0.8 }
+                { opacity: 1, y: 0, duration: 0.8 },
+                '-=0.4'
             )
                 .fromTo(
                     '.hero-title-line-1',
-                    { opacity: 0, y: '100%', clipPath: 'inset(100% 0 0 0)' },
-                    { opacity: 1, y: '0%', clipPath: 'inset(0% 0 0 0)', duration: 1.1 },
+                    { opacity: 0, y: '50%' },
+                    { opacity: 1, y: '0%', duration: 1.0 },
                     '-=0.5'
                 )
                 .fromTo(
                     '.hero-title-line-2',
-                    { opacity: 0, y: '100%', clipPath: 'inset(100% 0 0 0)' },
-                    { opacity: 1, y: '0%', clipPath: 'inset(0% 0 0 0)', duration: 1.1 },
+                    { opacity: 0, y: '50%' },
+                    { opacity: 1, y: '0%', duration: 1.0 },
                     '-=0.8'
                 )
                 .fromTo(
@@ -83,19 +93,12 @@ export function CompaniesHero({ companies = defaultCompanies, onSelectCompany }:
                     '-=0.8'
                 )
                 .fromTo(
-                    '.eco-divider',
-                    { scaleX: 0, transformOrigin: 'left' },
-                    { scaleX: 1, duration: 0.8, ease: 'power3.out' },
-                    '-=0.5'
-                )
-                .fromTo(
                     '.eco-company-item',
                     { opacity: 0, y: 16 },
                     { opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: 'power3.out' },
                     '-=0.5'
                 );
 
-            // Subtle ScrollTrigger parallax using scrollAnimations utility
             revealOnScroll(
                 sectionRef.current,
                 '.hero-parallax-container',
@@ -104,7 +107,6 @@ export function CompaniesHero({ companies = defaultCompanies, onSelectCompany }:
                 'top top'
             );
 
-            // Subtle desktop mouse parallax for ecosystem map
             const handleMouseMove = (e: MouseEvent) => {
                 if (!ecosystemRef.current || window.innerWidth < 1024) return;
                 const { clientX, clientY } = e;
@@ -142,29 +144,22 @@ export function CompaniesHero({ companies = defaultCompanies, onSelectCompany }:
             style={{ minHeight: '92vh', display: 'flex', alignItems: 'center' }}
             aria-label="Sador Group Ecosystem Hero"
         >
-            <div className="hero-parallax-container max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-12 items-center relative z-10">
+            <div
+                ref={overlayRef}
+                className="absolute inset-0 bg-[#09090B] z-30 pointer-events-none"
+                style={{ transformOrigin: 'top' }}
+            />
 
-                {/* Left Column: Editorial Typography & Message */}
+            <div className="hero-parallax-container max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-12 items-center relative z-10">
                 <div className="lg:col-span-7 flex flex-col items-start">
 
-                    {/* Top Label */}
-                    <div className="hero-eyebrow flex items-center gap-3 mb-8">
-                        <span className="h-3 w-[2px] bg-[#059669] inline-block" />
-                        <span
-                            className="font-mono uppercase text-[#71717A] font-medium"
-                            style={{ fontSize: '11px', letterSpacing: '0.18em' }}
-                        >
-                            Sador Group / Business Ecosystem
-                        </span>
-                    </div>
-
-                    {/* Main Heading */}
+                    {/* Main Heading — Smaller, Bold, Clean */}
                     <h1
-                        className="font-semibold tracking-tight text-[#18181B] mb-8"
+                        className="font-bold tracking-tight text-[#18181B] mb-8"
                         style={{
-                            fontSize: 'clamp(3.2rem, 6.5vw, 7.5rem)',
-                            lineHeight: 0.94,
-                            letterSpacing: '-0.055em',
+                            fontSize: 'clamp(2.4rem, 4.5vw, 4.8rem)',
+                            lineHeight: 1.05,
+                            letterSpacing: '-0.035em',
                         }}
                     >
                         <div className="overflow-hidden py-1">
@@ -176,7 +171,7 @@ export function CompaniesHero({ companies = defaultCompanies, onSelectCompany }:
                     </h1>
 
                     {/* Description */}
-                    <p className="hero-desc text-[#71717A] text-xs sm:text-sm leading-relaxed max-w-[520px] mb-10 font-normal">
+                    <p className="hero-desc text-[#71717A] text-xs sm:text-sm leading-relaxed max-w-[520px] mb-10 font-bold">
                         Sador Group brings together specialized technology businesses that operate independently while contributing to a connected ecosystem of innovation, digital transformation, and long-term growth.
                     </p>
 
@@ -195,61 +190,43 @@ export function CompaniesHero({ companies = defaultCompanies, onSelectCompany }:
                     </div>
                 </div>
 
-                {/* Right Column: Clean Box-Free, Line-Free, Icon-Free Ecosystem Map with Default Small Font Open Details */}
+                {/* Right Column: Clean Box-Free, Line-Free, Icon-Free Ecosystem Map */}
                 <div className="lg:col-span-5 flex flex-col items-start lg:items-end">
                     <div ref={ecosystemRef} className="w-full max-w-md lg:max-w-sm flex flex-col">
 
                         {/* Ecosystem Header / Group Identity & Counter */}
                         <div className="eco-group-identity flex items-baseline justify-between border-b border-[#D4D4D8] pb-6 mb-8">
-                            <div>
-                                <span className="block font-mono text-[10px] uppercase tracking-[0.2em] text-[#71717A] mb-1">
-                                    Parent Holding
-                                </span>
-                                <div className="text-lg font-bold tracking-tight text-[#18181B]">
-                                    SADOR GROUP
-                                </div>
-                            </div>
-                            <div className="text-right">
-                                <span className="block text-xl font-semibold text-[#059669] tracking-tight">
-                                    0{companies.length}
-                                </span>
-                                <span className="font-mono text-[9px] uppercase tracking-wider text-[#71717A]">
-                                    Businesses
-                                </span>
-                            </div>
+
                         </div>
 
-                        {/* Line-free, Icon-free Typographic List with Small Font Default Open Descriptions */}
+                        {/* Typographic List with Default Open Descriptions */}
                         <div className="space-y-6">
                             {companies.map((company) => {
                                 return (
                                     <div
                                         key={company.id}
-                                        className="eco-company-item group cursor-pointer pb-5 border-b border-[#D4D4D8]/40 last:border-b-0"
+                                        className="eco-company-item group cursor-pointer pb-5 border-b border-[#D4D4D8]/30 last:border-b-0"
                                         onClick={() => handleItemClick(company.id)}
                                     >
                                         <div className="flex flex-col space-y-1.5">
                                             <div className="flex items-baseline justify-between">
                                                 <div className="flex items-center gap-2.5">
-                                                    <span className="font-mono text-[11px] font-semibold text-[#059669]">
+                                                    <span className="font-bold text-[12px] font-bold text-[#059669]">
                                                         {company.id}
                                                     </span>
-                                                    <h3 className="text-base font-semibold text-[#18181B] group-hover:text-[#059669] transition-colors duration-300 tracking-tight">
+                                                    <h3 className="text-base font-bold text-[#18181B] group-hover:text-[#059669] transition-colors duration-300 tracking-tight">
                                                         {company.name}
                                                     </h3>
                                                 </div>
-                                                <span className="text-[11px] font-mono text-[#71717A] group-hover:text-[#059669] transition-colors duration-300">
-                                                    Explore ↗
-                                                </span>
                                             </div>
 
-                                            <div className="font-mono text-[10px] uppercase tracking-wider text-[#71717A] pl-5">
+                                            <div className="font-bold text-[12px] uppercase tracking-wider text-[#71717A] pl-5">
                                                 {company.category}
                                             </div>
 
                                             {/* Default open description in small font */}
                                             <div className="pl-5 pt-0.5">
-                                                <p className="text-[11px] text-[#71717A] leading-relaxed">
+                                                <p className="text-[12px] text-[#71717A] leading-relaxed">
                                                     {company.description}
                                                 </p>
                                             </div>
@@ -257,12 +234,6 @@ export function CompaniesHero({ companies = defaultCompanies, onSelectCompany }:
                                     </div>
                                 );
                             })}
-                        </div>
-
-                        {/* Footer status line */}
-                        <div className="eco-divider mt-6 pt-5 border-t border-[#D4D4D8]/60 flex items-center justify-between text-[11px] font-mono text-[#71717A]">
-                            <span>Status: Operational</span>
-                            <span className="text-[#059669]">Synergy Active</span>
                         </div>
 
                     </div>
