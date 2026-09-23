@@ -1,44 +1,90 @@
 import React, { useLayoutEffect, useRef } from 'react';
 import gsap from 'gsap';
-import { revealOnScroll } from '../../../components/animation/scrollAnimations';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export function ProductsHero() {
-    const heroRef = useRef<HTMLElement>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
+    const tunnelLayerRef = useRef<HTMLDivElement>(null);
+    const contentRef = useRef<HTMLDivElement>(null);
 
     useLayoutEffect(() => {
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         if (prefersReducedMotion) return;
 
         const ctx = gsap.context(() => {
-            revealOnScroll(
-                heroRef.current,
-                '.hero-animate',
-                { opacity: 0, x: -100 },
-                { opacity: 1, x: 0, duration: 0.8, stagger: 0.15, ease: 'power3.out' },
-                'top 85%'
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: containerRef.current,
+                    start: 'top top',
+                    end: '+=1200',
+                    pin: true,
+                    scrub: 1.0,
+                    anticipatePin: 1,
+                },
+            });
+
+            tl.fromTo(
+                tunnelLayerRef.current,
+                {
+                    width: '50vw',
+                    height: '50vh',
+                    borderRadius: '3rem',
+                    scale: 0.6,
+                    y: 50,
+                },
+                {
+                    width: '100vw',
+                    height: '100vh',
+                    borderRadius: '0rem',
+                    scale: 1,
+                    y: 0,
+                    ease: 'power2.inOut',
+                }
             );
-        }, heroRef);
+
+            if (contentRef.current) {
+                tl.fromTo(
+                    contentRef.current,
+                    { opacity: 0, scale: 0.9, filter: 'blur(8px)' },
+                    { opacity: 1, scale: 1, filter: 'blur(0px)', duration: 0.5, ease: 'power2.out' },
+                    0.2
+                );
+            }
+        }, containerRef);
 
         return () => ctx.revert();
     }, []);
 
     return (
-        <section 
-            ref={heroRef}
-            className="pt-28 pb-16 px-6 md:px-12 lg:px-20 bg-[#FAF9F6] border-b border-zinc-200/60 overflow-hidden text-left"
-        >
-            <div className="max-w-7xl mx-auto">
-                <div className="hero-animate text-xs uppercase tracking-[0.2em] font-mono text-[#059669] mb-4 font-bold">
-                    Sador Group / Products
+        <section ref={containerRef} className="h-screen w-full bg-[#18181B] flex items-center justify-center overflow-hidden relative">
+            <div
+                ref={tunnelLayerRef}
+                className="bg-[#FAF9F6] text-[#18181B] flex flex-col justify-center px-8 md:px-16 lg:px-24 shadow-2xl relative overflow-hidden"
+            >
+                <div ref={contentRef} className="max-w-4xl mx-auto w-full z-10 will-change-transform">
+
+
+                    <h1 className="text-2xl md:text-3xl lg:text-7xl font-bold text-[#18181B] tracking-tight leading-[1.1] mb-6 font-serif">
+                        Technology built for real-world business.
+                    </h1>
+
+                    <p className="text-lg md:text-xl text-[#71717A] font-bold max-w-2xl leading-relaxed mb-8">
+                        23+ products across software, AI, fintech and enterprise solutions designed for uncompromising scalability.
+                    </p>
+
+                    <div className="flex items-center gap-6 pt-6 border-t border-zinc-200 font-mono text-xs uppercase tracking-widest text-[#71717A]">
+                        <div className="flex items-center gap-2">
+                            <span className="w-2 h-2 rounded-full bg-[#059669] animate-pulse" />
+                            <span>Active Ecosystem</span>
+                        </div>
+                        <div>/ 23+ Solutions</div>
+                        <div className="text-[#059669]">Scroll to Expand ↓</div>
+                    </div>
                 </div>
 
-                <h1 className="hero-animate text-3xl md:text-5xl font-bold text-[#18181B] tracking-tight leading-[1.15] mb-6 max-w-2xl font-serif">
-                    Technology built for real-world business.
-                </h1>
-
-                <p className="hero-animate text-base md:text-lg text-[#71717A] font-bold max-w-xl leading-relaxed">
-                    23+ products across software, AI, fintech and enterprise solutions designed for uncompromising scalability.
-                </p>
+                <div className="absolute right-[-10%] top-[-10%] w-[40vw] h-[40vw] rounded-full bg-emerald-500/5 blur-3xl pointer-events-none" />
             </div>
         </section>
     );

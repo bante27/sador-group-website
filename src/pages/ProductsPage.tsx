@@ -32,7 +32,6 @@ export function ProductsPage() {
     return (
         <div className="min-h-screen bg-[#FAF9F6]">
             <ProductsHero />
-            <ProductHero />
             <ProductFilters
                 categories={categories}
                 selectedCategory={selectedCategory}
