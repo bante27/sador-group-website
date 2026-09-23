@@ -127,7 +127,7 @@ export const TechnologyCapabilities: React.FC = () => {
             >
               <img
                 ref={imageRef}
-                src="/image.png"
+                src="/image1.png"
                 alt="Technology Capabilities"
                 className="w-full h-full object-cover object-right filter brightness-[0.9] contrast-[1.05] will-change-transform"
               />
