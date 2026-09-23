@@ -71,16 +71,16 @@ export const ContactHero: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
 
           <div className="lg:col-span-7 text-zinc-900 pr-0 lg:pr-6">
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-light tracking-tight mb-6 sm:mb-8 leading-[1.1] text-zinc-900">
-              Let&apos;s Build What <span className="font-normal italic">Comes Next.</span>
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight mb-6 sm:mb-8 leading-[1.1] text-zinc-900">
+              Let's Build What <span className="font-bold italic">Comes Next.</span>
             </h1>
 
-            <div className="hero-animate flex items-center gap-3 text-xs sm:text-sm text-zinc-700 font-mono mb-3 sm:mb-4 opacity-100">
+            <div className="hero-animate flex items-center gap-3 text-xs sm:text-sm text-zinc-800 font-bold mb-3 sm:mb-4 opacity-100">
               <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse shrink-0" />
-              <span>Global Response Team Active (&lt; 24h)</span>
+              <span>Global Response Team Active (< 24h)</span>
             </div>
 
-            <p className="hero-animate text-sm sm:text-base text-zinc-600 font-light leading-relaxed max-w-xl opacity-100">
+            <p className="hero-animate text-sm sm:text-base text-zinc-700 font-bold leading-relaxed max-w-xl opacity-100">
               Connect with Sador Group for enterprise technology solutions, strategic partnerships, product information, or dedicated sales assistance across our ecosystem.
             </p>
           </div>
@@ -91,26 +91,26 @@ export const ContactHero: React.FC = () => {
               <div className="w-full">
                 <div className="relative w-full py-5 px-4 sm:py-6 sm:px-6 bg-gradient-to-r from-orange-500/20 via-amber-500/10 to-orange-500/20 border border-orange-500/20 flex items-center justify-center gap-4 sm:gap-5 text-orange-400 transition-all duration-300">
                   <Handshake className="w-12 h-12 sm:w-16 sm:h-16 stroke-[1.5] shrink-0" />
-                  <span className="text-sm sm:text-base font-semibold text-white tracking-wide">Strategic Partnerships</span>
+                  <span className="text-sm sm:text-base font-bold text-white tracking-wide">Strategic Partnerships</span>
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div className="p-3 sm:p-3.5 bg-slate-800/90 backdrop-blur-sm border border-slate-700/50 flex flex-col justify-center gap-1.5 sm:gap-2">
-                  <span className="text-[11px] sm:text-xs font-medium text-slate-300">Live working hours</span>
-                  <div className="flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs text-emerald-400 font-medium">
+                  <span className="text-[11px] sm:text-xs font-bold text-slate-200">Live working hours</span>
+                  <div className="flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs text-emerald-400 font-bold">
                     <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
                     <span>Currently Online</span>
                   </div>
                 </div>
 
                 <div className="p-3 sm:p-3.5 bg-slate-800/90 backdrop-blur-sm border border-slate-700/50 flex flex-col justify-center gap-1.5 sm:gap-2">
-                  <span className="text-[11px] sm:text-xs font-medium text-slate-300">Direct Contact</span>
-                  <div className="flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs text-slate-200">
+                  <span className="text-[11px] sm:text-xs font-bold text-slate-200">Direct Contact</span>
+                  <div className="flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs text-slate-100 font-bold">
                     <Mail className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-orange-400 shrink-0" />
                     <span>Email Support</span>
                   </div>
-                  <div className="flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs text-slate-200">
+                  <div className="flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs text-slate-100 font-bold">
                     <Phone className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-orange-400 shrink-0" />
                     <span>Phone Line</span>
                   </div>
@@ -139,7 +139,7 @@ export const ContactHero: React.FC = () => {
                   </div>
                   <div className="relative z-10 overflow-hidden">
                     <span className="text-[11px] sm:text-xs font-bold text-white block truncate">Sador Group HQ</span>
-                    <span className="text-[10px] text-slate-300 block truncate">Global Office Node</span>
+                    <span className="text-[10px] text-slate-200 font-bold block truncate">Global Office Node</span>
                   </div>
                 </div>
               </div>

@@ -37,10 +37,10 @@ export const ContactInfo: React.FC = () => {
 
           {/* Left Details Column (5 Columns) */}
           <div className="lg:col-span-5">
-            <span className="info-element text-xs font-mono tracking-widest text-zinc-500 uppercase mb-2 block">
+            <span className="info-element text-xs font-bold tracking-widest text-zinc-600 uppercase mb-2 block">
 
             </span>
-            <h2 className="info-element text-3xl sm:text-5xl font-light text-zinc-900 tracking-tight mb-8">
+            <h2 className="info-element text-3xl sm:text-5xl font-bold text-zinc-900 tracking-tight mb-8">
               Corporate Directives
             </h2>
 
@@ -50,10 +50,10 @@ export const ContactInfo: React.FC = () => {
                   <MapPin className="w-4 h-4" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-mono text-zinc-900 uppercase mb-1">{CORPORATE_INFO.officeLocation.name}</h3>
-                  <p className="text-zinc-600 font-light text-sm">{CORPORATE_INFO.officeLocation.addressLine1}</p>
-                  <p className="text-zinc-600 font-light text-sm">{CORPORATE_INFO.officeLocation.addressLine2}</p>
-                  <span className="text-xs text-zinc-500 font-mono mt-1 block">{CORPORATE_INFO.officeLocation.note}</span>
+                  <h3 className="text-sm font-bold text-zinc-900 uppercase mb-1">{CORPORATE_INFO.officeLocation.name}</h3>
+                  <p className="text-zinc-700 font-bold text-sm">{CORPORATE_INFO.officeLocation.addressLine1}</p>
+                  <p className="text-zinc-700 font-bold text-sm">{CORPORATE_INFO.officeLocation.addressLine2}</p>
+                  <span className="text-xs text-zinc-600 font-bold mt-1 block">{CORPORATE_INFO.officeLocation.note}</span>
                 </div>
               </div>
 
@@ -62,8 +62,8 @@ export const ContactInfo: React.FC = () => {
                   <Mail className="w-4 h-4" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-mono text-zinc-900 uppercase mb-1">Electronic Mail</h3>
-                  <a href={`mailto:${CORPORATE_INFO.email}`} className="text-zinc-600 font-light text-sm hover:text-zinc-900 transition-colors">
+                  <h3 className="text-sm font-bold text-zinc-900 uppercase mb-1">Electronic Mail</h3>
+                  <a href={`mailto:${CORPORATE_INFO.email}`} className="text-zinc-700 font-bold text-sm hover:text-zinc-900 transition-colors">
                     {CORPORATE_INFO.email}
                   </a>
                 </div>
@@ -74,8 +74,8 @@ export const ContactInfo: React.FC = () => {
                   <Phone className="w-4 h-4" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-mono text-zinc-900 uppercase mb-1">Telephone Switchboard</h3>
-                  <a href={`tel:${CORPORATE_INFO.phone}`} className="text-zinc-600 font-light text-sm hover:text-zinc-900 transition-colors">
+                  <h3 className="text-sm font-bold text-zinc-900 uppercase mb-1">Telephone Switchboard</h3>
+                  <a href={`tel:${CORPORATE_INFO.phone}`} className="text-zinc-700 font-bold text-sm hover:text-zinc-900 transition-colors">
                     {CORPORATE_INFO.phone}
                   </a>
                 </div>
@@ -86,8 +86,8 @@ export const ContactInfo: React.FC = () => {
                   <Clock className="w-4 h-4" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-mono text-zinc-900 uppercase mb-1">Operating Hours</h3>
-                  <p className="text-zinc-600 font-light text-sm">{CORPORATE_INFO.workingHours}</p>
+                  <h3 className="text-sm font-bold text-zinc-900 uppercase mb-1">Operating Hours</h3>
+                  <p className="text-zinc-700 font-bold text-sm">{CORPORATE_INFO.workingHours}</p>
                 </div>
               </div>
             </div>
@@ -108,7 +108,7 @@ export const ContactInfo: React.FC = () => {
               />
             </div>
 
-            <div className="flex justify-between items-center text-xs font-mono text-zinc-500 px-6 py-3 border-t border-zinc-200 bg-zinc-50">
+            <div className="flex justify-between items-center text-xs font-bold text-zinc-700 px-6 py-3 border-t border-zinc-200 bg-zinc-50">
               <span>LAT: 9.0300° N</span>
               <span>LONG: 38.7400° E</span>
             </div>
