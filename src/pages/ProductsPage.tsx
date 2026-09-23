@@ -1,21 +1,20 @@
 import React, { useState, useMemo } from 'react';
-import { ProductsHero } from '@/features/products/components/ProductsHero';
-import { ProductHero } from '@/features/products/components/ProductHero';
-import { ProductFilters } from '@/features/products/components/ProductFilters';
-import { ProductSearch } from '@/features/products/components/ProductSearch';
-import { ProductGrid } from '@/features/products/components/ProductGrid';
-import { ProductCard } from '@/features/products/components/ProductCard';
-import { ProductDetails } from '@/features/products/components/ProductDetails';
-import { ProductFeatures } from '@/features/products/components/ProductFeatures';
-import { ProductBenefits } from '@/features/products/components/ProductBenefits';
-import { ProductScreenshots } from '@/features/products/components/ProductScreenshots';
-import { RelatedProducts } from '@/features/products/components/RelatedProducts';
-import { ProductCTA } from '@/features/products/components/ProductCTA';
-import { products } from '@/features/products/data/products';
+import ProductsHero from '../features/products/components/ProductsHero';
+import ProductHero from '../features/products/components/ProductHero';
+import ProductFilters from '../features/products/components/ProductFilters';
+import ProductSearch from '../features/products/components/ProductSearch';
+import ProductGrid from '../features/products/components/ProductGrid';
+import ProductCard from '../features/products/components/ProductCard';
+import ProductDetails from '../features/products/components/ProductDetails';
+import ProductFeatures from '../features/products/components/ProductFeatures';
+import ProductBenefits from '../features/products/components/ProductBenefits';
+import ProductScreenshots from '../features/products/components/ProductScreenshots';
+import RelatedProducts from '../features/products/components/RelatedProducts';
+import ProductCTA from '../features/products/components/ProductCTA';
+import { products } from '../features/products/data/products';
 
 export function ProductsPage() {
     const [selectedCategory, setSelectedCategory] = useState<string>('All');
-    const [searchQuery, setSearchQuery] = useState<string>('');
 
     const categories = useMemo(() => {
         const set = new Set<string>();
@@ -26,32 +25,29 @@ export function ProductsPage() {
     }, []);
 
     const filteredProducts = useMemo(() => {
-        let list = products;
-        if (selectedCategory !== 'All') {
-            list = list.filter((p) => p.category === selectedCategory);
-        }
-        if (searchQuery.trim() !== '') {
-            const q = searchQuery.toLowerCase();
-            list = list.filter(
-                (p) =>
-                    p.name.toLowerCase().includes(q) ||
-                    p.description.toLowerCase().includes(q) ||
-                    p.category.toLowerCase().includes(q)
-            );
-        }
-        return list;
-    }, [selectedCategory, searchQuery]);
+        if (selectedCategory === 'All') return products;
+        return products.filter((p) => p.category === selectedCategory);
+    }, [selectedCategory]);
 
     return (
-        <div className="flex flex-col min-h-screen bg-[#FAF9F6] text-[#18181B] selection:bg-[#059669] selection:text-white">
+        <div className="min-h-screen bg-[#FAF9F6]">
             <ProductsHero />
+            <ProductHero />
             <ProductFilters
                 categories={categories}
                 selectedCategory={selectedCategory}
                 onSelectCategory={setSelectedCategory}
                 totalCount={filteredProducts.length}
             />
+            <ProductSearch />
             <ProductGrid products={filteredProducts} />
+            <ProductCard product={products[0]} index={0} />
+            <ProductDetails product={products[0]} />
+            <ProductFeatures />
+            <ProductBenefits benefits={products[0].benefits} />
+            <ProductScreenshots screenshots={products[0].screenshots} />
+            <RelatedProducts relatedIds={products[0].relatedProducts} allProducts={products} />
+            <ProductCTA productName={products[0].name} />
         </div>
     );
 }
