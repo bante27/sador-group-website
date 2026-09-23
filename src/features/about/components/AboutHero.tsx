@@ -134,10 +134,12 @@ export const AboutHero: React.FC = () => {
                 <div className="text-center max-w-4xl mx-auto mb-16">
                     <h1
                         ref={titleRef}
-                        className="font-semibold tracking-[-0.04em] text-white mb-6 leading-[1.0] text-[clamp(2.75rem,5.5vw,7rem)] max-w-5xl mx-auto opacity-0 will-change-transform"
+                        className="mx-auto mb-5 max-w-3xl text-center font-semibold leading-[1.00] tracking-[-0.03em] text-white opacity-0 will-change-transform text-[clamp(1.8rem,4vw,3.5rem)]"
                     >
-                        Building the future <br />
-                        <span className="font-normal italic text-zinc-400">through technology.</span>
+                        Building the future{" "}
+                        <span className="font-normal italic text-zinc-400">
+                            through technology.
+                        </span>
                     </h1>
 
                     <div
