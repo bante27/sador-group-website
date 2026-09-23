@@ -140,7 +140,7 @@ export function CompaniesHero({ companies = defaultCompanies, onSelectCompany }:
     return (
         <section
             ref={sectionRef}
-            className="relative bg-[#FAF9F6] text-[#18181B] pt-28 pb-24 px-4 sm:px-6 lg:px-12 overflow-hidden border-b border-[#D4D4D8]/40"
+            className="relative bg-[#FAF9F6] text-[#18181B] pt-16 pb-16 px-2 sm:px-2 lg:px-12 overflow-hidden border-b border-[#D4D4D8]/40"
             style={{ minHeight: '92vh', display: 'flex', alignItems: 'center' }}
             aria-label="Sador Group Ecosystem Hero"
         >
@@ -157,9 +157,9 @@ export function CompaniesHero({ companies = defaultCompanies, onSelectCompany }:
                     <h1
                         className="font-bold tracking-tight text-[#18181B] mb-8"
                         style={{
-                            fontSize: 'clamp(2.4rem, 4.5vw, 4.8rem)',
-                            lineHeight: 1.05,
-                            letterSpacing: '-0.035em',
+                            fontSize: 'clamp(1.8rem, 3.2vw, 3.5rem)',
+                            lineHeight: 1.1,
+                            letterSpacing: '-0.025em',
                         }}
                     >
                         <div className="overflow-hidden py-1">
