@@ -54,10 +54,10 @@ export function CompanyCard({ companies = defaultCompanies, selectedCompanyId, o
                     y: 0,
                     duration: 0.8,
                     ease: 'power3.out',
-                    stagger: 0.12,
+                    stagger: 0.1,
                     scrollTrigger: {
                         trigger: sectionRef.current,
-                        start: 'top 80%',
+                        start: 'top 40%',
                         once: true,
                     },
                 }
@@ -75,9 +75,6 @@ export function CompanyCard({ companies = defaultCompanies, selectedCompanyId, o
         >
             <div className="max-w-7xl mx-auto w-full">
                 <div className="mb-16">
-                    <span className="font-mono text-xs uppercase tracking-[0.2em] text-emerald-400 font-bold block mb-3">
-                        Sador Group Ecosystem
-                    </span>
                     <h2 className="wave-text-reveal text-4xl sm:text-5xl font-bold tracking-tight text-white mb-4">
                         Explore Business Units
                     </h2>
