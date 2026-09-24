@@ -19,28 +19,28 @@ export function ProductFilters({
                 <div className="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0 scrollbar-none">
                     <button
                         onClick={() => onSelectCategory('All')}
-                        className={`text-xs uppercase tracking-[0.15em] font-mono px-3 py-2 transition-all relative whitespace-nowrap ${selectedCategory === 'All'
-                            ? 'text-[#059669] font-medium'
-                            : 'text-[#71717A] hover:text-[#18181B]'
+                        className={`text-base font-sans px-4 py-2 transition-all relative whitespace-nowrap ${selectedCategory === 'All'
+                            ? 'text-[#1d3557] font-medium'
+                            : 'text-[#457b9d] hover:text-[#1d3557]'
                             }`}
                     >
                         All
                         {selectedCategory === 'All' && (
-                            <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-[#059669]" />
+                            <span className="absolute bottom-0 left-4 right-4 h-[2px] bg-[#1d3557]" />
                         )}
                     </button>
                     {categories.map((category) => (
                         <button
                             key={category}
                             onClick={() => onSelectCategory(category)}
-                            className={`text-xs uppercase tracking-[0.15em] font-mono px-3 py-2 transition-all relative whitespace-nowrap ${selectedCategory === category
-                                ? 'text-[#059669] font-medium'
-                                : 'text-[#71717A] hover:text-[#18181B]'
+                            className={`text-base font-sans px-4 py-2 transition-all relative whitespace-nowrap ${selectedCategory === category
+                                ? 'text-[#1d3557] font-medium'
+                                : 'text-[#457b9d] hover:text-[#1d3557]'
                                 }`}
                         >
                             {category}
                             {selectedCategory === category && (
-                                <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-[#059669]" />
+                                <span className="absolute bottom-0 left-4 right-4 h-[2px] bg-[#1d3557]" />
                             )}
                         </button>
                     ))}
