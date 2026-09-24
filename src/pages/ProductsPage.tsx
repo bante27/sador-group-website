@@ -14,6 +14,7 @@ import { products } from '../features/products/data/products';
 
 export function ProductsPage() {
     const [selectedCategory, setSelectedCategory] = useState<string>('All');
+    const [searchQuery, setSearchQuery] = useState<string>('');
 
     const categories = useMemo(() => {
         const set = new Set<string>();
@@ -24,9 +25,21 @@ export function ProductsPage() {
     }, []);
 
     const filteredProducts = useMemo(() => {
-        if (selectedCategory === 'All') return products;
-        return products.filter((p) => p.category === selectedCategory);
-    }, [selectedCategory]);
+        let result = products;
+        if (selectedCategory !== 'All') {
+            result = result.filter((p) => p.category === selectedCategory);
+        }
+        if (searchQuery.trim() !== '') {
+            const q = searchQuery.toLowerCase();
+            result = result.filter(
+                (p) =>
+                    p.name.toLowerCase().includes(q) ||
+                    p.description.toLowerCase().includes(q) ||
+                    p.category.toLowerCase().includes(q)
+            );
+        }
+        return result;
+    }, [selectedCategory, searchQuery]);
 
     return (
         <div className="min-h-screen bg-[#FAF9F6]">
@@ -37,7 +50,7 @@ export function ProductsPage() {
                 onSelectCategory={setSelectedCategory}
                 totalCount={filteredProducts.length}
             />
-            <ProductSearch />
+            <ProductSearch searchQuery={searchQuery} onSearchChange={setSearchQuery} />
             <ProductGrid products={filteredProducts} />
             <ProductCard product={products[0]} index={0} />
             <ProductDetails product={products[0]} />
