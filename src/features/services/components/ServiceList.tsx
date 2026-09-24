@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect, useRef } from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Service } from '../types/service.types';
@@ -14,7 +14,7 @@ interface ServiceListProps {
 }
 
 export function ServiceList({ services }: ServiceListProps) {
-    const [selectedId, setSelectedId] = useState<string | null>(null);
+    const [selectedId, setSelectedId] = React.useState<string | null>(null);
     const containerRef = useRef<HTMLDivElement>(null);
     const listRef = useRef<HTMLDivElement>(null);
 
@@ -56,19 +56,19 @@ export function ServiceList({ services }: ServiceListProps) {
     };
 
     return (
-        <div ref={containerRef} className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 overflow-hidden">
-            {/* Dual Side Cinematic Videos Layer */}
-            <ServiceVideoLayer isActive={selectedId !== null} />
+        <div ref={containerRef} className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 bg-white text-slate-900 overflow-hidden">
+            {/* Dual Side Cinematic Videos Layer - Fully responsive scroll-driven appearance */}
+            <ServiceVideoLayer />
 
             {/* Header / Capabilities Count Bar */}
-            <div className="relative z-10 flex items-center justify-between pb-4 border-b border-[#CBD5E1] text-xs font-mono uppercase tracking-widest text-[#475569]">
+            <div className="relative z-10 flex items-center justify-between pb-4 border-b border-slate-200 text-xs font-mono uppercase tracking-widest text-slate-500">
                 <span>CAPABILITY DEPLOYMENT ({String(services.length).padStart(2, '0')})</span>
                 <span className="hidden sm:inline">DISCIPLINE & IMPACT</span>
                 <span>STATUS: OPERATIONAL</span>
             </div>
 
             {/* Service List Rows */}
-            <div ref={listRef} className="relative z-10 divide-y divide-[#CBD5E1]" role="list">
+            <div ref={listRef} className="relative z-10 divide-y divide-slate-200" role="list">
                 {services.map((service, index) => (
                     <div key={service.id} className="service-row-anim will-change-[transform,opacity]">
                         <ServiceItem

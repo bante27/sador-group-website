@@ -4,11 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-interface ServiceVideoLayerProps {
-    isActive: boolean;
-}
-
-export function ServiceVideoLayer({ isActive }: ServiceVideoLayerProps) {
+export function ServiceVideoLayer() {
     const leftVideoRef = useRef<HTMLVideoElement>(null);
     const rightVideoRef = useRef<HTMLVideoElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
@@ -19,64 +15,36 @@ export function ServiceVideoLayer({ isActive }: ServiceVideoLayerProps) {
 
         const leftEl = leftVideoRef.current;
         const rightEl = rightVideoRef.current;
+        const containerEl = containerRef.current;
 
-        if (!leftEl || !rightEl) return;
+        if (!leftEl || !rightEl || !containerEl) return;
 
-        if (isActive) {
-            leftEl.play().catch(() => { });
-            rightEl.play().catch(() => { });
+        leftEl.play().catch(() => { });
+        rightEl.play().catch(() => { });
 
-            gsap.to([leftEl, rightEl], {
-                opacity: (i) => (i === 0 ? 0.85 : 0.75),
-                scale: 1,
-                x: 0,
-                filter: 'blur(0px)',
-                duration: 0.8,
-                ease: 'power3.out',
-                overwrite: 'auto',
-            });
-        } else {
-            gsap.to(leftEl, {
-                opacity: 0,
-                scale: 0.88,
-                x: -40,
-                filter: 'blur(8px)',
-                duration: 0.6,
-                ease: 'power3.out',
-                overwrite: 'auto',
-                onComplete: () => {
-                    leftEl.pause();
-                },
-            });
-
-            gsap.to(rightEl, {
-                opacity: 0,
-                scale: 0.88,
-                x: 40,
-                filter: 'blur(8px)',
-                duration: 0.6,
-                ease: 'power3.out',
-                overwrite: 'auto',
-                onComplete: () => {
-                    rightEl.pause();
-                },
-            });
-        }
-    }, [isActive]);
-
-    useEffect(() => {
-        const leftEl = leftVideoRef.current;
-        const rightEl = rightVideoRef.current;
-        if (!leftEl || !rightEl) return;
-
-        gsap.set(leftEl, { opacity: 0, scale: 0.88, x: -40, filter: 'blur(8px)' });
-        gsap.set(rightEl, { opacity: 0, scale: 0.88, x: 40, filter: 'blur(8px)' });
+        // ScrollTrigger to smoothly scale and reveal videos as the user scrolls into the section
+        ScrollTrigger.create({
+            trigger: containerEl,
+            start: 'top 90%',
+            end: 'bottom 10%',
+            scrub: 1,
+            onUpdate: (self) => {
+                const progress = self.progress;
+                gsap.to([leftEl, rightEl], {
+                    opacity: 1,
+                    scale: 1,
+                    filter: 'none',
+                    overwrite: 'auto',
+                    duration: 0.1,
+                });
+            },
+        });
     }, []);
 
     return (
         <div ref={containerRef} className="absolute inset-0 pointer-events-none overflow-visible z-20 hidden lg:block">
-            {/* Left Video Frame */}
-            <div className="absolute -left-36 top-1/2 -translate-y-1/2 w-64 h-80 overflow-hidden rounded-xl shadow-2xl border border-white/20 bg-black">
+            {/* Left Video Frame (Fully clear, no blur, no shadow, no line box) */}
+            <div className="absolute -left-36 top-1/2 -translate-y-1/2 w-56 h-72 overflow-hidden bg-transparent">
                 <video
                     ref={leftVideoRef}
                     src="/Support Service.mp4"
@@ -88,8 +56,8 @@ export function ServiceVideoLayer({ isActive }: ServiceVideoLayerProps) {
                 />
             </div>
 
-            {/* Right Video Frame */}
-            <div className="absolute -right-36 top-1/2 -translate-y-1/2 w-64 h-80 overflow-hidden rounded-xl shadow-2xl border border-white/20 bg-black">
+            {/* Right Video Frame (Fully clear, no blur, no shadow, no line box) */}
+            <div className="absolute -right-36 top-1/2 -translate-y-1/2 w-56 h-72 overflow-hidden bg-transparent">
                 <video
                     ref={rightVideoRef}
                     src="/Support Service.mp4"
