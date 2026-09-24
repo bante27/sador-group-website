@@ -66,7 +66,7 @@ export function ProductsHero() {
                 <div ref={contentRef} className="max-w-4xl mx-auto w-full z-10 will-change-transform">
 
 
-                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-normal text-[#1a202c] tracking-normal leading-snug mb-6 font-sans">
+                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-normal text-[#004B99] tracking-normal leading-snug mb-6 font-sans">
                         Technology built for real-world business.
                     </h1>
 
