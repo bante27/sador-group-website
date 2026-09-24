@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { Service } from '../types/service.types';
 
@@ -10,73 +10,7 @@ interface ServiceItemProps {
 }
 
 export function ServiceItem({ service, index, onSelect, isExpanded = false }: ServiceItemProps) {
-    const [hovered, setHovered] = useState(false);
-    const rowRef = useRef<HTMLDivElement>(null);
-    const numberRef = useRef<HTMLSpanElement>(null);
-    const titleRef = useRef<HTMLHeadingElement>(null);
-    const arrowRef = useRef<HTMLSpanElement>(null);
-    const lineRef = useRef<HTMLDivElement>(null);
     const expandRef = useRef<HTMLDivElement>(null);
-
-    const handleMouseEnter = () => {
-        setHovered(true);
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-        gsap.to(numberRef.current, {
-            x: 5,
-            color: '#059669',
-            duration: 0.3,
-            ease: 'power3.out',
-        });
-        gsap.to(titleRef.current, {
-            x: 7,
-            duration: 0.3,
-            ease: 'power3.out',
-        });
-        gsap.to(arrowRef.current, {
-            x: 6,
-            y: -2,
-            rotation: -8,
-            duration: 0.3,
-            ease: 'power3.out',
-        });
-        gsap.to(lineRef.current, {
-            scaleX: 1,
-            transformOrigin: 'left',
-            duration: 0.3,
-            ease: 'power3.out',
-        });
-    };
-
-    const handleMouseLeave = () => {
-        setHovered(false);
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-        gsap.to(numberRef.current, {
-            x: 0,
-            color: '#71717A',
-            duration: 0.3,
-            ease: 'power3.out',
-        });
-        gsap.to(titleRef.current, {
-            x: 0,
-            duration: 0.3,
-            ease: 'power3.out',
-        });
-        gsap.to(arrowRef.current, {
-            x: 0,
-            y: 0,
-            rotation: 0,
-            duration: 0.3,
-            ease: 'power3.out',
-        });
-        gsap.to(lineRef.current, {
-            scaleX: 0,
-            transformOrigin: 'left',
-            duration: 0.3,
-            ease: 'power3.out',
-        });
-    };
 
     useEffect(() => {
         if (!expandRef.current) return;
@@ -96,42 +30,34 @@ export function ServiceItem({ service, index, onSelect, isExpanded = false }: Se
                 height: 0,
                 opacity: 0,
                 duration: 0.3,
-                ease: 'power3.out',
+                ease: 'power3.inOut',
             });
         }
     }, [isExpanded]);
 
     return (
-        <div ref={rowRef} className="border-b border-[#D4D4D8] relative overflow-hidden">
+        <div className="bg-white text-slate-900 border-b border-slate-200 transition-colors">
             <button
                 type="button"
                 onClick={() => onSelect?.(service)}
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
                 aria-expanded={isExpanded}
                 aria-controls={`service-details-${service.id}`}
-                className="w-full text-left py-8 sm:py-10 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start focus:outline-none focus:ring-2 focus:ring-[#059669] focus:ring-offset-2 rounded-none cursor-pointer group transition-colors"
+                className="w-full text-left py-10 sm:py-12 px-6 sm:px-8 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center focus:outline-none cursor-pointer group"
             >
                 {/* Number */}
                 <div className="lg:col-span-1">
-                    <span
-                        ref={numberRef}
-                        className="font-mono text-sm tracking-widest text-[#71717A] inline-block transition-colors"
-                    >
+                    <span className="font-mono text-base tracking-widest text-slate-500 font-semibold">
                         {service.number}
                     </span>
                 </div>
 
                 {/* Title & Category */}
                 <div className="lg:col-span-4">
-                    <h3
-                        ref={titleRef}
-                        className="text-xl sm:text-2xl font-medium text-[#18181B] tracking-tight mb-2 inline-block transition-transform"
-                    >
+                    <h3 className="text-2xl sm:text-3xl font-medium text-slate-900 tracking-tight mb-2">
                         {service.title}
                     </h3>
                     {service.category && (
-                        <div className="font-mono text-[11px] tracking-widest text-[#71717A] uppercase">
+                        <div className="font-mono text-xs tracking-widest text-emerald-600 uppercase font-semibold">
                             {service.category}
                         </div>
                     )}
@@ -139,27 +65,18 @@ export function ServiceItem({ service, index, onSelect, isExpanded = false }: Se
 
                 {/* Description */}
                 <div className="lg:col-span-5">
-                    <p className="text-sm sm:text-base text-[#71717A] font-light leading-relaxed max-w-xl">
+                    <p className="text-sm sm:text-base text-slate-600 font-light leading-relaxed max-w-xl">
                         {service.description}
                     </p>
                 </div>
 
-                {/* Action / Explore */}
+                {/* Action / Explore without external icon/line */}
                 <div className="lg:col-span-2 flex lg:justify-end items-center pt-2 lg:pt-0">
-                    <span className="inline-flex items-center gap-1.5 text-sm font-medium text-[#18181B] group-hover:text-[#059669] transition-colors">
-                        <span>Explore</span>
-                        <span ref={arrowRef} className="inline-block transition-transform">
-                            ↗
-                        </span>
+                    <span className="text-sm font-semibold text-emerald-600 group-hover:text-slate-900 transition-colors">
+                        {isExpanded ? 'Collapse' : 'Explore'}
                     </span>
                 </div>
             </button>
-
-            {/* Emerald Animated Divider on Hover */}
-            <div
-                ref={lineRef}
-                className="absolute bottom-0 left-0 w-full h-[2px] bg-[#059669] pointer-events-none scale-x-0"
-            />
 
             {/* Expandable Section */}
             {service.capabilities && service.capabilities.length > 0 && (
@@ -167,19 +84,19 @@ export function ServiceItem({ service, index, onSelect, isExpanded = false }: Se
                     id={`service-details-${service.id}`}
                     ref={expandRef}
                     style={{ height: 0, opacity: 0, overflow: 'hidden' }}
-                    className="bg-[#F4F3EF] px-4 sm:px-12 py-8 border-t border-[#D4D4D8]"
+                    className="bg-slate-50 px-6 sm:px-12 py-8 border-t border-slate-200"
                 >
-                    <div className="max-w-4xl">
-                        <div className="font-mono text-[11px] tracking-widest text-[#059669] uppercase mb-4">
+                    <div className="max-w-5xl">
+                        <div className="font-mono text-xs tracking-widest text-emerald-600 uppercase font-bold mb-4">
                             CAPABILITIES
                         </div>
-                        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                             {service.capabilities.map((cap, idx) => (
-                                <li key={idx} className="flex items-start gap-3">
-                                    <span className="font-mono text-xs text-[#71717A] mt-0.5">
+                                <li key={idx} className="flex items-start gap-3 p-4 rounded-xl bg-white border border-slate-200 shadow-sm">
+                                    <span className="font-mono text-xs text-emerald-600 mt-0.5 font-semibold">
                                         {String(idx + 1).padStart(2, '0')}
                                     </span>
-                                    <span className="text-sm text-[#18181B] font-medium">{cap}</span>
+                                    <span className="text-sm text-slate-800 font-medium leading-snug">{cap}</span>
                                 </li>
                             ))}
                         </ul>

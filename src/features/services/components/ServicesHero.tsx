@@ -1,6 +1,7 @@
 import React, { useLayoutEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { revealOnScroll } from '@/components/animation/scrollAnimations';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -143,12 +144,8 @@ export function ServicesHero() {
                     {/* Left Main Content */}
                     <div className="lg:col-span-8">
                         {/* Eyebrow */}
-                        <div className="flex items-center gap-3 mb-6">
-                            <div
-                                ref={accentRef}
-                                className="w-[2px] h-4 bg-emerald-400 will-change-transform"
-                            />
-                        </div>
+
+
 
                         {/* Heading */}
                         <h1
@@ -162,7 +159,6 @@ export function ServicesHero() {
                             </div>
                             <div className="overflow-hidden py-1">
                                 <div ref={titleLine2Ref} className="will-change-transform text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400">
-
                                     built around business needs.
                                 </div>
                             </div>
@@ -173,7 +169,12 @@ export function ServicesHero() {
                             ref={descriptionRef}
                             className="text-base sm:text-lg lg:text-xl font-normal leading-relaxed text-slate-300 max-w-3xl will-change-transform"
                         >
-                            We are on a mission to help build and accelerate the internet of tomorrow. We obsess about customer experience and strive toward constant innovation, with the goal of helping companies and developers build a faster, safer, and more reliable internet.
+                            Sador Group brings together specialized technology businesses focused on
+                            innovation, digital transformation, and long-term business growth.
+                            Through a connected ecosystem of capabilities and expertise, we develop
+                            practical technology solutions that respond to evolving business needs.
+                            Our approach connects innovation with sustainable value creation,
+                            enabling businesses to grow, adapt, and compete in a changing digital world.
                         </p>
                     </div>
 
@@ -187,10 +188,10 @@ export function ServicesHero() {
                                 ref={capabilityNumberRef}
                                 className="text-4xl sm:text-5xl font-light tracking-tight text-white mb-2 will-change-transform"
                             >
-                                06+
+                                Sador Group
                             </div>
                             <div className="text-xs font-mono tracking-widest uppercase text-slate-400">
-                                CONFIRMED SERVICES
+                                Connected technology businesses serving    evolving business needs
                             </div>
                         </div>
                     </div>
