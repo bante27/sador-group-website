@@ -66,11 +66,11 @@ export function ProductsHero() {
                 <div ref={contentRef} className="max-w-4xl mx-auto w-full z-10 will-change-transform">
 
 
-                    <h1 className="text-2xl md:text-3xl lg:text-7xl font-bold text-[#18181B] tracking-tight leading-[1.1] mb-6 font-serif">
+                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-normal text-[#1a202c] tracking-normal leading-snug mb-6 font-sans">
                         Technology built for real-world business.
                     </h1>
 
-                    <p className="text-lg md:text-xl text-[#71717A] font-serif max-w-2xl leading-relaxed mb-8">
+                    <p className="text-base md:text-lg text-[#1a202c] font-sans max-w-2xl leading-relaxed mb-8">
                         23+ products across software, AI, fintech and enterprise solutions designed for uncompromising scalability.
                     </p>
 
