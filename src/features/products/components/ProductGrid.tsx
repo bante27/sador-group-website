@@ -15,22 +15,44 @@ export function ProductGrid({ products }: ProductGridProps) {
         if (prefersReducedMotion) return;
 
         const ctx = gsap.context(() => {
-            gsap.fromTo(
-                '.product-card-item',
-                { opacity: 0, y: 24 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.5,
-                    stagger: 0.05,
-                    ease: 'power3.out',
-                    scrollTrigger: {
-                        trigger: gridRef.current,
-                        start: 'top 85%',
-                        once: true
-                    }
+            const cards = gsap.utils.toArray<HTMLElement>('.product-card-item');
+            
+            cards.forEach((card, index) => {
+                const colIndex = index % 3;
+                let xInitial = 0;
+                let yInitial = 0;
+                let rotationInitial = 0;
+
+                if (colIndex === 0) {
+                    xInitial = -300; 
+                    rotationInitial = -8;
+                } else if (colIndex === 2) {
+                    xInitial = 300;  
+                    rotationInitial = 8;
+                } else {
+                    yInitial = 250;  
+                    rotationInitial = 0;
                 }
-            );
+
+                gsap.fromTo(
+                    card,
+                    { opacity: 0, x: xInitial, y: yInitial, rotation: rotationInitial, scale: 0.85 },
+                    {
+                        opacity: 1,
+                        x: 0,
+                        y: 0,
+                        rotation: 0,
+                        scale: 1,
+                        duration: 1.6,
+                        ease: 'power3.out',
+                        scrollTrigger: {
+                            trigger: card,
+                            start: 'top 95%',
+                            once: true,
+                        }
+                    }
+                );
+            });
         }, gridRef);
 
         return () => ctx.revert();
@@ -46,7 +68,7 @@ export function ProductGrid({ products }: ProductGridProps) {
     }
 
     return (
-        <section ref={gridRef} className="py-16 px-6 md:px-12 lg:px-20 bg-[#FAF9F6]">
+        <section ref={gridRef} className="py-16 px-6 md:px-12 lg:px-20 bg-[#FAF9F6] overflow-hidden">
             <div className="max-w-7xl mx-auto">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {products.map((product, index) => (
