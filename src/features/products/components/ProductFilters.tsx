@@ -20,8 +20,8 @@ export function ProductFilters({
                     <button
                         onClick={() => onSelectCategory('All')}
                         className={`text-xs uppercase tracking-[0.15em] font-mono px-3 py-2 transition-all relative whitespace-nowrap ${selectedCategory === 'All'
-                                ? 'text-[#059669] font-medium'
-                                : 'text-[#71717A] hover:text-[#18181B]'
+                            ? 'text-[#059669] font-medium'
+                            : 'text-[#71717A] hover:text-[#18181B]'
                             }`}
                     >
                         All
@@ -34,8 +34,8 @@ export function ProductFilters({
                             key={category}
                             onClick={() => onSelectCategory(category)}
                             className={`text-xs uppercase tracking-[0.15em] font-mono px-3 py-2 transition-all relative whitespace-nowrap ${selectedCategory === category
-                                    ? 'text-[#059669] font-medium'
-                                    : 'text-[#71717A] hover:text-[#18181B]'
+                                ? 'text-[#059669] font-medium'
+                                : 'text-[#71717A] hover:text-[#18181B]'
                                 }`}
                         >
                             {category}
@@ -46,7 +46,7 @@ export function ProductFilters({
                     ))}
                 </div>
 
-                <div className="text-xs font-mono text-[#71717A] uppercase tracking-wider">
+                <div className="text-xs font-bold text-[#71717A] uppercase tracking-wider">
                     Showing <span className="text-[#18181B] font-medium">{totalCount}</span> Products
                 </div>
             </div>

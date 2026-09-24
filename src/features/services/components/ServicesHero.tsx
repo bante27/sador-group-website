@@ -38,8 +38,8 @@ export function ServicesHero() {
             >
                 Technology capabilities built around business needs.
             </h1>
-            <p className="hero-anim text-base sm:text-lg text-[#71717A] max-w-2xl font-light leading-relaxed">
-                Sador Group provides core strategic capabilities, multi-entity ecosystem coordination, and robust infrastructure advisory tailored to complex enterprise requirements.
+            <p className="hero-anim text-lg sm:text-xl text-[#18181B] max-w-2xl font-normal leading-snug">
+                Experience hot object storage, replicated around the world.
             </p>
         </div>
     );
