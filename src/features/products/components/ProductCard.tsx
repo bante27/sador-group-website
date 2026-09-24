@@ -82,18 +82,18 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
           </div>
         )}
 
-        <div className="font-sans text-sm font-semibold text-[#0f2d59] mb-2">
+        <div className="font-sans text-xs font-medium uppercase tracking-wider text-[#457b9d] mb-2">
           {product.category}
         </div>
 
         <h3
           ref={titleRef}
-          className="text-lg font-bold text-[#0f2d59] tracking-tight mb-3 font-sans will-change-transform"
+          className="text-xl font-bold text-[#1d3557] tracking-tight mb-3 font-sans will-change-transform"
         >
           {product.name}
         </h3>
 
-        <p className="text-[#334155] text-sm font-normal leading-relaxed mb-6 line-clamp-2">
+        <p className="text-[#1d3557] text-base font-normal leading-relaxed mb-6 line-clamp-2">
           {product.description}
         </p>
 
