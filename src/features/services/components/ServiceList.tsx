@@ -60,13 +60,6 @@ export function ServiceList({ services }: ServiceListProps) {
             {/* Dual Side Cinematic Videos Layer - Fully responsive scroll-driven appearance */}
             <ServiceVideoLayer />
 
-            {/* Header / Capabilities Count Bar */}
-            <div className="relative z-10 flex items-center justify-between pb-4 border-b border-slate-200 text-xs font-mono uppercase tracking-widest text-slate-500">
-                <span>CAPABILITY DEPLOYMENT ({String(services.length).padStart(2, '0')})</span>
-                <span className="hidden sm:inline">DISCIPLINE & IMPACT</span>
-                <span>STATUS: OPERATIONAL</span>
-            </div>
-
             {/* Service List Rows */}
             <div ref={listRef} className="relative z-10" role="list">
                 {services.map((service, index) => (
