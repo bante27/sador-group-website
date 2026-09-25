@@ -1,5 +1,45 @@
-export const solutions = [
-    { id: '1', title: 'Digital Transformation' },
-];
+import { Solution } from '../types/solution.types';
 
-export default solutions;
+export const solutions: Solution[] = [
+    {
+        id: 'digital-transformation',
+        number: '01',
+        title: 'digital transformation',
+        challenge: 'businesses need to modernize operations and systems while maintaining uninterrupted continuity across all departments.',
+        solution: 'sador group connects specialized technology capabilities with real business requirements to build practical digital architectures designed around evolving enterprise needs.',
+        result: 'more connected operations, stronger digital foundations, and long-term technology readiness for future growth.',
+        capabilities: ['digital platforms', 'process modernization', 'technology integration'],
+        category: 'transformation',
+        featured: true,
+    },
+    {
+        id: 'business-technology',
+        number: '02',
+        title: 'business technology alignment',
+        challenge: 'complex enterprise technology portfolios often fail to align directly with core strategic business objectives and operational realities.',
+        solution: 'we evaluate enterprise infrastructure and streamline technology capabilities to ensure every digital investment directly supports core business value.',
+        result: 'improved operational efficiency, reduced friction between technology and business teams, and greater alignment across enterprise assets.',
+        capabilities: ['strategic technology roadmap', 'enterprise architecture', 'capability advisory'],
+        category: 'advisory',
+    },
+    {
+        id: 'operational-optimization',
+        number: '03',
+        title: 'operational optimization',
+        challenge: 'fragmented workflows and siloed systems create inefficiencies that slow down enterprise responsiveness and decision-making.',
+        solution: 'sador group designs structured integration frameworks and automated workflow solutions to unify disparate business operations.',
+        result: 'streamlined day-to-day operations, enhanced workflow visibility, and improved organizational agility.',
+        capabilities: ['workflow automation', 'integration frameworks', 'operational readiness'],
+        category: 'optimization',
+    },
+    {
+        id: 'connected-platforms',
+        number: '04',
+        title: 'connected digital platforms',
+        challenge: 'growing enterprise ecosystems require cohesive platforms that seamlessly connect subsidiaries, partners, and clients.',
+        solution: 'we engineer secure, scalable digital ecosystems that unify multiple operating entities under a unified, high-performance architecture.',
+        result: 'greater business cohesion, highly scalable digital foundations, and consistently connected enterprise experiences.',
+        capabilities: ['ecosystem architecture', 'unified platforms', 'scalable infrastructure'],
+        category: 'ecosystem',
+    },
+];
