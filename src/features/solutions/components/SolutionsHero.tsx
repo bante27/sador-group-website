@@ -21,9 +21,6 @@ export function SolutionsHero() {
 
     return (
         <div ref={heroRef} className="w-full max-w-4xl mx-auto px-4 sm:px-6 pt-20 pb-12 text-center">
-            <div className="solutions-hero-anim text-xs font-mono uppercase tracking-widest text-[#FF7A53] mb-4 font-semibold">
-                SADOR GROUP / SOLUTIONS
-            </div>
             <h1 className="solutions-hero-anim text-3xl sm:text-5xl font-bold tracking-tight text-[#12143F] mb-6">
                 Technology designed around business challenges.
             </h1>
