@@ -1,12 +1,18 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
+import InsightsSection from '../features/insights/components/InsightsSection';
+import PageTransition from '../components/animation/PageTransition';
 
-export function ArticleStaticPage() {
+export const ArticlePage: React.FC = () => {
+    const { id } = useParams<{ id: string }>();
+
     return (
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-            <h1 className="text-4xl font-black mb-4 text-white">News & Insights Article</h1>
-            <p className="text-slate-300 mb-8">Official technology insights, press releases, and announcements.</p>
-        </div>
+        <PageTransition>
+            <main className="min-h-screen bg-[#FAF9F6]">
+                <InsightsSection initialSlug={id} />
+            </main>
+        </PageTransition>
     );
-}
+};
 
-export default ArticleStaticPage;
+export default ArticlePage;
