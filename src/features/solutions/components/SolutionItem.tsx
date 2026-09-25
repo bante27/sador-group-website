@@ -1,6 +1,11 @@
 import React, { useRef, useEffect } from 'react';
-import { revealOnScroll } from '../../../components/animation/scrollAnimations';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Solution } from '../types/solution.types';
+
+if (typeof window !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+}
 
 interface SolutionItemProps {
     solution: Solution;
@@ -12,14 +17,32 @@ export function SolutionItem({ solution, index }: SolutionItemProps) {
     const isEven = index % 2 === 0;
 
     useEffect(() => {
-        const xStart = isEven ? -80 : 80;
-        revealOnScroll(
-            itemRef.current,
-            '.solution-card-inner',
-            { opacity: 0, x: xStart },
-            { opacity: 1, x: 0, duration: 0.8, ease: 'power3.out' },
-            'top 85%'
-        );
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReducedMotion || !itemRef.current) return;
+
+        const el = itemRef.current;
+        const xStart = isEven ? -50 : 50;
+
+        const ctx = gsap.context(() => {
+            gsap.fromTo(
+                el.querySelector('.solution-card-inner'),
+                { opacity: 0, x: xStart },
+                {
+                    opacity: 1,
+                    x: 0,
+                    duration: 0.7,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: el,
+                        start: 'top 85%',
+                        toggleActions: 'play none none none',
+                        once: true,
+                    },
+                }
+            );
+        }, itemRef);
+
+        return () => ctx.revert();
     }, [isEven]);
 
     return (
