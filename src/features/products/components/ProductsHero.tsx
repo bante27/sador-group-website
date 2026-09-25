@@ -64,12 +64,7 @@ export function ProductsHero() {
                 className="bg-[#FAF9F6] text-[#18181B] flex flex-col justify-center px-8 md:px-20 lg:px-28 shadow-2xl relative overflow-hidden"
             >
                 <div ref={contentRef} className="max-w-5xl mx-auto w-full z-10 will-change-transform">
-                    <div className="flex items-center gap-3 mb-6">
-                        <span className="w-8 h-[2px] bg-emerald-600" />
-                        <span className="text-xs font-mono uppercase tracking-[0.2em] text-emerald-700 font-semibold">
-                            SADOR GROUP ECOSYSTEM
-                        </span>
-                    </div>
+
 
                     <h1 className="text-4xl md:text-6xl lg:text-7xl font-light text-slate-900 tracking-tight max-w-4xl leading-[1.08] mb-8">
                         Technology built for real-world business impact.
