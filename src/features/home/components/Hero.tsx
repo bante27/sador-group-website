@@ -71,29 +71,29 @@ export function Hero() {
             {/* Responsive Container */}
             <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 
-                {/* Left Content */}
-                <div className="lg:col-span-7 flex flex-col items-start text-left">
+                {/* Left Content Centered Vertically */}
+                <div className="lg:col-span-7 flex flex-col justify-center text-left py-4">
                     {/* Top Badge */}
                     <div
                         ref={badgeRef}
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-600/10 border border-emerald-600/30 text-emerald-800 text-xs font-mono uppercase tracking-widest font-semibold mb-8 backdrop-blur-md shadow-sm"
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-600/10 border border-emerald-600/30 text-emerald-800 text-xs font-mono uppercase tracking-widest font-semibold mb-8 backdrop-blur-md shadow-sm self-start"
                     >
                         <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
                         Sador Group Technology Ecosystem
                     </div>
 
-                    {/* Main Headline */}
+                    {/* Main Headline with Refined Font Styling */}
                     <h1
                         ref={headingRef}
-                        className="text-4xl sm:text-5xl md:text-6xl lg:text-[56px] font-light tracking-tight leading-[1.1] text-slate-900"
+                        className="text-4xl sm:text-5xl md:text-6xl lg:text-[52px] font-normal tracking-tight leading-[1.15] text-slate-900 font-sans"
                     >
-                        Driving Innovation & Excellence Across <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-700 via-emerald-600 to-teal-700 font-normal">Sador Group</span>
+                        Driving Innovation & Excellence Across <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-700 via-emerald-600 to-teal-700 font-medium">Sador Group</span>
                     </h1>
 
                     {/* Sub-headline / Paragraph */}
                     <p
                         ref={descRef}
-                        className="mt-6 text-lg sm:text-xl text-slate-600 font-normal leading-relaxed max-w-2xl"
+                        className="mt-6 text-lg sm:text-xl text-slate-600 font-normal leading-relaxed max-w-2xl font-sans"
                     >
                         Building a modern technology and business conglomerate with over 23+ advanced products and solutions shaping the future of digital enterprise.
                     </p>
@@ -140,7 +140,7 @@ export function Hero() {
                 >
                     <div className="w-full max-w-[520px] h-[400px] md:h-[480px] flex items-center justify-center">
                         <DotLottieReact
-                            data={heroAnimationData}
+                            data={heroAnimationData as unknown as Record<string, unknown>}
                             loop
                             autoplay
                         />

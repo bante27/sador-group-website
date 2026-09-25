@@ -29,7 +29,7 @@ export const useTypewriter = ({
 
         const fullText = phrases[currentPhraseIndex];
 
-        let timer: NodeJS.Timeout;
+        let timer: ReturnType<typeof setTimeout>;
 
         if (isPaused) {
             timer = setTimeout(() => {
