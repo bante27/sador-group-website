@@ -22,20 +22,27 @@ export function ServiceVideoLayer() {
         leftEl.play().catch(() => { });
         rightEl.play().catch(() => { });
 
-        // ScrollTrigger to smoothly scale and reveal videos as the user scrolls into the section
+        // ScrollTrigger to smoothly fade and slide in videos from left and right sides without any shadow, border, or fade
         ScrollTrigger.create({
             trigger: containerEl,
-            start: 'top 90%',
-            end: 'bottom 10%',
-            scrub: 1,
+            start: 'top 85%',
+            end: 'bottom 15%',
+            scrub: true,
             onUpdate: (self) => {
                 const progress = self.progress;
-                gsap.to([leftEl, rightEl], {
+                // Instant solid appearance once triggered
+                const xOffset = (1 - progress) * 80;
+                gsap.to(leftEl, {
+                    x: -xOffset,
                     opacity: 1,
-                    scale: 1,
-                    filter: 'none',
                     overwrite: 'auto',
-                    duration: 0.1,
+                    duration: 0.05,
+                });
+                gsap.to(rightEl, {
+                    x: xOffset,
+                    opacity: 1,
+                    overwrite: 'auto',
+                    duration: 0.05,
                 });
             },
         });
@@ -43,8 +50,8 @@ export function ServiceVideoLayer() {
 
     return (
         <div ref={containerRef} className="absolute inset-0 pointer-events-none overflow-visible z-20 hidden lg:block">
-            {/* Left Video Frame (Fully clear, no blur, no shadow, no line box) */}
-            <div className="absolute -left-36 top-1/2 -translate-y-1/2 w-56 h-72 overflow-hidden bg-transparent">
+            {/* Left Video Frame (Larger, full, crystal clear, borderless, shadowless) */}
+            <div className="absolute left-0 top-1/2 -translate-y-1/2 w-64 h-80 overflow-hidden bg-transparent">
                 <video
                     ref={leftVideoRef}
                     src="/Support Service.mp4"
@@ -56,8 +63,8 @@ export function ServiceVideoLayer() {
                 />
             </div>
 
-            {/* Right Video Frame (Fully clear, no blur, no shadow, no line box) */}
-            <div className="absolute -right-36 top-1/2 -translate-y-1/2 w-56 h-72 overflow-hidden bg-transparent">
+            {/* Right Video Frame (Larger, full, crystal clear, borderless, shadowless) */}
+            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-64 h-80 overflow-hidden bg-transparent">
                 <video
                     ref={rightVideoRef}
                     src="/Support Service.mp4"

@@ -68,7 +68,7 @@ export function ServiceList({ services }: ServiceListProps) {
             </div>
 
             {/* Service List Rows */}
-            <div ref={listRef} className="relative z-10 divide-y divide-slate-200" role="list">
+            <div ref={listRef} className="relative z-10" role="list">
                 {services.map((service, index) => (
                     <div key={service.id} className="service-row-anim will-change-[transform,opacity]">
                         <ServiceItem
