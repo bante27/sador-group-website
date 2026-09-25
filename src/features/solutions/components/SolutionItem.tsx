@@ -7,7 +7,7 @@ interface SolutionItemProps {
 
 export function SolutionItem({ solution }: SolutionItemProps) {
     return (
-        <div className="border-b border-slate-200 py-10 transition-colors duration-300">
+        <div className="py-10 transition-colors duration-300">
             <div className="flex items-baseline gap-6 mb-6">
                 <span className="font-mono text-sm tracking-widest text-[#FF7A53] font-semibold">
                     {solution.number}
@@ -18,7 +18,7 @@ export function SolutionItem({ solution }: SolutionItemProps) {
             </div>
 
             {/* Always visible 3-column business logic layout */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 py-6 px-4 sm:px-6 bg-[#F4F7F5]/50 rounded-xl">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 py-6 px-4 sm:px-6 bg-[#F4F7F5]/50 ">
                 {/* Business Challenge */}
                 <div className="space-y-2">
                     <div className="text-xs font-mono tracking-widest text-[#FF7A53] uppercase font-semibold">
