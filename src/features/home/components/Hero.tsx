@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Lottie from 'lottie-react';
+import heroAnimationData from '../../../assets/animations/hero-corporate.json';
 
 const STATS_ITEMS = [
     { value: '23+', label: 'Innovative Products', highlight: true },
@@ -11,15 +13,15 @@ const STATS_ITEMS = [
 export function Hero() {
     return (
         <section className="relative overflow-hidden bg-[#FAF9F6] text-slate-900 pt-36 pb-24 lg:pt-44 lg:pb-32 border-b border-zinc-200">
-            {/* Background Decorative Glow Elements (Emerald / Sophisticated Theme) */}
+            {/* Background Decorative Glow Elements */}
             <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-emerald-500/5 rounded-full blur-3xl pointer-events-none"></div>
             <div className="absolute bottom-10 right-10 w-96 h-96 bg-teal-500/5 rounded-full blur-2xl pointer-events-none"></div>
 
             {/* Responsive Container */}
-            <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10 flex flex-col items-center text-center">
+            <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 
-                {/* Content */}
-                <div className="max-w-4xl mx-auto">
+                {/* Left Content */}
+                <div className="lg:col-span-7 flex flex-col items-start text-left">
                     {/* Top Badge */}
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-600/10 border border-emerald-600/30 text-emerald-800 text-xs font-mono uppercase tracking-widest font-semibold mb-8 backdrop-blur-md shadow-sm">
                         <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
@@ -32,16 +34,15 @@ export function Hero() {
                     </h1>
 
                     {/* Sub-headline / Paragraph */}
-                    <p className="mt-6 text-lg sm:text-xl text-slate-600 font-normal leading-relaxed max-w-2xl mx-auto">
+                    <p className="mt-6 text-lg sm:text-xl text-slate-600 font-normal leading-relaxed max-w-2xl">
                         Building a modern technology and business conglomerate with over 23+ advanced products and solutions shaping the future of digital enterprise.
                     </p>
 
                     {/* CTA Buttons */}
-                    <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-8">
-
+                    <div className="mt-10 flex flex-col sm:flex-row items-center gap-6 sm:gap-8 w-full">
                         <Link
                             to="/products"
-                            className="group relative overflow-hidden w-full sm:w-[280px] sm:hover:w-[420px] h-[65px] px-6 rounded-xl bg-slate-900 text-white font-medium text-sm tracking-wider uppercase font-mono shadow-xl transition-all duration-500 ease-in-out flex items-center justify-center mx-auto"
+                            className="group relative overflow-hidden w-full sm:w-[260px] h-[60px] px-6 rounded-xl bg-slate-900 text-white font-medium text-sm tracking-wider uppercase font-mono shadow-xl transition-all duration-500 ease-in-out flex items-center justify-center"
                         >
                             <span className="absolute flex items-center gap-3 transition-all duration-500 group-hover:opacity-0 group-hover:-translate-y-full whitespace-nowrap">
                                 Explore Products
@@ -49,13 +50,13 @@ export function Hero() {
                             </span>
 
                             <span className="absolute inset-0 flex items-center justify-center px-4 text-xs font-mono tracking-wide text-emerald-400 transition-all duration-500 translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 text-center">
-                                Discover 23+ innovative digital solutions & advanced enterprise architectures
+                                Discover 23+ solutions & architectures
                             </span>
                         </Link>
 
                         <Link
                             to="/companies"
-                            className="group relative overflow-hidden w-full sm:w-[280px] sm:hover:w-[420px] h-[65px] px-6 rounded-xl bg-white border border-zinc-300 text-slate-900 font-medium text-sm tracking-wider uppercase font-mono shadow-sm hover:border-emerald-600 transition-all duration-500 ease-in-out flex items-center justify-center mx-auto"
+                            className="group relative overflow-hidden w-full sm:w-[260px] h-[60px] px-6 rounded-xl bg-white border border-zinc-300 text-slate-900 font-medium text-sm tracking-wider uppercase font-mono shadow-sm hover:border-emerald-600 transition-all duration-500 ease-in-out flex items-center justify-center"
                         >
                             <span className="absolute flex items-center gap-3 transition-all duration-500 group-hover:opacity-0 group-hover:-translate-y-full whitespace-nowrap">
                                 Our Companies
@@ -63,10 +64,21 @@ export function Hero() {
                             </span>
 
                             <span className="absolute inset-0 flex items-center justify-center px-4 text-xs font-mono tracking-wide text-slate-900 transition-all duration-500 translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 text-center">
-                                Explore our global subsidiary tech businesses driving world-class excellence
+                                Explore global subsidiary tech businesses
                             </span>
                         </Link>
+                    </div>
+                </div>
 
+                {/* Right Animation / Lottie */}
+                <div className="lg:col-span-5 flex items-center justify-center w-full">
+                    <div className="w-full max-w-[500px] h-[400px] md:h-[480px] flex items-center justify-center">
+                        <Lottie
+                            animationData={heroAnimationData}
+                            loop={true}
+                            autoplay={true}
+                            style={{ width: '100%', height: '100%' }}
+                        />
                     </div>
                 </div>
 
