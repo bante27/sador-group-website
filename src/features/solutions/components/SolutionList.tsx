@@ -1,10 +1,9 @@
-import React, { useState, useLayoutEffect, useRef } from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { solutions } from '../data/solutions';
 import SolutionItem from './SolutionItem';
 
 export function SolutionList() {
-    const [expandedId, setExpandedId] = useState<string | null>(solutions[0]?.id || null);
     const listRef = useRef<HTMLDivElement>(null);
 
     useLayoutEffect(() => {
@@ -33,20 +32,12 @@ export function SolutionList() {
         return () => ctx.revert();
     }, []);
 
-    const handleToggle = (id: string) => {
-        setExpandedId((prev) => (prev === id ? null : id));
-    };
-
     return (
         <div ref={listRef} className="w-full max-w-5xl mx-auto px-4 sm:px-6 py-12">
             <div className="divide-y divide-slate-200">
                 {solutions.map((solution) => (
                     <div key={solution.id} className="solution-item-anim">
-                        <SolutionItem
-                            solution={solution}
-                            isExpanded={expandedId === solution.id}
-                            onToggle={() => handleToggle(solution.id)}
-                        />
+                        <SolutionItem solution={solution} />
                     </div>
                 ))}
             </div>
