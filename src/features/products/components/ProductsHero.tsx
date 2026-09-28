@@ -30,7 +30,7 @@ export function ProductsHero() {
                     borderRadius: '0rem',
                     scale: 1,
                     y: 0,
-                    duration: 1.0,
+                    duration: 1.2,
                 }
             );
 
@@ -38,8 +38,8 @@ export function ProductsHero() {
                 tl.fromTo(
                     contentRef.current,
                     { opacity: 0, y: 30, filter: 'blur(6px)' },
-                    { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.6 },
-                    '-=0.4'
+                    { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.7 },
+                    '-=0.5'
                 );
             }
         }, containerRef);
@@ -51,9 +51,9 @@ export function ProductsHero() {
         <section ref={containerRef} className="h-screen w-full bg-[#18181B] flex items-center justify-center overflow-hidden relative">
             <div
                 ref={tunnelLayerRef}
-                className="bg-[#FAF9F6] text-[#18181B] flex flex-col justify-center px-8 md:px-20 lg:px-28 shadow-2xl relative overflow-hidden w-full h-full"
+                className="bg-[#FAF9F6] text-[#18181B] flex flex-col justify-center px-8 md:px-20 lg:px-28 shadow-2xl relative overflow-hidden w-[60vw] h-[65vh] rounded-[2.5rem]"
             >
-                <div ref={contentRef} className="max-w-5xl mx-auto w-full z-10 will-change-transform">
+                <div ref={contentRef} className="max-w-5xl mx-auto w-full z-10 will-change-transform opacity-0">
                     <h1 className="text-4xl md:text-6xl lg:text-7xl font-light text-slate-900 tracking-tight max-w-4xl leading-[1.08] mb-8">
                         Technology built for real-world business impact.
                     </h1>
