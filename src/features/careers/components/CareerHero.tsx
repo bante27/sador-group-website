@@ -1,22 +1,42 @@
 import React, { useLayoutEffect, useRef } from 'react';
 import gsap from 'gsap';
-import { Link } from 'react-router-dom';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { DotLottieReact, DotLottie } from '@lottiefiles/dotlottie-react';
+import businessmanAnimation from '../../../assets/animations/businessman-balancing.json';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export function CareerHero() {
     const containerRef = useRef<HTMLDivElement>(null);
     const contentRef = useRef<HTMLDivElement>(null);
+    const animationRef = useRef<HTMLDivElement>(null);
+    const dotLottieRef = useRef<DotLottie | null>(null);
 
     useLayoutEffect(() => {
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         if (prefersReducedMotion) return;
 
         const ctx = gsap.context(() => {
-            if (contentRef.current) {
+            if (contentRef.current && animationRef.current) {
                 gsap.fromTo(
                     contentRef.current,
-                    { opacity: 0, y: 30, filter: 'blur(6px)' },
-                    { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.8, ease: 'power3.out' }
+                    { opacity: 0, x: -30, filter: 'blur(6px)' },
+                    { opacity: 1, x: 0, filter: 'blur(0px)', duration: 0.8, ease: 'power3.out' }
                 );
+
+                ScrollTrigger.create({
+                    trigger: containerRef.current,
+                    start: 'top top',
+                    end: 'bottom top',
+                    scrub: true,
+                    onUpdate: (self) => {
+                        if (dotLottieRef.current) {
+                            const totalFrames = dotLottieRef.current.totalFrames || 100;
+                            const currentFrame = self.progress * totalFrames;
+                            dotLottieRef.current.setFrame(currentFrame);
+                        }
+                    },
+                });
             }
         }, containerRef);
 
@@ -24,38 +44,41 @@ export function CareerHero() {
     }, []);
 
     return (
-        <section ref={containerRef} className="relative min-h-[85vh] flex items-center justify-center bg-[#18181B] text-[#FAF9F6] px-6 py-24 overflow-hidden">
-            <div ref={contentRef} className="max-w-5xl mx-auto w-full text-center z-10 will-change-transform">
-                <span className="inline-block font-mono text-xs uppercase tracking-widest text-emerald-500 mb-4 px-3 py-1 bg-emerald-950/40 border border-emerald-800/40 rounded-full">
-                    Careers at Sador Group
-                </span>
+        <section ref={containerRef} className="relative min-h-[100vh] flex items-center justify-center bg-white text-[#1E3A8A] px-6 lg:px-20 py-20 overflow-hidden">
+            <div className="sticky top-0 h-screen max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center z-10">
+                <div ref={contentRef} className="lg:col-span-6 will-change-transform">
 
-                <h1 className="text-4xl md:text-6xl lg:text-7xl font-light tracking-tight mb-8 leading-[1.08]">
-                    Build What Moves Business Forward.
-                </h1>
+                    <h1 className="text-3xl md:text-3xl lg:text-4xl font-bold tracking-tight text-[#0F172A] mb-6 leading-[1.15]">
+                        Build what moves enterprise forward.
+                    </h1>
 
-                <p className="text-lg md:text-xl text-zinc-400 font-normal max-w-2xl mx-auto leading-relaxed mb-12">
-                    Join Sador Group and work alongside people building technology, businesses, and solutions designed to create lasting real-world impact.
-                </p>
+                    <p className="text-base md:text-lg text-slate-700 font-normal leading-relaxed mb-8 max-w-lg">
+                        Join Sador Group and work alongside people building technology, businesses, and solutions designed to create lasting real-world impact with zero friction and highest velocity.
+                    </p>
 
-                <div className="flex flex-wrap items-center justify-center gap-4">
-                    <a
-                        href="#positions"
-                        className="px-8 py-4 bg-[#FAF9F6] text-[#18181B] font-medium rounded-xl hover:bg-zinc-200 transition-colors"
-                    >
-                        View Open Positions
-                    </a>
-                    <Link
-                        to="/about"
-                        className="px-8 py-4 bg-zinc-900 text-[#FAF9F6] border border-zinc-800 font-medium rounded-xl hover:bg-zinc-800 transition-colors"
-                    >
-                        Explore Sador Group
-                    </Link>
+                    <div>
+                        <a
+                            href="#positions"
+                            className="inline-block px-7 py-3.5 bg-[#0F172A] text-white font-medium text-sm rounded-xl hover:bg-slate-800 transition-colors shadow-md"
+                        >
+                            View Open Positions
+                        </a>
+                    </div>
+                </div>
+
+                <div ref={animationRef} className="lg:col-span-6 flex items-center justify-center will-change-transform">
+                    <div className="w-full max-w-[520px] h-[380px] md:h-[440px] flex items-center justify-center relative bg-transparent">
+                        <DotLottieReact
+                            data={businessmanAnimation as unknown as Record<string, unknown>}
+                            dotLottieRefCallback={(dotLottie: DotLottie) => {
+                                dotLottieRef.current = dotLottie;
+                                dotLottie.stop();
+                            }}
+                            className="w-full h-full object-contain"
+                        />
+                    </div>
                 </div>
             </div>
-
-            <div className="absolute right-[-10%] top-[-10%] w-[45vw] h-[45vw] rounded-full bg-emerald-500/5 blur-3xl pointer-events-none" />
-            <div className="absolute left-[-10%] bottom-[-10%] w-[45vw] h-[45vw] rounded-full bg-blue-500/5 blur-3xl pointer-events-none" />
         </section>
     );
 }
