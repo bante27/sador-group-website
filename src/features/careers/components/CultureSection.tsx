@@ -2,6 +2,7 @@ import React, { useLayoutEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { careerBenefits } from '../data/careerContent';
+import { revealOnScroll } from '../../../components/animation/scrollAnimations';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -13,44 +14,34 @@ export function CultureSection() {
         if (prefersReducedMotion) return;
 
         const ctx = gsap.context(() => {
-            // Left column cards (index 0 and 2) animate in from left
-            gsap.from('.benefit-card-left', {
-                scrollTrigger: {
-                    trigger: containerRef.current,
-                    start: 'top 75%',
-                },
-                x: -50,
-                opacity: 0,
-                duration: 0.8,
-                stagger: 0.2,
-                ease: 'power3.out',
-            });
+            revealOnScroll(
+                containerRef.current,
+                '.benefit-card-left',
+                { opacity: 0, x: -120, y: 20, scale: 0.94 },
+                { opacity: 1, x: 0, y: 0, scale: 1, duration: 1.5, ease: 'power3.out', stagger: 0.25 },
+                'top 75%'
+            );
 
-            // Right column cards (index 1 and 3) animate in from right
-            gsap.from('.benefit-card-right', {
-                scrollTrigger: {
-                    trigger: containerRef.current,
-                    start: 'top 75%',
-                },
-                x: 50,
-                opacity: 0,
-                duration: 0.8,
-                stagger: 0.2,
-                ease: 'power3.out',
-            });
+            revealOnScroll(
+                containerRef.current,
+                '.benefit-card-right',
+                { opacity: 0, x: 120, y: 20, scale: 0.94 },
+                { opacity: 1, x: 0, y: 0, scale: 1, duration: 1.5, ease: 'power3.out', stagger: 0.25 },
+                'top 75%'
+            );
         }, containerRef);
 
         return () => ctx.revert();
     }, []);
 
     return (
-        <section ref={containerRef} className="py-28 bg-white text-[#0F172A] px-6 lg:px-20">
+        <section ref={containerRef} className="py-0 bg-white text-[#0F172A] px-0 lg:px-0 overflow-hidden">
             <div className="max-w-7xl mx-auto">
                 <div className="text-center max-w-3xl mx-auto mb-20">
-                    <span className="font-mono text-xs uppercase tracking-widest text-emerald-600 mb-3 block">
+                    <span className="font-mono text-xl uppercase tracking-widest text-emerald-600 mb-3 block font-bold">
                         Why Sador Group
                     </span>
-                    <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-6 text-[#0F172A]">
+                    <h2 className="text-xl md:text-2xl font-normal tracking-tight mb-6 text-[#0F172A]">
                         Work Where Ideas Become Real Products.
                     </h2>
                     <p className="text-slate-700 text-lg leading-relaxed">
