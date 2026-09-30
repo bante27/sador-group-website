@@ -13,15 +13,29 @@ export function CultureSection() {
         if (prefersReducedMotion) return;
 
         const ctx = gsap.context(() => {
-            gsap.from('.benefit-card', {
+            // Left column cards (index 0 and 2) animate in from left
+            gsap.from('.benefit-card-left', {
                 scrollTrigger: {
                     trigger: containerRef.current,
-                    start: 'top 80%',
+                    start: 'top 75%',
                 },
-                y: 40,
+                x: -50,
                 opacity: 0,
-                duration: 0.6,
-                stagger: 0.15,
+                duration: 0.8,
+                stagger: 0.2,
+                ease: 'power3.out',
+            });
+
+            // Right column cards (index 1 and 3) animate in from right
+            gsap.from('.benefit-card-right', {
+                scrollTrigger: {
+                    trigger: containerRef.current,
+                    start: 'top 75%',
+                },
+                x: 50,
+                opacity: 0,
+                duration: 0.8,
+                stagger: 0.2,
                 ease: 'power3.out',
             });
         }, containerRef);
@@ -45,17 +59,20 @@ export function CultureSection() {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    {careerBenefits.map((benefit) => (
-                        <div
-                            key={benefit.id}
-                            className="benefit-card p-8 rounded-2xl bg-white border border-slate-200 hover:border-slate-300 transition-colors flex flex-col justify-between shadow-sm"
-                        >
-                            <div>
-                                <h3 className="text-xl font-bold mb-3 text-[#0F172A]">{benefit.title}</h3>
-                                <p className="text-slate-700 leading-relaxed">{benefit.description}</p>
+                    {careerBenefits.map((benefit, index) => {
+                        const isEven = index % 2 === 0;
+                        return (
+                            <div
+                                key={benefit.id}
+                                className={`${isEven ? 'benefit-card-left' : 'benefit-card-right'} p-8 rounded-2xl bg-[#FAF9F6] border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between`}
+                            >
+                                <div>
+                                    <h3 className="text-xl font-bold mb-3 text-[#0F172A]">{benefit.title}</h3>
+                                    <p className="text-slate-700 leading-relaxed">{benefit.description}</p>
+                                </div>
                             </div>
-                        </div>
-                    ))}
+                        );
+                    })}
                 </div>
             </div>
         </section>
