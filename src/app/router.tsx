@@ -1,20 +1,29 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import MainLayout from '../layouts/MainLayout';
 import ErrorLayout from '../layouts/ErrorLayout';
-import HomePage from '../pages/HomePage';
-import AboutPage from '../pages/AboutPage';
-import CompaniesMainPage from '../pages/CompaniesPage';
-import ProductsPage from '../pages/ProductsPage';
-import ServicesPage from '../pages/ServicesPage';
-import SolutionsPage from '../pages/SolutionsPage';
-import ProjectsPage from '../pages/ProjectsPage';
-import NewsMainPage from '../pages/NewsMainPage';
-import ArticlePage from '../pages/ArticlePage';
-import CareersPage from '../pages/CareersPage';
-import ContactPage from '../pages/ContactPage';
-import NotFoundPage from '../pages/NotFoundPage';
-import ErrorPage from '../pages/ErrorPage';
+import Spinner from '../components/ui/Spinner';
+
+// Route-based code splitting using React.lazy & Suspense for enterprise performance
+const HomePage = lazy(() => import('../pages/HomePage'));
+const AboutPage = lazy(() => import('../pages/AboutPage'));
+const CompaniesMainPage = lazy(() => import('../pages/CompaniesPage'));
+const ProductsPage = lazy(() => import('../pages/ProductsPage'));
+const ServicesPage = lazy(() => import('../pages/ServicesPage'));
+const SolutionsPage = lazy(() => import('../pages/SolutionsPage'));
+const ProjectsPage = lazy(() => import('../pages/ProjectsPage'));
+const NewsMainPage = lazy(() => import('../pages/NewsMainPage'));
+const ArticlePage = lazy(() => import('../pages/ArticlePage'));
+const CareersPage = lazy(() => import('../pages/CareersPage'));
+const ContactPage = lazy(() => import('../pages/ContactPage'));
+const NotFoundPage = lazy(() => import('../pages/NotFoundPage'));
+const ErrorPage = lazy(() => import('../pages/ErrorPage'));
+
+const PageLoader = () => (
+    <div className="min-h-screen flex items-center justify-center bg-white">
+        <Spinner />
+    </div>
+);
 
 export const router = createBrowserRouter(
     [
@@ -25,60 +34,111 @@ export const router = createBrowserRouter(
             children: [
                 {
                     index: true,
-                    element: <HomePage />,
+                    element: (
+                        <Suspense fallback={<PageLoader />}>
+                            <HomePage />
+                        </Suspense>
+                    ),
                 },
                 {
                     path: 'about',
-                    element: <AboutPage />,
+                    element: (
+                        <Suspense fallback={<PageLoader />}>
+                            <AboutPage />
+                        </Suspense>
+                    ),
                 },
                 {
                     path: 'companies',
-                    element: <CompaniesMainPage />,
+                    element: (
+                        <Suspense fallback={<PageLoader />}>
+                            <CompaniesMainPage />
+                        </Suspense>
+                    ),
                 },
                 {
                     path: 'products',
-                    element: <ProductsPage />,
+                    element: (
+                        <Suspense fallback={<PageLoader />}>
+                            <ProductsPage />
+                        </Suspense>
+                    ),
                 },
                 {
                     path: 'services',
-                    element: <ServicesPage />,
+                    element: (
+                        <Suspense fallback={<PageLoader />}>
+                            <ServicesPage />
+                        </Suspense>
+                    ),
                 },
                 {
                     path: 'solutions',
-                    element: <SolutionsPage />,
+                    element: (
+                        <Suspense fallback={<PageLoader />}>
+                            <SolutionsPage />
+                        </Suspense>
+                    ),
                 },
                 {
                     path: 'projects',
-                    element: <ProjectsPage />,
+                    element: (
+                        <Suspense fallback={<PageLoader />}>
+                            <ProjectsPage />
+                        </Suspense>
+                    ),
                 },
                 {
                     path: 'news',
-                    element: <NewsMainPage />,
+                    element: (
+                        <Suspense fallback={<PageLoader />}>
+                            <NewsMainPage />
+                        </Suspense>
+                    ),
                 },
                 {
                     path: 'news/:id',
-                    element: <ArticlePage />,
+                    element: (
+                        <Suspense fallback={<PageLoader />}>
+                            <ArticlePage />
+                        </Suspense>
+                    ),
                 },
                 {
                     path: 'careers',
-                    element: <CareersPage />,
+                    element: (
+                        <Suspense fallback={<PageLoader />}>
+                            <CareersPage />
+                        </Suspense>
+                    ),
                 },
                 {
                     path: 'contact',
-                    element: <ContactPage />,
+                    element: (
+                        <Suspense fallback={<PageLoader />}>
+                            <ContactPage />
+                        </Suspense>
+                    ),
                 },
             ],
         },
         {
             path: '*',
-            element: <NotFoundPage />,
+            element: (
+                <Suspense fallback={<PageLoader />}>
+                    <NotFoundPage />
+                </Suspense>
+            ),
         },
         {
             path: 'error',
-            element: <ErrorPage />,
+            element: (
+                <Suspense fallback={<PageLoader />}>
+                    <ErrorPage />
+                </Suspense>
+            ),
         },
     ],
     {
-
     }
 );
