@@ -30,7 +30,7 @@ export function CareerHero() {
                     end: 'bottom top',
                     scrub: true,
                     onUpdate: (self) => {
-                        if (dotLottieRef.current) {
+                        if (dotLottieRef.current && typeof dotLottieRef.current.setFrame === 'function') {
                             const totalFrames = dotLottieRef.current.totalFrames || 100;
                             const currentFrame = self.progress * totalFrames;
                             dotLottieRef.current.setFrame(currentFrame);
@@ -47,7 +47,6 @@ export function CareerHero() {
         <section ref={containerRef} className="relative min-h-[100vh] flex items-center justify-center bg-white text-[#1E3A8A] px-6 lg:px-20 py-20 overflow-hidden">
             <div className="sticky top-0 h-screen max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center z-10">
                 <div ref={contentRef} className="lg:col-span-6 will-change-transform">
-
                     <h1 className="text-3xl md:text-3xl lg:text-4xl font-bold tracking-tight text-[#0F172A] mb-6 leading-[1.15]">
                         Build what moves enterprise forward.
                     </h1>
@@ -71,8 +70,12 @@ export function CareerHero() {
                         <DotLottieReact
                             data={businessmanAnimation as unknown as Record<string, unknown>}
                             dotLottieRefCallback={(dotLottie: DotLottie) => {
-                                dotLottieRef.current = dotLottie;
-                                dotLottie.stop();
+                                if (dotLottie) {
+                                    dotLottieRef.current = dotLottie;
+                                    if (typeof dotLottie.stop === 'function') {
+                                        dotLottie.stop();
+                                    }
+                                }
                             }}
                             className="w-full h-full object-contain"
                         />
