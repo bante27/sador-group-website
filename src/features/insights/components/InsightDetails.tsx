@@ -1,7 +1,6 @@
 import React from 'react';
 import { Insight } from '../types/insight.types';
 import InsightMeta from './InsightMeta';
-import InsightImage from './InsightImage';
 import RelatedInsights from './RelatedInsights';
 
 interface InsightDetailsProps {
@@ -18,7 +17,7 @@ export const InsightDetails: React.FC<InsightDetailsProps> = ({
     onSelectInsight,
 }) => {
     return (
-        <article className="py-12 px-6 md:px-12 max-w-4xl mx-auto animate-fade-in">
+        <article className="py-1 px-6 md:px-12 max-w-4xl mx-auto animate-fade-in">
             {/* Back Button */}
             <button
                 onClick={onBack}
@@ -27,7 +26,7 @@ export const InsightDetails: React.FC<InsightDetailsProps> = ({
                 <span>←</span> Back to Insights
             </button>
 
-            <div className="border-t border-zinc-300 pt-8 mb-8">
+            <div className="pt-8 mb-8">
                 <span className="text-xs font-mono uppercase tracking-widest text-emerald-700">
                     {insight.category}
                 </span>
@@ -47,17 +46,6 @@ export const InsightDetails: React.FC<InsightDetailsProps> = ({
                     eventDate={insight.eventDate}
                 />
             </div>
-
-            {/* Hero Image */}
-            {insight.image && (
-                <div className="mb-12 rounded-xl overflow-hidden max-h-[500px]">
-                    <InsightImage
-                        src={insight.image}
-                        alt={insight.title}
-                        className="w-full h-full object-cover"
-                    />
-                </div>
-            )}
 
             {/* Content Body */}
             <div className="prose prose-lg max-w-none text-slate-700 space-y-6 font-normal leading-relaxed mb-16">

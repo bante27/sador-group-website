@@ -1,7 +1,6 @@
 import React from 'react';
 import { Insight } from '../types/insight.types';
 import InsightMeta from './InsightMeta';
-import InsightImage from './InsightImage';
 
 interface FeaturedInsightProps {
     insight: Insight | null;
@@ -31,7 +30,7 @@ export const FeaturedInsight: React.FC<FeaturedInsightProps> = ({ insight, onSel
 
             <div
                 onClick={handleClick}
-                className="group cursor-pointer grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-[#F4F7F5] border border-zinc-200 rounded-xl p-8 transition-all hover:border-emerald-600/50"
+                className="group cursor-pointer bg-[#F4F7F5] border border-zinc-200 rounded-xl p-8 transition-all hover:border-emerald-600/50"
                 role="article"
                 tabIndex={0}
                 onKeyDown={(e) => {
@@ -41,17 +40,8 @@ export const FeaturedInsight: React.FC<FeaturedInsightProps> = ({ insight, onSel
                     }
                 }}
             >
-                {/* Left: Image */}
-                <div className="lg:col-span-7 h-72 md:h-96 rounded-lg overflow-hidden">
-                    <InsightImage
-                        src={insight.image}
-                        alt={insight.title}
-                        className="w-full h-full object-cover"
-                    />
-                </div>
-
-                {/* Right: Content */}
-                <div className="lg:col-span-5 flex flex-col justify-between space-y-6">
+                {/* Content */}
+                <div className="flex flex-col justify-between space-y-6">
                     <div>
                         <span className="inline-block px-3 py-1 bg-emerald-100 text-emerald-800 text-xs font-mono uppercase rounded mb-4">
                             {insight.category}
@@ -61,7 +51,7 @@ export const FeaturedInsight: React.FC<FeaturedInsightProps> = ({ insight, onSel
                             {insight.title}
                         </h2>
 
-                        <p className="text-zinc-600 text-base font-normal leading-relaxed mb-6 line-clamp-3">
+                        <p className="text-zinc-600 text-base font-normal leading-relaxed mb-6 max-w-4xl">
                             {insight.excerpt}
                         </p>
                     </div>
