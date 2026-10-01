@@ -108,14 +108,15 @@ export const FeaturedInsight: React.FC<FeaturedInsightProps> = ({
                             {insight.title}
                         </h2>
 
-                        <div className="text-slate-800 text-lg font-medium leading-relaxed space-y-4">
-                            <p>{insight.excerpt}</p>
-                            {insight.content && (
-                                <p className="text-slate-700 text-base font-normal">
-                                    {insight.content}
-                                </p>
-                            )}
-                        </div>
+                        <p className="text-slate-800 text-lg font-medium leading-relaxed mb-4">
+                            {insight.excerpt}
+                        </p>
+
+                        {insight.content && (
+                            <p className="text-slate-700 text-base font-normal leading-relaxed">
+                                {insight.content}
+                            </p>
+                        )}
                     </div>
 
                     <div className="pt-6 border-t border-zinc-300">
@@ -143,14 +144,15 @@ export const FeaturedInsight: React.FC<FeaturedInsightProps> = ({
                             {insight.title}
                         </h2>
 
-                        <div className="text-white text-lg font-medium leading-relaxed space-y-4">
-                            <p>{insight.excerpt}</p>
-                            {insight.content && (
-                                <p className="text-emerald-100 text-base font-normal">
-                                    {insight.content}
-                                </p>
-                            )}
-                        </div>
+                        <p className="text-emerald-100 text-lg font-medium leading-relaxed mb-4">
+                            {insight.excerpt}
+                        </p>
+
+                        {insight.content && (
+                            <p className="text-emerald-200 text-base font-normal leading-relaxed">
+                                {insight.content}
+                            </p>
+                        )}
                     </div>
 
                     <div className="pt-6 border-t border-white/20">
