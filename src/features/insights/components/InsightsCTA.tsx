@@ -5,7 +5,7 @@ export const InsightsCTA: React.FC = () => {
     const navigate = useNavigate();
 
     return (
-        <section className="py-24 px-6 md:px-12 bg-[#FAF9F6] text-[#111318] mt-16 border-t border-zinc-200">
+        <section className="py-0 px-6 md:px-12 bg-[#FAF9F6] text-[#111318] mt-16 ">
             <div className="max-w-4xl mx-auto text-center">
                 <span className="text-xs uppercase font-mono tracking-[0.2em] text-emerald-700 block mb-4 font-semibold">
                     STAY CONNECTED
