@@ -21,39 +21,38 @@ export const FeaturedInsight: React.FC<FeaturedInsightProps> = ({ insight, onSel
     };
 
     return (
-        <section className=" md:px-12 max-w-7xl mx-auto">
+        <section className="px-6 md:px-12 max-w-7xl mx-auto">
             <div className="mb-6">
-                <span className="text-xs uppercase font-mono tracking-[0.2em] text-emerald-700">
+                <span className="text-xs uppercase font-mono tracking-[0.2em] text-emerald-700 font-semibold">
                     FEATURED PUBLICATION
                 </span>
             </div>
 
             <div
                 onClick={handleClick}
-                className="group cursor-pointer bg-[#F4F7F5] border border-zinc-200 rounded-xl p-8 transition-all hover:border-emerald-600/50"
+                className="cursor-default bg-gradient-to-r from-[#F4F7F5] via-white to-[#F4F7F5] border border-zinc-200 rounded-xl p-8 shadow-sm"
                 role="article"
                 tabIndex={0}
-                onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        handleClick();
-                    }
-                }}
             >
                 {/* Content */}
                 <div className="flex flex-col justify-between space-y-6">
                     <div>
-                        <span className="inline-block px-3 py-1 bg-emerald-100 text-emerald-800 text-xs font-mono uppercase rounded mb-4">
+                        <span className="inline-block px-3 py-1 bg-emerald-100 text-emerald-800 text-xs font-mono uppercase rounded mb-4 font-medium">
                             {insight.category}
                         </span>
 
-                        <h2 className="text-3xl md:text-4xl font-light text-slate-900 tracking-tight mb-4 group-hover:text-emerald-700 transition-colors">
+                        <h2 className="text-3xl md:text-5xl font-semibold text-slate-900 tracking-tight mb-6 leading-tight">
                             {insight.title}
                         </h2>
 
-                        <p className="text-zinc-600 text-base font-normal leading-relaxed mb-6 max-w-4xl">
-                            {insight.excerpt}
-                        </p>
+                        <div className="text-slate-800 text-lg font-medium leading-relaxed space-y-4">
+                            <p>{insight.excerpt}</p>
+                            {insight.content && (
+                                <p className="text-slate-700 text-base font-normal">
+                                    {insight.content}
+                                </p>
+                            )}
+                        </div>
                     </div>
 
                     <div className="pt-6 border-t border-zinc-300 flex items-center justify-between">
@@ -63,10 +62,6 @@ export const FeaturedInsight: React.FC<FeaturedInsightProps> = ({ insight, onSel
                             location={insight.location}
                             eventDate={insight.eventDate}
                         />
-
-                        <span className="inline-flex items-center gap-2 text-sm font-medium text-slate-900 group-hover:text-emerald-600 transition-colors">
-                            {isExternal ? 'Read Article ↗' : 'Read Article →'}
-                        </span>
                     </div>
                 </div>
             </div>
