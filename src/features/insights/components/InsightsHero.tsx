@@ -5,8 +5,6 @@ import rocketAnimation from '../../../assets/animations/Businessman rocket.json'
 
 export const InsightsHero: React.FC = () => {
     const containerRef = useRef<HTMLDivElement>(null);
-    const lineRef = useRef<HTMLDivElement>(null);
-    const eyebrowRef = useRef<HTMLSpanElement>(null);
     const headingRef = useRef<HTMLHeadingElement>(null);
     const descRef = useRef<HTMLParagraphElement>(null);
     const dividerRef = useRef<HTMLHRElement>(null);
@@ -15,10 +13,9 @@ export const InsightsHero: React.FC = () => {
         const ctx = gsap.context(() => {
             const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             if (prefersReducedMotion) {
-                gsap.set([lineRef.current, eyebrowRef.current, headingRef.current, descRef.current, dividerRef.current], {
+                gsap.set([headingRef.current, descRef.current, dividerRef.current], {
                     opacity: 1,
                     y: 0,
-                    scaleY: 1,
                     scaleX: 1,
                 });
                 return;
@@ -27,22 +24,10 @@ export const InsightsHero: React.FC = () => {
             const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
             tl.fromTo(
-                lineRef.current,
-                { scaleY: 0, transformOrigin: 'top' },
-                { scaleY: 1, duration: 0.6 }
+                headingRef.current,
+                { opacity: 0, y: 25 },
+                { opacity: 1, y: 0, duration: 0.7 }
             )
-                .fromTo(
-                    eyebrowRef.current,
-                    { opacity: 0, y: 15 },
-                    { opacity: 1, y: 0, duration: 0.5 },
-                    '-=0.4'
-                )
-                .fromTo(
-                    headingRef.current,
-                    { opacity: 0, y: 25 },
-                    { opacity: 1, y: 0, duration: 0.7 },
-                    '-=0.3'
-                )
                 .fromTo(
                     descRef.current,
                     { opacity: 0, y: 20 },
@@ -61,7 +46,7 @@ export const InsightsHero: React.FC = () => {
     }, []);
 
     return (
-        <div ref={containerRef} className="pt-24 pb-16 px-6 md:px-12 max-w-7xl mx-auto">
+        <div ref={containerRef} className="pt-32 pb-16 px-6 md:px-12 max-w-7xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mb-12">
                 <div className="lg:col-span-4 flex items-center justify-center lg:justify-start">
                     <div className="w-full max-w-[320px] h-[260px] flex items-center justify-center">
@@ -75,16 +60,6 @@ export const InsightsHero: React.FC = () => {
                 </div>
 
                 <div className="lg:col-span-8 text-center lg:text-left flex flex-col items-center lg:items-start">
-                    <div className="flex items-start gap-4 mb-6">
-                        <div ref={lineRef} className="w-[2px] h-6 bg-emerald-600 mt-1" />
-                        <span
-                            ref={eyebrowRef}
-                            className="text-xs uppercase tracking-[0.2em] font-semibold text-emerald-700 font-mono"
-                        >
-                            INSIGHTS
-                        </span>
-                    </div>
-
                     <h1
                         ref={headingRef}
                         className="text-4xl md:text-6xl font-light text-slate-900 tracking-tight max-w-4xl mb-6 leading-[1.1]"
