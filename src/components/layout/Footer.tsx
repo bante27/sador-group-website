@@ -71,7 +71,7 @@ export function Footer() {
             </div>
 
             {/* Large Closing Statement (slightly smaller on large screens as requested) */}
-            <h2 className="footer-reveal text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight leading-[1.05] text-white mb-6">
+            <h2 className="footer-reveal text-2xl sm:text-3xl lg:text-6xl font-light tracking-tight leading-[1.05] text-white mb-6">
               Technology<br />
               that moves<br />
               business forward.
