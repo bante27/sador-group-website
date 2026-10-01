@@ -21,7 +21,7 @@ export const FeaturedInsight: React.FC<FeaturedInsightProps> = ({ insight, onSel
     };
 
     return (
-        <section className="py-12 px-6 md:px-12 max-w-7xl mx-auto">
+        <section className=" md:px-12 max-w-7xl mx-auto">
             <div className="mb-6">
                 <span className="text-xs uppercase font-mono tracking-[0.2em] text-emerald-700">
                     FEATURED PUBLICATION
