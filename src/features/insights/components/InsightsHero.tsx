@@ -7,16 +7,14 @@ export const InsightsHero: React.FC = () => {
     const containerRef = useRef<HTMLDivElement>(null);
     const headingRef = useRef<HTMLHeadingElement>(null);
     const descRef = useRef<HTMLParagraphElement>(null);
-    const dividerRef = useRef<HTMLHRElement>(null);
 
     useLayoutEffect(() => {
         const ctx = gsap.context(() => {
             const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             if (prefersReducedMotion) {
-                gsap.set([headingRef.current, descRef.current, dividerRef.current], {
+                gsap.set([headingRef.current, descRef.current], {
                     opacity: 1,
                     y: 0,
-                    scaleX: 1,
                 });
                 return;
             }
@@ -33,12 +31,6 @@ export const InsightsHero: React.FC = () => {
                     { opacity: 0, y: 20 },
                     { opacity: 1, y: 0, duration: 0.6 },
                     '-=0.4'
-                )
-                .fromTo(
-                    dividerRef.current,
-                    { scaleX: 0, transformOrigin: 'left' },
-                    { scaleX: 1, duration: 0.8, ease: 'power4.out' },
-                    '-=0.2'
                 );
         }, containerRef);
 
@@ -47,7 +39,7 @@ export const InsightsHero: React.FC = () => {
 
     return (
         <div ref={containerRef} className="pt-32 pb-16 px-6 md:px-12 max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mb-12">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                 <div className="lg:col-span-4 flex items-center justify-center lg:justify-start">
                     <div className="w-full max-w-[320px] h-[260px] flex items-center justify-center">
                         <DotLottieReact
@@ -75,11 +67,6 @@ export const InsightsHero: React.FC = () => {
                     </p>
                 </div>
             </div>
-
-            <hr
-                ref={dividerRef}
-                className="border-t border-zinc-300 w-full"
-            />
         </div>
     );
 };
