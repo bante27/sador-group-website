@@ -2,7 +2,7 @@ import React, { useLayoutEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { Link } from 'react-router-dom';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
-import contactButtonAnimation from '../../../assets/animations/Contact Button.json';
+import contactButtonAnimation from '@/assets/animations/Contact Button.json';
 
 export function ServiceCTA() {
     const ctaRef = useRef<HTMLDivElement>(null);
@@ -31,8 +31,8 @@ export function ServiceCTA() {
     }, []);
 
     return (
-        <div ref={ctaRef} className="pt-16 pb-12 border-t border-[#D4D4D8] mt-12 text-center flex flex-col items-center">
-            <div className="cta-anim text-[11px] font-mono tracking-widest text-[#71717A] uppercase mb-3">
+        <div ref={ctaRef} className="pt-16 pb-12  mt-12 text-center flex flex-col items-center">
+            <div className="cta-anim text-[14px] font-mono tracking-widest text-[#71717A] uppercase mb-3">
                 INQUIRY & COLLABORATION
             </div>
             <h2 className="cta-anim text-2xl sm:text-3xl font-medium text-[#18181B] tracking-tight mb-2">
