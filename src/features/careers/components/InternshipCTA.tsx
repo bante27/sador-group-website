@@ -3,7 +3,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { opportunityAreas } from '../data/careerContent';
 import { ArrowRight } from 'lucide-react';
-import { revealOnScroll } from '../../../components/animation/scrollAnimations';
+import { revealOnScroll } from '@/components/animation/scrollAnimations';
 
 gsap.registerPlugin(ScrollTrigger);
 
