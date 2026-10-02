@@ -47,7 +47,7 @@ export function InternshipCTA() {
   }, []);
 
   return (
-    <section ref={containerRef} className="py-0 bg-white text-[#0F172A] px-6 lg:px-20 overflow-hidden">
+    <section ref={containerRef} className="py-4 bg-white text-[#0F172A] px-6 lg:px-20 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-20">
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-6 text-[#0F172A]">
