@@ -55,8 +55,8 @@ export function ServiceCTA() {
     };
 
     return (
-        <div ref={ctaRef} className="pt-24 pb-16 border-t border-[#D4D4D8] mt-16 text-center flex flex-col items-center">
-            <div className="cta-anim text-[11px] font-mono tracking-widest text-[#71717A] uppercase mb-4">
+        <div ref={ctaRef} className="pt-24 pb-16   mt-16 text-center flex flex-col items-center">
+            <div className="cta-anim text-[20px] font-mono tracking-widest text-[#71717A] uppercase mb-4">
                 INQUIRY & COLLABORATION
             </div>
             <h2 className="cta-anim text-2xl sm:text-3xl font-medium text-[#18181B] tracking-tight mb-3">
