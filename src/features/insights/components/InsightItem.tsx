@@ -37,19 +37,6 @@ export const InsightItem: React.FC<InsightItemProps> = ({ insight, index, onSele
                 }
             }}
         >
-            {/* Image Preview Box on the Left or Right */}
-            {insight.image && (
-                <div className="w-full md:w-48 h-32 rounded-xl overflow-hidden bg-zinc-100 shrink-0 border border-zinc-100 relative">
-                    <img
-                        src={insight.image}
-                        alt={insight.title}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                        loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-emerald-950/10 opacity-0 group-hover:opacity-100 transition-opacity" />
-                </div>
-            )}
-
             {/* Content info */}
             <div className="flex-1 flex flex-col justify-between space-y-3">
                 <div className="flex items-center gap-4">

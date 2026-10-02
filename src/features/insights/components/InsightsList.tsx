@@ -33,13 +33,13 @@ export const InsightsList: React.FC<InsightsListProps> = ({ insights, onSelectIn
 
         const ctx = gsap.context(() => {
             gsap.fromTo(
-                '.insight-row-item',
+                '.insight-card-item',
                 { opacity: 0, y: 30 },
                 {
                     opacity: 1,
                     y: 0,
                     duration: 0.75,
-                    stagger: 0.08,
+                    stagger: 0.1,
                     ease: 'power3.out',
                 }
             );
@@ -64,9 +64,9 @@ export const InsightsList: React.FC<InsightsListProps> = ({ insights, onSelectIn
                 onSelectCategory={setActiveCategory}
             />
 
-            <div className="flex flex-col">
+            <div className="grid grid-cols-1 gap-6">
                 {filteredInsights.map((insight, index) => (
-                    <div key={insight.id} className="insight-row-item">
+                    <div key={insight.id} className="insight-card-item">
                         <InsightItem
                             insight={insight}
                             index={index}
