@@ -11,6 +11,8 @@ import ProductScreenshots from '../features/products/components/ProductScreensho
 import RelatedProducts from '../features/products/components/RelatedProducts';
 import ProductCTA from '../features/products/components/ProductCTA';
 import { products } from '../features/products/data/products';
+import SEO from '../components/SEO';
+import { generateWebPageSchema, generateBreadcrumbSchema } from '../utils/schema.utils';
 
 export function ProductsPage() {
     const [selectedCategory, setSelectedCategory] = useState<string>('All');
@@ -41,8 +43,26 @@ export function ProductsPage() {
         return result;
     }, [selectedCategory, searchQuery]);
 
+    const schemas = [
+        generateWebPageSchema(
+            'Products & Technology Solutions | Sador Group',
+            'Explore official Sador Group products, technology solutions, and enterprise software offerings.',
+            '/products'
+        ),
+        generateBreadcrumbSchema([
+            { name: 'Home', path: '/' },
+            { name: 'Products', path: '/products' },
+        ]),
+    ];
+
     return (
         <div className="min-h-screen bg-[#FAF9F6]">
+            <SEO
+                title="Products & Technology Solutions | Sador Group"
+                description="Explore official Sador Group products, technology solutions, and enterprise software offerings."
+                path="/products"
+                schema={schemas}
+            />
             <ProductsHero />
             <ProductFilters
                 categories={categories}
