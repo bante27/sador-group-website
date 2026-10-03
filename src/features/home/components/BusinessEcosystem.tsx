@@ -18,7 +18,7 @@ export function BusinessEcosystem() {
                     setIsVisible(true);
                 }
             },
-            { threshold: 0.4 } // ልክ ሴክሽኑ 40% ከፊት ለፊት ሲታይ (face-to-face) motion-ው ይጀምራል
+            { threshold: 0.4 }
         );
 
         if (sectionRef.current) {
