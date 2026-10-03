@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import { Handshake, Mail, Phone, Linkedin, Twitter, Instagram, Facebook, MapPin } from 'lucide-react';
-import { revealOnScroll } from '../../../components/animation/scrollAnimations';
+import { Mail, Phone, Linkedin, Twitter, Instagram, Facebook, MapPin } from 'lucide-react';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import handshakeAnimation from '../../../assets/animations/handshake blue.json';
 
 const GeometricBackground: React.FC = () => {
   return (
@@ -61,8 +62,6 @@ export const ContactHero: React.FC = () => {
     return () => ctx.revert();
   }, []);
 
-  const titleText = "Let's Build What Comes Next.";
-
   return (
     <div ref={heroRef} className="relative pt-12 pb-12 md:pt-24 md:pb-24 bg-[#FAF9F6] overflow-hidden">
       <GeometricBackground />
@@ -77,7 +76,7 @@ export const ContactHero: React.FC = () => {
 
             <div className="hero-animate flex items-center gap-3 text-xs sm:text-sm text-zinc-800 font-bold mb-3 sm:mb-4 opacity-100">
               <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse shrink-0" />
-              <span>Global Response Team Active (&lt; 24h)</span>
+              <span>Global Response Team Active (< 24h)</span>
             </div>
 
             <p className="hero-animate text-sm sm:text-base text-zinc-700 font-bold leading-relaxed max-w-xl opacity-100">
@@ -89,8 +88,15 @@ export const ContactHero: React.FC = () => {
             <div className="glass-card-wrapper relative z-10 w-full max-w-md p-4 sm:p-6 flex flex-col gap-3.5 sm:gap-4 transition-all duration-300">
 
               <div className="w-full">
-                <div className="relative w-full py-5 px-4 sm:py-6 sm:px-6 bg-gradient-to-r from-orange-500/20 via-amber-500/10 to-orange-500/20 border border-orange-500/20 flex items-center justify-center gap-4 sm:gap-5 text-orange-400 transition-all duration-300">
-                  <Handshake className="w-12 h-12 sm:w-16 sm:h-16 stroke-[1.5] shrink-0" />
+                <div className="relative w-full py-3 px-4 sm:py-4 sm:px-6 bg-gradient-to-r from-orange-500/25 via-amber-500/15 to-orange-500/25 border border-orange-500/30 flex items-center justify-center gap-3 text-orange-400 transition-all duration-300">
+                  <div className="w-14 h-14 sm:w-16 sm:h-16 shrink-0 flex items-center justify-center">
+                    <DotLottieReact
+                      data={handshakeAnimation as unknown as Record<string, unknown>}
+                      loop
+                      autoplay
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
                   <span className="text-sm sm:text-base font-bold text-white tracking-wide">Strategic Partnerships</span>
                 </div>
               </div>
