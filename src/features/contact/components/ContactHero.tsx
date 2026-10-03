@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { Mail, Phone, Linkedin, Twitter, Instagram, Facebook, MapPin } from 'lucide-react';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
-import handshakeAnimation from '../../../assets/animations/handshake blue.json';
+import handshakeAnimation from '@/assets/animations/handshake blue.json';
 
 const GeometricBackground: React.FC = () => {
   return (
