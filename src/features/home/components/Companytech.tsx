@@ -1,4 +1,10 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useLayoutEffect } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+if (typeof window !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+}
 
 interface TechIconProps {
     name: string;
@@ -23,6 +29,7 @@ export function CompanyIntro() {
     const [isPaused, setIsPaused] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
     const sectionRef = useRef<HTMLElement>(null);
+    const polygonRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -31,7 +38,7 @@ export function CompanyIntro() {
                     setIsVisible(true);
                 }
             },
-            { threshold: 0.2 }
+            { threshold: 0.1 }
         );
 
         if (sectionRef.current) {
@@ -43,6 +50,49 @@ export function CompanyIntro() {
                 observer.unobserve(sectionRef.current);
             }
         };
+    }, []);
+
+    useLayoutEffect(() => {
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReducedMotion) return;
+
+        const ctx = gsap.context(() => {
+            if (polygonRef.current) {
+                gsap.fromTo(
+                    polygonRef.current,
+                    { clipPath: 'polygon(0 0, 0% 0, 0% 100%, 0 100%)' },
+                    {
+                        clipPath: 'polygon(0 0, 72% 0, 30% 100%, 0 100%)',
+                        ease: 'none',
+                        scrollTrigger: {
+                            trigger: sectionRef.current,
+                            start: 'top bottom',
+                            end: 'bottom top',
+                            scrub: 2.5, // Smooth, very slow response to scroll
+                        },
+                    }
+                );
+            }
+
+            gsap.fromTo(
+                '.tech-content-anim',
+                { y: 50, opacity: 0 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 1.2,
+                    stagger: 0.3,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: sectionRef.current,
+                        start: 'top 75%',
+                        toggleActions: 'play none none none',
+                    },
+                }
+            );
+        }, sectionRef);
+
+        return () => ctx.revert();
     }, []);
 
     const technologies = [
@@ -58,6 +108,7 @@ export function CompanyIntro() {
     return (
         <section ref={sectionRef} className="relative overflow-hidden py-20 lg:py-24 bg-slate-50">
             <div
+                ref={polygonRef}
                 className="absolute inset-0 pointer-events-none bg-black hidden lg:block"
                 style={{
                     clipPath: 'polygon(0 0, 72% 0, 30% 100%, 0 100%)'
@@ -126,14 +177,7 @@ export function CompanyIntro() {
                             transformOrigin: 'left center'
                         }}
                     >
-                        <div
-                            className="transition-all duration-1000 ease-out transform w-full"
-                            style={{
-                                opacity: isVisible ? 1 : 0,
-                                transform: isVisible ? 'translateY(0px)' : 'translateY(30px)',
-                                transitionDelay: '500ms'
-                            }}
-                        >
+                        <div className="tech-content-anim w-full">
                             <a
                                 href="/technologies"
                                 className="inline-flex items-center gap-2 px-6 py-3.5 bg-gradient-to-r from-amber-400 to-amber-600 hover:from-black hover:to-amber-500 text-black hover:text-white font-semibold rounded-xl shadow-xl transition-all duration-500 transform hover:scale-105"
@@ -142,26 +186,12 @@ export function CompanyIntro() {
                                 <span className="text-xl">→</span>
                             </a>
                         </div>
-                        <div
-                            className="transition-all duration-1000 ease-out transform w-full"
-                            style={{
-                                opacity: isVisible ? 1 : 0,
-                                transform: isVisible ? 'translateY(0px)' : 'translateY(30px)',
-                                transitionDelay: '900ms'
-                            }}
-                        >
+                        <div className="tech-content-anim w-full">
                             <p className="text-slate-800 text-base sm:text-lg leading-relaxed font-medium">
                                 At Sador Group, we engineer robust web and high-performance mobile solutions. We turn complex challenges into seamless digital experiences.
                             </p>
                         </div>
-                        <div
-                            className="transition-all duration-1000 ease-out transform w-full"
-                            style={{
-                                opacity: isVisible ? 1 : 0,
-                                transform: isVisible ? 'translateY(0px)' : 'translateY(30px)',
-                                transitionDelay: '2000ms'
-                            }}
-                        >
+                        <div className="tech-content-anim w-full">
                             <h2 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight leading-tight">
                                 Empowering Business Through <span className="text-amber-600">Advanced Tech Stack.</span>
                             </h2>
