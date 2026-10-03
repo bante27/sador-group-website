@@ -67,8 +67,10 @@ export function CompanyIntro() {
                         scrollTrigger: {
                             trigger: sectionRef.current,
                             start: 'top bottom',
-                            end: 'bottom top',
-                            scrub: 2.5, // Smooth, very slow response to scroll
+                            end: 'center center',
+                            scrub: true,
+                            toggleActions: 'play none none none',
+                            once: true,
                         },
                     }
                 );
