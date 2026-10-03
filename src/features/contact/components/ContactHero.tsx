@@ -16,7 +16,7 @@ const GeometricBackground: React.FC = () => {
       >
         <polygon
           points="970,0 1440,0 1440,800 700,800"
-          className="hidden lg:block fill-[#0f172a]"
+          className="hidden lg:block fill-[#0B132B]"
         />
       </svg>
     </div>
@@ -71,15 +71,15 @@ export const ContactHero: React.FC = () => {
 
           <div className="lg:col-span-7 text-zinc-900 pr-0 lg:pr-6">
             <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight mb-6 sm:mb-8 leading-[1.1] text-zinc-900">
-              Let's Build What <span className="font-bold italic">Comes Next.</span>
+              Let's Build What <span className="font-bold italic text-emerald-600">Comes Next.</span>
             </h1>
 
             <div className="hero-animate flex items-center gap-3 text-xs sm:text-sm text-zinc-800 font-bold mb-3 sm:mb-4 opacity-100">
-              <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse shrink-0" />
-              <span>Global Response Team Active (< 24h)</span>
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-600 animate-pulse shrink-0 shadow-lg shadow-emerald-500/50" />
+              <span>Global Response Team Active (24h)</span>
             </div>
 
-            <p className="hero-animate text-sm sm:text-base text-zinc-700 font-bold leading-relaxed max-w-xl opacity-100">
+            <p className="hero-animate text-sm sm:text-base text-zinc-700 font-medium leading-relaxed max-w-xl opacity-100">
               Connect with Sador Group for enterprise technology solutions, strategic partnerships, product information, or dedicated sales assistance across our ecosystem.
             </p>
           </div>
@@ -88,8 +88,8 @@ export const ContactHero: React.FC = () => {
             <div className="glass-card-wrapper relative z-10 w-full max-w-md p-4 sm:p-6 flex flex-col gap-3.5 sm:gap-4 transition-all duration-300">
 
               <div className="w-full">
-                <div className="relative w-full py-3 px-4 sm:py-4 sm:px-6 bg-gradient-to-r from-orange-500/25 via-amber-500/15 to-orange-500/25 border border-orange-500/30 flex items-center justify-center gap-3 text-orange-400 transition-all duration-300">
-                  <div className="w-14 h-14 sm:w-16 sm:h-16 shrink-0 flex items-center justify-center">
+                <div className="relative w-full py-5 px-6 sm:py-6 sm:px-8 bg-[#3A2D28] border border-[#52413A] rounded-xl flex items-center justify-start gap-5 text-orange-400 transition-all duration-300">
+                  <div className="w-28 h-28 sm:w-36 sm:h-36 shrink-0 flex items-center justify-center -ml-4 scale-150">
                     <DotLottieReact
                       data={handshakeAnimation as unknown as Record<string, unknown>}
                       loop
@@ -97,7 +97,7 @@ export const ContactHero: React.FC = () => {
                       className="w-full h-full object-contain"
                     />
                   </div>
-                  <span className="text-sm sm:text-base font-bold text-white tracking-wide">Strategic Partnerships</span>
+                  <span className="text-base sm:text-lg font-bold text-white tracking-wide pl-2">Strategic Partnerships</span>
                 </div>
               </div>
 
