@@ -2,7 +2,7 @@ import React, { useLayoutEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { Target, Compass, ArrowRight } from 'lucide-react';
 import { useTypewriter } from '../hooks/useTypewriter';
-import { revealOnScroll } from '../../../components/animation/scrollAnimations';
+import { revealOnScroll } from '@/components/animation/scrollAnimations';
 
 const typewriterPhrases = [
     'Digital Experiences',
@@ -117,7 +117,7 @@ export const AboutHero: React.FC = () => {
     return (
         <div
             ref={containerRef}
-            className="relative pt-24 pb-20 md:pt-32 md:pb-28 bg-zinc-950 text-white overflow-x-hidden min-h-[90vh] flex items-center"
+            className="relative  pt-24 pb-20 md:pt-32 md:pb-28 bg-zinc-950 text-white overflow-x-hidden min-h-[90vh] flex items-center"
         >
             <div className="absolute inset-0 z-30 pointer-events-none flex overflow-hidden">
                 <div
